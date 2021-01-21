@@ -12,6 +12,10 @@ import {MatCardModule} from '@angular/material/card';
 import {DashboardService} from '../../modules/dashboard.service';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableModule} from '@angular/material/table';
+import {ServicoComponent} from '../../modules/servico/servico.component';
+import {MatButtonModule} from '@angular/material/button';
+import {ServicoModule} from '../../modules/servico/servico.module';
+import {ServicoService} from '../../modules/servico/servico.service';
 
 
 
@@ -19,7 +23,8 @@ import {MatTableModule} from '@angular/material/table';
   declarations: [
     DefaultComponent,
     DashboardComponent,
-    PostsComponent
+    PostsComponent,
+    ServicoComponent
   ],
   imports: [
     CommonModule,
@@ -30,10 +35,13 @@ import {MatTableModule} from '@angular/material/table';
     FlexLayoutModule,
     MatCardModule,
     MatPaginatorModule,
-    MatTableModule
+    MatTableModule,
+    MatButtonModule,
+    ServicoModule
   ],
   providers: [
-    DashboardService
+    DashboardService,
+    ServicoService
   ]
 })
 export class DefaultModule { }
