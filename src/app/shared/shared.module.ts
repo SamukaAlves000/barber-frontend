@@ -14,6 +14,7 @@ import {RouterModule} from '@angular/router';
 import { AreaComponent } from './widgets/area/area.component';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { CardComponent } from './widgets/card/card.component';
+import { PieComponent } from './widgets/pie/pie.component';
 
 
 
@@ -23,14 +24,16 @@ import { CardComponent } from './widgets/card/card.component';
     SidebarComponent,
     FooterComponent,
     AreaComponent,
-    CardComponent
+    CardComponent,
+    PieComponent
   ],
   exports: [
     HeaderComponent,
     SidebarComponent,
     FooterComponent,
     AreaComponent,
-    CardComponent
+    CardComponent,
+    PieComponent
   ],
   imports: [
     CommonModule,

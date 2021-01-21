@@ -69,7 +69,7 @@ export class CardComponent implements OnInit {
       },
       series: [
         {
-          data: [71, 79, 36, 66]
+          data: this.data
         }
       ]
     };
