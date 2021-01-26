@@ -5,13 +5,14 @@ import {Servico} from './servico';
 import {  throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {Regiao} from '../posts/posts.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ServicoService {
 
-  private apiServer = 'http://localhost:8080';
+  private apiServer = 'https://barbearia-backend.herokuapp.com';
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -59,5 +60,12 @@ export class ServicoService {
         panelClass: isError ? ['msg-error'] : ['msg-sucess']
       }
     )
+  }
+
+  getAllRegioes(): Observable<Regiao[]> {
+    return this.httpClient.get<Regiao[]>('https://servicodados.ibge.gov.br/api/v1/localidades/regioes')
+      .pipe(
+        catchError(this.errorHandler)
+      );
   }
 }
