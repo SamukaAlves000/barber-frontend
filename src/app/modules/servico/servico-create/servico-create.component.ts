@@ -20,12 +20,25 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class ServicoCreateComponent implements OnInit {
 
+  constructor(private servicoService: ServicoService, private router: Router) { }
+
   servico: Servico = {
-    descricao: 'Teste',
-    duracao: 45,
-    valor: 20
+    descricao: '',
+    duracao: null,
+    valor: null
   };
 
+  duracoes = [
+    {id: 1, duracao: 15},
+    {id: 2, duracao: 30},
+    {id: 3, duracao: 45},
+    {id: 4, duracao: 60}
+  ];
+
+  options = [
+    { name: 20, value: 1 },
+    { name: 30, value: 2 }
+  ];
   emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,
@@ -36,8 +49,6 @@ export class ServicoCreateComponent implements OnInit {
   ]);
 
   matcher = new MyErrorStateMatcher();
-
-  constructor(private servicoService: ServicoService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -52,4 +63,6 @@ export class ServicoCreateComponent implements OnInit {
   cancel(): void{
     this.router.navigate(['/servicos']);
   }
+
+
 }

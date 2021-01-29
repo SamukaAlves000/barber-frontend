@@ -1,1 +1,30 @@
-<p>servico-update works!</p>
+<mat-card class="mat-elevation-z8" style="background-color: #fafafa">
+  <mat-card-subtitle class="color-01"><mat-icon>miscellaneous_services</mat-icon> Serviços/Atualizar</mat-card-subtitle>
+</mat-card>
+
+<br>
+
+<mat-card>
+  <form>
+    <mat-form-field>
+      <mat-label>ID</mat-label>
+      <input type="number" matInput [(ngModel)]="servico.id" name="ID" disabled>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Descrição</mat-label>
+      <input type="text" matInput placeholder="Ex. Corte Simples" [(ngModel)]="servico.descricao" name="descricao">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Preço</mat-label>
+      <input type="text" matInput placeholder="Ex. 15.00" [(ngModel)]="servico.valor" name="valor">
+    </mat-form-field>
+    <mat-form-field appearance="legacy">
+      <mat-label >Duração/Minutos</mat-label>
+      <mat-select disableRipple [(ngModel)]="servico.duracao" name="duracao">
+        <mat-option *ngFor="let item of duracoes;" [value]="item.duracao">{{item.duracao}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+  <button mat-raised-button (click)="updateServico()" class="color-10">Atualizar</button>
+  <button mat-raised-button (click)="cancel()" class="color-01">Cancel</button>
+</mat-card>

@@ -13,7 +13,7 @@ export class ServicoReadComponent implements OnInit {
 
   servicos: Servico[] = [];
 
-  displayedColumns: string[] = ['id', 'descricao', 'valor', 'duracao'];
+  displayedColumns: string[] = ['id', 'descricao', 'valor', 'duracao', 'action'];
   dataSource = new MatTableDataSource([]);
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;

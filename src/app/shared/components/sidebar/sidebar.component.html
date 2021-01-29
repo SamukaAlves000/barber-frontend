@@ -1,40 +1,32 @@
-<mat-nav-list>
+<mat-nav-list class="color-01">
 
     <div class="profile-card">
-        <div class="header">
-          <h2>Samuel Alves dos santos</h2>
-          <h4>samuelalvesv4@gmail.com</h4>
-        </div>
-        <img src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Samuel Alves">
+      <img src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Samuel Alves">
+      <div class="header">
+        <h2>Samuel Alves dos santos</h2>
+        <h4>samuelalvesv4@gmail.com</h4>
+      </div>
     </div>
 
   <mat-divider></mat-divider>
 
   <h2 matSubheader >Pages</h2>
 
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/home">Home</a>
   <a mat-list-item routerLinkActive="list-item-active" routerLink="/">Dashboard</a>
-  <a mat-list-item routerLinkActive="list-item-active" routerLink="/page1">Page1</a>
-  <a mat-list-item routerLinkActive="list-item-active" routerLink="/page2">Page2</a>
-
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/galeria">Galeria</a>
   <mat-divider></mat-divider>
 
   <h2 matSubheader >Tools</h2>
 
   <a mat-list-item routerLinkActive="list-item-active" routerLink="/servicos">
-    <mat-icon>import_contacts</mat-icon>
+    <mat-icon>miscellaneous_services</mat-icon>
     Serviços
   </a>
-
-  <a mat-list-item routerLinkActive="list-item-active" routerLink="/contacts">
-    <mat-icon>import_contacts</mat-icon>
-    Contacts
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/agenda">
+    <mat-icon>schedule</mat-icon>
+    Agenda
   </a>
-
-  <a mat-list-item routerLinkActive="list-item-active" routerLink="/contacts">
-    <mat-icon>contact_phone</mat-icon>
-    Leads
-  </a>
-
 </mat-nav-list>
 
 

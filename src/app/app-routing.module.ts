@@ -5,12 +5,14 @@ import {DashboardComponent} from './modules/dashboard/dashboard.component';
 import {PostsComponent} from './modules/posts/posts.component';
 import {ServicoComponent} from './modules/servico/servico.component';
 import {ServicoCreateComponent} from './modules/servico/servico-create/servico-create.component';
+import {ServicoDeleteComponent} from './modules/servico/servico-delete/servico-delete.component';
+import {ServicoUpdateComponent} from './modules/servico/servico-update/servico-update.component';
 
 const routes: Routes = [
   {
     path: '',
     component: DefaultComponent,
-    children:[
+    children: [
       {
         path: '',
         component: DashboardComponent
@@ -26,6 +28,14 @@ const routes: Routes = [
       {
         path: 'servicos/create',
         component: ServicoCreateComponent
+      },
+      {
+        path: 'servicos/delete/:idServico',
+        component: ServicoDeleteComponent
+      },
+      {
+        path: 'servicos/update/:idServico',
+        component: ServicoUpdateComponent
       }
     ]
   }

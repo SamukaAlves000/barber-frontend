@@ -1,1 +1,32 @@
-<p>servico-delete works!</p>
+<mat-card class="mat-elevation-z8" style="background-color: #fafafa">
+  <mat-card-subtitle class="color-01"><mat-icon>miscellaneous_services</mat-icon> Serviços/Excluir</mat-card-subtitle>
+</mat-card>
+
+<br>
+
+<mat-card>
+  <form>
+    <mat-form-field>
+      <mat-label >ID</mat-label>
+      <input type="number" matInput [value]="servico.id" disabled>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Descrição</mat-label>
+      <input type="text" matInput [value]="servico.descricao" disabled>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Preço</mat-label>
+      <input type="number" matInput [value]="servico.valor" disabled>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label >Duração/Minutos</mat-label>
+      <input type="number" matInput [value]="servico.duracao" disabled>
+    </mat-form-field>
+  </form>
+  <button mat-raised-button (click)="deleteServico()" class="color-10">Excluir</button>
+  <button mat-raised-button (click)="cancel()" class="color-01">Cancel</button>
+</mat-card>
+
+
+
+

@@ -38,6 +38,27 @@ export class ServicoService {
       );
   }
 
+  getById(id): Observable<Servico> {
+    return this.httpClient.get<Servico>(this.apiServer + '/servicos/admin/get/' + id, this.httpOptions)
+      .pipe(
+        catchError(this.errorHandler)
+      );
+  }
+
+  delete(id){
+    return this.httpClient.delete<Servico>(this.apiServer + '/servicos/admin/delete/' + id, this.httpOptions)
+      .pipe(
+        catchError(this.errorHandler)
+      );
+  }
+
+  update(servico): Observable<Servico> {
+    return this.httpClient.put<Servico>(this.apiServer + '/servicos/admin/put/', JSON.stringify(servico), this.httpOptions)
+      .pipe(
+        catchError(this.errorHandler)
+      );
+  }
+
   errorHandler(error) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
@@ -51,15 +72,15 @@ export class ServicoService {
     return throwError(errorMessage);
   }
 
-  showMessage(msg: string, isError: boolean = false):void{
+  showMessage(msg: string, isError: boolean = false): void{
     this.snackBar.open(msg, 'X',
       {
         duration: 3000,
         horizontalPosition: 'right',
-        verticalPosition: 'top',
+        verticalPosition: 'bottom',
         panelClass: isError ? ['msg-error'] : ['msg-sucess']
       }
-    )
+    );
   }
 
   getAllRegioes(): Observable<Regiao[]> {

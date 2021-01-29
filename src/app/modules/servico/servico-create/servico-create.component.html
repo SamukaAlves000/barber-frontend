@@ -1,50 +1,30 @@
+<mat-card class="mat-elevation-z8" style="background-color: #fafafa">
+  <mat-card-subtitle class="color-01"><mat-icon>miscellaneous_services</mat-icon> Serviços/Cadastro</mat-card-subtitle>
+</mat-card>
+
+<br>
+
 <mat-card>
-  <mat-card-title>Cadastrar Serviço</mat-card-title>
-  <mat-divider></mat-divider>
-  <form class="example-form">
-<!--    <mat-form-field class="example-full-width">-->
-<!--      <mat-label>Email</mat-label>-->
-<!--      <input type="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"-->
-<!--             placeholder="Ex. pat@example.com">-->
-<!--      <mat-hint>Errors appear instantly!</mat-hint>-->
-<!--      <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">-->
-<!--        Please enter a valid email address-->
-<!--      </mat-error>-->
-<!--      <mat-error *ngIf="emailFormControl.hasError('required')">-->
-<!--        Email is <strong>required</strong>-->
-<!--      </mat-error>-->
-<!--    </mat-form-field>-->
-    <mat-form-field class="example-full-width">
+  <form>
+    <mat-form-field>
       <mat-label>Descrição</mat-label>
-      <input type="text" matInput [formControl]="inputTextFormControl" [errorStateMatcher]="matcher"
-             placeholder="Ex. Corte Simples">
-      <mat-error *ngIf="inputTextFormControl.hasError('required')">
-        Descrição é <strong>obrigatório</strong>
-      </mat-error>
+      <input type="text" matInput placeholder="Ex. Corte Simples" [(ngModel)]="servico.descricao" name="descricao">
     </mat-form-field>
-
-    <mat-form-field class="example-full-width">
+    <mat-form-field>
       <mat-label>Preço</mat-label>
-      <input type="number" matInput [formControl]="inputTextFormControl" [errorStateMatcher]="matcher"
-             placeholder="Ex. 15.00">
-      <mat-error *ngIf="inputTextFormControl.hasError('required')">
-        Preço é <strong>obrigatório</strong>
-      </mat-error>
+      <input type="number" matInput placeholder="Ex. 15.00" [(ngModel)]="servico.valor" name="valor">
     </mat-form-field>
-
-    <mat-form-field appearance="fill">
-      <mat-label>Selecione a duração</mat-label>
-      <mat-select disableRipple>
-        <mat-option value="1">30 min</mat-option>
-        <mat-option value="2">45 min</mat-option>
-        <mat-option value="3">60 min</mat-option>
+    <mat-form-field appearance="legacy">
+      <mat-label >Duração/Minutos</mat-label>
+      <mat-select disableRipple [(ngModel)]="servico.duracao" name="duracao">
+        <mat-option *ngFor="let item of duracoes;" [value]="item.duracao">{{item.duracao}}</mat-option>
       </mat-select>
     </mat-form-field>
-
-    <br>
-    <button mat-raised-button (click)="createServico()" color="primary">Salvar</button>
   </form>
+  <button mat-raised-button (click)="createServico()" class="color-10">Salvar</button>
+  <button mat-raised-button (click)="cancel()" class="color-01">Cancel</button>
 </mat-card>
+
 
 
 

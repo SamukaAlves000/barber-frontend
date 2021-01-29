@@ -16,6 +16,7 @@ import {ServicoComponent} from '../../modules/servico/servico.component';
 import {MatButtonModule} from '@angular/material/button';
 import {ServicoModule} from '../../modules/servico/servico.module';
 import {ServicoService} from '../../modules/servico/servico.service';
+import {MatIconModule} from '@angular/material/icon';
 
 
 
@@ -26,19 +27,20 @@ import {ServicoService} from '../../modules/servico/servico.service';
     PostsComponent,
     ServicoComponent
   ],
-  imports: [
-    CommonModule,
-    RouterModule,
-    SharedModule,
-    MatSidenavModule,
-    MatDividerModule,
-    FlexLayoutModule,
-    MatCardModule,
-    MatPaginatorModule,
-    MatTableModule,
-    MatButtonModule,
-    ServicoModule
-  ],
+    imports: [
+        CommonModule,
+        RouterModule,
+        SharedModule,
+        MatSidenavModule,
+        MatDividerModule,
+        FlexLayoutModule,
+        MatCardModule,
+        MatPaginatorModule,
+        MatTableModule,
+        MatButtonModule,
+        ServicoModule,
+        MatIconModule
+    ],
   providers: [
     DashboardService,
     ServicoService
