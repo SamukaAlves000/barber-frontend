@@ -7,6 +7,7 @@ import {ServicoComponent} from './modules/servico/servico.component';
 import {ServicoCreateComponent} from './modules/servico/servico-create/servico-create.component';
 import {ServicoDeleteComponent} from './modules/servico/servico-delete/servico-delete.component';
 import {ServicoUpdateComponent} from './modules/servico/servico-update/servico-update.component';
+import {HomeComponent} from './modules/home/home.component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,10 @@ const routes: Routes = [
       {
         path: 'servicos/update/:idServico',
         component: ServicoUpdateComponent
+      },
+      {
+        path: 'home',
+        component: HomeComponent
       }
     ]
   }

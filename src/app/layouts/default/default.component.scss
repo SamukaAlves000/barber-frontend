@@ -4,7 +4,8 @@
   height: 100%;
 }
 mat-drawer {
-  width: 450px;
+  width: 30%;
+  background-color: #fafafa;
 }
 
 mat-drawer-container {
@@ -12,5 +13,5 @@ mat-drawer-container {
 }
 
 mat-drawer-content {
-  padding: 5px;
+  padding: 0px;
 }
