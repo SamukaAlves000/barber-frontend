@@ -8,6 +8,10 @@ import {ServicoCreateComponent} from './modules/servico/servico-create/servico-c
 import {ServicoDeleteComponent} from './modules/servico/servico-delete/servico-delete.component';
 import {ServicoUpdateComponent} from './modules/servico/servico-update/servico-update.component';
 import {HomeComponent} from './modules/home/home.component';
+import {PessoaComponent} from './modules/pessoa/pessoa.component';
+import {PessoaCreateComponent} from './modules/pessoa/pessoa-create/pessoa-create.component';
+import {PessoaUpdateComponent} from './modules/pessoa/pessoa-update/pessoa-update.component';
+import {PessoaDeleteComponent} from './modules/pessoa/pessoa-delete/pessoa-delete.component';
 
 const routes: Routes = [
   {
@@ -41,6 +45,22 @@ const routes: Routes = [
       {
         path: 'home',
         component: HomeComponent
+      },
+      {
+        path: 'usuarios',
+        component: PessoaComponent
+      },
+      {
+        path: 'usuarios/create',
+        component: PessoaCreateComponent
+      },
+      {
+        path: 'usuarios/update/:idUsuario',
+        component: PessoaUpdateComponent
+      },
+      {
+        path: 'usuarios/delete/:idUsuario',
+        component: PessoaDeleteComponent
       }
     ]
   }

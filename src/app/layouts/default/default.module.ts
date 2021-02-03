@@ -17,6 +17,10 @@ import {MatButtonModule} from '@angular/material/button';
 import {ServicoModule} from '../../modules/servico/servico.module';
 import {ServicoService} from '../../modules/servico/servico.service';
 import {MatIconModule} from '@angular/material/icon';
+import {HomeComponent} from '../../modules/home/home.component';
+import {MatCarouselModule} from '@ngmodule/material-carousel';
+import {PessoaComponent} from '../../modules/pessoa/pessoa.component';
+import {PessoaModule} from '../../modules/pessoa/pessoa.module';
 
 
 
@@ -25,22 +29,26 @@ import {MatIconModule} from '@angular/material/icon';
     DefaultComponent,
     DashboardComponent,
     PostsComponent,
-    ServicoComponent
+    ServicoComponent,
+    HomeComponent,
+    PessoaComponent
   ],
-    imports: [
-        CommonModule,
-        RouterModule,
-        SharedModule,
-        MatSidenavModule,
-        MatDividerModule,
-        FlexLayoutModule,
-        MatCardModule,
-        MatPaginatorModule,
-        MatTableModule,
-        MatButtonModule,
-        ServicoModule,
-        MatIconModule
-    ],
+  imports: [
+    CommonModule,
+    RouterModule,
+    SharedModule,
+    MatSidenavModule,
+    MatDividerModule,
+    FlexLayoutModule,
+    MatCardModule,
+    MatPaginatorModule,
+    MatTableModule,
+    MatButtonModule,
+    ServicoModule,
+    MatIconModule,
+    MatCarouselModule,
+    PessoaModule
+  ],
   providers: [
     DashboardService,
     ServicoService

@@ -1,0 +1,41 @@
+<mat-card class="mat-elevation-z8" style="background-color: #fafafa">
+  <mat-card-subtitle class="color-01"><mat-icon>person</mat-icon> Usuários/Cadastro</mat-card-subtitle>
+</mat-card>
+
+<br>
+
+<mat-card>
+  <form>
+    <mat-form-field>
+      <mat-label>Nome</mat-label>
+      <input type="text" matInput placeholder="Ex. Maria dos Santos" [(ngModel)]="pessoa.nome" name="nome">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input type="email" matInput placeholder="Ex. name@hotmail.com" [(ngModel)]="pessoa.email" name="email">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>CPF</mat-label>
+      <input type="text" matInput placeholder="Ex. 000.000.000-00" [(ngModel)]="pessoa.cpf" name="cpf">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Telefone</mat-label>
+      <input type="text" matInput placeholder="Ex. (00) 00000-0000" [(ngModel)]="pessoa.fone" name="fone">
+    </mat-form-field>
+    <br>
+    <mat-card-subtitle>A pessoa a ser cadastrada é um Cliente ou Funcionário?</mat-card-subtitle>
+    <mat-radio-group aria-label="Select an option">
+      <mat-radio-button value="1" checked (click)="isMostrarInputSalario(false)">Cliente</mat-radio-button>
+      <mat-radio-button value="2" (click)="isMostrarInputSalario(true)">Funcionário</mat-radio-button>
+    </mat-radio-group>
+    <br>
+    <div *ngIf="mostrarInputSalario">
+      <mat-card-subtitle>Informe o salário do Funcionário?</mat-card-subtitle>
+      <mat-form-field style="width: 100%">
+        <input matInput placeholder="Ex. 1200.00" name="salario" type="text" [(ngModel)]="pessoa.funcionario.salario" name="salario">
+      </mat-form-field>
+    </div>
+  </form>
+  <button mat-raised-button (click)="createUsuario()" class="color-10">Salvar</button>
+  <button mat-raised-button (click)="cancel()" class="color-01">Cancel</button>
+</mat-card>

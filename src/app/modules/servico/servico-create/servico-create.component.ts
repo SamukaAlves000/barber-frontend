@@ -20,8 +20,6 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class ServicoCreateComponent implements OnInit {
 
-  constructor(private servicoService: ServicoService, private router: Router) { }
-
   servico: Servico = {
     descricao: '',
     duracao: null,
@@ -49,6 +47,8 @@ export class ServicoCreateComponent implements OnInit {
   ]);
 
   matcher = new MyErrorStateMatcher();
+
+  constructor(private servicoService: ServicoService, private router: Router) { }
 
   ngOnInit(): void {
   }

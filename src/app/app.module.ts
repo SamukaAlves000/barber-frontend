@@ -11,14 +11,12 @@ import {MatCarouselModule} from '@ngmodule/material-carousel';
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
   ],
     imports: [
         BrowserModule,
         AppRoutingModule,
         BrowserAnimationsModule,
-        DefaultModule,
-        MatCarouselModule
+        DefaultModule
     ],
   providers: [],
   bootstrap: [AppComponent]
