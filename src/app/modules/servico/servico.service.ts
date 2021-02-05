@@ -12,7 +12,8 @@ import {Regiao} from '../posts/posts.component';
 })
 export class ServicoService {
 
-  private apiServer = 'https://barbearia-backend.herokuapp.com';
+  // private apiServer = 'https://barbearia-backend.herokuapp.com';
+  private apiServer = 'http://localhost:8080';
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -25,35 +26,35 @@ export class ServicoService {
 
 
   create(servico): Observable<Servico> {
-    return this.httpClient.post<Servico>(this.apiServer + '/servicos/admin/post', JSON.stringify(servico), this.httpOptions)
+    return this.httpClient.post<Servico>(this.apiServer + '/servicos/admin', JSON.stringify(servico), this.httpOptions)
       .pipe(
         catchError(this.errorHandler)
       );
   }
 
   getAll(): Observable<Servico[]> {
-    return this.httpClient.get<Servico[]>(this.apiServer + '/servicos/admin/get', this.httpOptions)
+    return this.httpClient.get<Servico[]>(this.apiServer + '/servicos/admin', this.httpOptions)
       .pipe(
         catchError(this.errorHandler)
       );
   }
 
   getById(id): Observable<Servico> {
-    return this.httpClient.get<Servico>(this.apiServer + '/servicos/admin/get/' + id, this.httpOptions)
+    return this.httpClient.get<Servico>(this.apiServer + '/servicos/admin/' + id, this.httpOptions)
       .pipe(
         catchError(this.errorHandler)
       );
   }
 
   delete(id){
-    return this.httpClient.delete<Servico>(this.apiServer + '/servicos/admin/delete/' + id, this.httpOptions)
+    return this.httpClient.delete<Servico>(this.apiServer + '/servicos/admin/' + id, this.httpOptions)
       .pipe(
         catchError(this.errorHandler)
       );
   }
 
   update(servico): Observable<Servico> {
-    return this.httpClient.put<Servico>(this.apiServer + '/servicos/admin/put/', JSON.stringify(servico), this.httpOptions)
+    return this.httpClient.put<Servico>(this.apiServer + '/servicos/admin/', JSON.stringify(servico), this.httpOptions)
       .pipe(
         catchError(this.errorHandler)
       );

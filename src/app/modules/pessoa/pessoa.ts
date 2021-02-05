@@ -1,5 +1,3 @@
-import {Funcionario} from './Funcionario';
-
 export interface Pessoa {
   id?: number;
   nome?: string;
@@ -10,5 +8,4 @@ export interface Pessoa {
   uf?: string;
   sexo?: string;
   dataNasc?: string;
-  funcionario?: Funcionario;
 }

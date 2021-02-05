@@ -18,13 +18,8 @@ export class PessoaCreateComponent implements OnInit {
     cidade: undefined,
     uf: undefined,
     sexo: undefined,
-    dataNasc: undefined,
-    funcionario: {
-      salario: undefined
-    }
+    dataNasc: undefined
   };
-
-  mostrarInputSalario = false;
 
   constructor(private router: Router, private pessoaService: PessoaService) { }
 
@@ -32,10 +27,6 @@ export class PessoaCreateComponent implements OnInit {
   }
 
   createUsuario(): void {
-
-    if (this.pessoa.funcionario.salario === undefined){
-      this.pessoa.funcionario = null;
-    }
     this.pessoaService.create(this.pessoa).subscribe(res => {
         this.pessoaService.showMessage('Usuário CRIADO!');
         this.cancel();
@@ -44,10 +35,5 @@ export class PessoaCreateComponent implements OnInit {
   }
   cancel(): void{
     this.router.navigate(['/usuarios']);
-  }
-
-  isMostrarInputSalario(isMostrar): void {
-    this.mostrarInputSalario = isMostrar;
-    this.pessoa.funcionario.salario = undefined;
   }
 }

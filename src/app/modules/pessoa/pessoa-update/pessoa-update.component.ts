@@ -18,10 +18,7 @@ export class PessoaUpdateComponent implements OnInit {
     cidade: undefined,
     uf: undefined,
     sexo: undefined,
-    dataNasc: undefined,
-    funcionario: {
-      salario: undefined
-    }
+    dataNasc: undefined
   };
 
   mostrarInputSalario = false;
@@ -37,10 +34,6 @@ export class PessoaUpdateComponent implements OnInit {
   }
 
   updateUsuario(): void {
-
-    if (this.pessoa.funcionario.salario === undefined){
-      this.pessoa.funcionario = null;
-    }
     this.pessoaService.update(this.pessoa).subscribe(res => {
         this.pessoaService.showMessage('Usuário ATUALIZADO!');
         this.cancel();
@@ -49,10 +42,5 @@ export class PessoaUpdateComponent implements OnInit {
   }
   cancel(): void{
     this.router.navigate(['/usuarios']);
-  }
-
-  isMostrarInputSalario(isMostrar): void {
-    this.mostrarInputSalario = isMostrar;
-    this.pessoa.funcionario.salario = undefined;
   }
 }

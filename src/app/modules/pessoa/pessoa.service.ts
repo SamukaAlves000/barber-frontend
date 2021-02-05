@@ -23,35 +23,35 @@ export class PessoaService {
   constructor(private httpClient: HttpClient, private snackBar: MatSnackBar) { }
 
   getAll(): Observable<Pessoa[]> {
-    return this.httpClient.get<Pessoa[]>(this.apiServer + '/pessoas/admin/get', this.httpOptions)
+    return this.httpClient.get<Pessoa[]>(this.apiServer + '/pessoas/admin', this.httpOptions)
       .pipe(
         catchError(this.errorHandler)
       );
   }
 
   getById(id): Observable<Pessoa> {
-    return this.httpClient.get<Pessoa>(this.apiServer + '/pessoas/admin/get/' + id, this.httpOptions)
+    return this.httpClient.get<Pessoa>(this.apiServer + '/pessoas/admin/' + id, this.httpOptions)
       .pipe(
         catchError(this.errorHandler)
       );
   }
 
   create(pessoa): Observable<Pessoa> {
-    return this.httpClient.post<Pessoa>(this.apiServer + '/pessoas/admin/post', JSON.stringify(pessoa), this.httpOptions)
+    return this.httpClient.post<Pessoa>(this.apiServer + '/pessoas/admin', JSON.stringify(pessoa), this.httpOptions)
       .pipe(
         catchError(this.errorHandler)
       );
   }
 
   update(pessoa): Observable<Pessoa> {
-    return this.httpClient.put<Pessoa>(this.apiServer + '/pessoas/admin/put/', JSON.stringify(pessoa), this.httpOptions)
+    return this.httpClient.put<Pessoa>(this.apiServer + '/pessoas/admin', JSON.stringify(pessoa), this.httpOptions)
       .pipe(
         catchError(this.errorHandler)
       );
   }
 
   delete(id){
-    return this.httpClient.delete<Pessoa>(this.apiServer + '/pessoas/admin/delete/' + id, this.httpOptions)
+    return this.httpClient.delete<Pessoa>(this.apiServer + '/pessoas/admin/' + id, this.httpOptions)
       .pipe(
         catchError(this.errorHandler)
       );

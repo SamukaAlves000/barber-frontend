@@ -18,10 +18,7 @@ export class PessoaDeleteComponent implements OnInit {
       cidade: undefined,
       uf: undefined,
       sexo: undefined,
-      dataNasc: undefined,
-      funcionario: {
-        salario: undefined
-      }
+      dataNasc: undefined
   };
 
   constructor(private router: Router, private pessoaService: PessoaService, private route: ActivatedRoute) { }
