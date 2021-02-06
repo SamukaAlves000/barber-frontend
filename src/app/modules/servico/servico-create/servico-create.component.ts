@@ -4,6 +4,7 @@ import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/form
 import {ServicoService} from '../servico.service';
 import {Servico} from '../servico';
 import {Router} from '@angular/router';
+import {Funcionario} from '../../funcionario/funcionario';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -23,7 +24,8 @@ export class ServicoCreateComponent implements OnInit {
   servico: Servico = {
     descricao: '',
     duracao: null,
-    valor: null
+    valor: null,
+    funcionarios: []
   };
 
   duracoes = [

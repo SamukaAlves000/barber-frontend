@@ -12,6 +12,14 @@ import {PessoaComponent} from './modules/pessoa/pessoa.component';
 import {PessoaCreateComponent} from './modules/pessoa/pessoa-create/pessoa-create.component';
 import {PessoaUpdateComponent} from './modules/pessoa/pessoa-update/pessoa-update.component';
 import {PessoaDeleteComponent} from './modules/pessoa/pessoa-delete/pessoa-delete.component';
+import {FuncionarioComponent} from './modules/funcionario/funcionario.component';
+import {FuncionarioCreateComponent} from './modules/funcionario/funcionario-create/funcionario-create.component';
+import {FuncionarioUpdateComponent} from './modules/funcionario/funcionario-update/funcionario-update.component';
+import {FuncionarioDeleteComponent} from './modules/funcionario/funcionario-delete/funcionario-delete.component';
+import {AgendamentoComponent} from './modules/agendamento/agendamento.component';
+import {AgendamentoCreateComponent} from './modules/agendamento/agendamento-create/agendamento-create.component';
+import {AgendamentoDeleteComponent} from './modules/agendamento/agendamento-delete/agendamento-delete.component';
+import {AgendamentoUpdateComponent} from './modules/agendamento/agendamento-update/agendamento-update.component';
 
 const routes: Routes = [
   {
@@ -61,6 +69,38 @@ const routes: Routes = [
       {
         path: 'usuarios/delete/:idUsuario',
         component: PessoaDeleteComponent
+      },
+      {
+        path: 'funcionarios',
+        component: FuncionarioComponent
+      },
+      {
+        path: 'funcionarios/create',
+        component: FuncionarioCreateComponent
+      },
+      {
+        path: 'funcionarios/update/:idFuncionario',
+        component: FuncionarioUpdateComponent
+      },
+      {
+        path: 'funcionarios/delete/:idFuncionario',
+        component: FuncionarioDeleteComponent
+      },
+      {
+        path: 'agendamentos',
+        component: AgendamentoComponent
+      },
+      {
+        path: 'agendamentos/create',
+        component: AgendamentoCreateComponent
+      },
+      {
+        path: 'agendamentos/delete/:idAgendamento',
+        component: AgendamentoDeleteComponent
+      },
+      {
+        path: 'agendamentos/update/:idAgendamento',
+        component: AgendamentoUpdateComponent
       }
     ]
   }

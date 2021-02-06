@@ -1,0 +1,38 @@
+<mat-card class="mat-elevation-z8" style="background-color: #fafafa">
+  <mat-card-subtitle class="color-01"><mat-icon>engineering</mat-icon> Funcionário/Exluir</mat-card-subtitle>
+</mat-card>
+
+<br>
+
+<mat-card>
+  <form>
+    <mat-form-field>
+      <mat-label>ID</mat-label>
+      <input type="number" matInput [value]="funcionario.id" name="id" disabled>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Nome</mat-label>
+      <input type="text" matInput placeholder="Ex. Maria dos Santos" [value]="funcionario.pessoa.nome" name="nome" disabled>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input type="email" matInput placeholder="Ex. name@hotmail.com"[value]="funcionario.pessoa.email" name="email" disabled>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>CPF</mat-label>
+      <input type="text" matInput placeholder="Ex. 000.000.000-00" [value]="funcionario.pessoa.cpf" name="cpf" disabled>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Telefone</mat-label>
+      <input type="text" matInput placeholder="Ex. (00) 00000-0000" [value]="funcionario.pessoa.fone" name="fone" disabled>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Sálario</mat-label>
+      <input type="text" matInput placeholder="Ex. 1200.00" [value]="funcionario.salario" name="salario" disabled>
+    </mat-form-field>
+    <br>
+  </form>
+  <button mat-raised-button (click)="excluirFuncionario()" class="color-10">Excluir</button>
+  <button mat-raised-button (click)="cancel()" class="color-01">Cancel</button>
+</mat-card>
+

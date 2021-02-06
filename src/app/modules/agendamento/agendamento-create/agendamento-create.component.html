@@ -1,0 +1,23 @@
+<mat-card class="mat-elevation-z8" style="background-color: #fafafa">
+  <mat-card-subtitle class="color-01"><mat-icon>schedule</mat-icon> Agendamentos/Cadastro</mat-card-subtitle>
+</mat-card>
+
+<br>
+
+<mat-card>
+  <form>
+    <mat-card class="color-01" >
+      <mat-card-subtitle>Selecione um Funcionário</mat-card-subtitle>
+      <mat-selection-list  multiple="false">
+        <mat-list-option *ngFor="let funcionario of funcionarios" (click)="setFuncionario(funcionario)">
+          {{funcionario.pessoa.nome}}
+        </mat-list-option>
+      </mat-selection-list>
+    </mat-card>
+  </form>
+  <button mat-raised-button (click)="createAgendamento()" class="color-10">Salvar</button>
+  <button mat-raised-button (click)="cancel()" class="color-01">Cancel</button>
+</mat-card>
+
+<h1>Funcionário</h1>
+

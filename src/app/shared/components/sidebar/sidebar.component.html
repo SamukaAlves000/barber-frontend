@@ -19,9 +19,14 @@
 
   <h2 matSubheader >Tools</h2>
 
-  <a mat-list-item routerLinkActive="list-item-active" routerLink="/agenda">
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/agendamentos" (click)="toggleSideBar()">
     <mat-icon>schedule</mat-icon>
     Agenda
+  </a>
+
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/funcionarios" (click)="toggleSideBar()">
+    <mat-icon>engineering</mat-icon>
+    Funcionários
   </a>
 
   <a mat-list-item routerLinkActive="list-item-active" routerLink="/usuarios" (click)="toggleSideBar()">

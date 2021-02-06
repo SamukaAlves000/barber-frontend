@@ -21,6 +21,10 @@ import {HomeComponent} from '../../modules/home/home.component';
 import {MatCarouselModule} from '@ngmodule/material-carousel';
 import {PessoaComponent} from '../../modules/pessoa/pessoa.component';
 import {PessoaModule} from '../../modules/pessoa/pessoa.module';
+import {FuncionarioComponent} from '../../modules/funcionario/funcionario.component';
+import {FuncionarioModule} from '../../modules/funcionario/funcionario.module';
+import {AgendamentoComponent} from '../../modules/agendamento/agendamento.component';
+import {AgendamentoModule} from '../../modules/agendamento/agendamento.module';
 
 
 
@@ -31,7 +35,9 @@ import {PessoaModule} from '../../modules/pessoa/pessoa.module';
     PostsComponent,
     ServicoComponent,
     HomeComponent,
-    PessoaComponent
+    PessoaComponent,
+    FuncionarioComponent,
+    AgendamentoComponent
   ],
   imports: [
     CommonModule,
@@ -47,7 +53,9 @@ import {PessoaModule} from '../../modules/pessoa/pessoa.module';
     ServicoModule,
     MatIconModule,
     MatCarouselModule,
-    PessoaModule
+    PessoaModule,
+    FuncionarioModule,
+    AgendamentoModule
   ],
   providers: [
     DashboardService,

@@ -15,7 +15,8 @@ export class ServicoUpdateComponent implements OnInit {
   servico: Servico = {
     descricao: '',
     duracao: null,
-    valor: null
+    valor: null,
+    funcionarios: []
   };
 
   duracoes = [

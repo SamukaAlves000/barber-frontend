@@ -28,3 +28,7 @@
   <button mat-raised-button (click)="updateServico()" class="color-10">Atualizar</button>
   <button mat-raised-button (click)="cancel()" class="color-01">Cancel</button>
 </mat-card>
+
+<ul *ngFor="let item of servico.funcionarios">
+  <li>{{item.pessoa.nome}}</li>
+</ul>
