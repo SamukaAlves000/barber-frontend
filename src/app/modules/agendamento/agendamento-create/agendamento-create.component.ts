@@ -1,9 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Funcionario} from '../../funcionario/funcionario';
 import {FuncionarioService} from '../../funcionario/funcionario.service';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatListOption, MatSelectionListChange} from '@angular/material/list';
 import {Agendamento} from '../agendamento';
+import {Servico} from '../../servico/servico';
+import {ServicoService} from '../../servico/servico.service';
+import {Pessoa} from '../../pessoa/pessoa';
+import {AgendamentoService} from '../agendamento.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-agendamento-create',
@@ -12,7 +17,6 @@ import {Agendamento} from '../agendamento';
 })
 export class AgendamentoCreateComponent implements OnInit {
 
-  typesOfShoes: string[] = ['Kaio', 'Samuel', 'Bruno'];
   agendamento: Agendamento = {
     avaliacao: 0,
     dataAgendamento: '',
@@ -24,24 +28,47 @@ export class AgendamentoCreateComponent implements OnInit {
   };
 
   funcionarios: Funcionario[];
+  servicos: Servico[] = [];
+  pessoas: Pessoa[] = [];
 
-  constructor(private funcionarioService: FuncionarioService) { }
+  constructor(private agendamentoService: AgendamentoService,
+              private funcionarioService: FuncionarioService,
+              private servicoService: ServicoService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.funcionarioService.getAll().subscribe((data: Funcionario[]) => {
       console.log(data);
       this.funcionarios = data;
     });
+
+    this.servicoService.getAll().subscribe((data: Servico[]) => {
+      console.log(data);
+      this.servicos = data;
+    });
   }
 
-  cancel() {
+  cancel(): void {
+    this.router.navigate(['agendamentos']);
   }
 
   setFuncionario(funcionarioSelecionado: Funcionario): void{
-      this.agendamento.funcionario = funcionarioSelecionado;
+    this.agendamento.funcionario = funcionarioSelecionado;
   }
 
-  createAgendamento() {
+  setServico(servicoSelecionado: Servico): void{
+    this.agendamento.servico = servicoSelecionado;
+  }
 
+  setPessoa(pessoaSelecionada: Pessoa): void{
+    this.agendamento.pessoa = pessoaSelecionada;
+  }
+
+  createAgendamento(): void {
+    this.agendamentoService.create(this.agendamento).subscribe(res => {
+        this.funcionarioService.showMessage('Agendamento CRIADO!');
+        this.cancel();
+      }
+    );
   }
 }

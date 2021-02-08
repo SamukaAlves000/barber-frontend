@@ -36,21 +36,21 @@ export class AgendamentoService {
   }
 
   create(agendamento): Observable<Agendamento> {
-    return this.httpClient.post<Agendamento>(this.apiServer + '/Agendamentos/admin', JSON.stringify(agendamento), this.httpOptions)
+    return this.httpClient.post<Agendamento>(this.apiServer + '/agendamentos/admin', JSON.stringify(agendamento), this.httpOptions)
       .pipe(
         catchError(this.errorHandler)
       );
   }
 
   update(agendamento): Observable<Agendamento> {
-    return this.httpClient.put<Agendamento>(this.apiServer + '/Agendamentos/admin', JSON.stringify(agendamento), this.httpOptions)
+    return this.httpClient.put<Agendamento>(this.apiServer + '/agendamentos/admin', JSON.stringify(agendamento), this.httpOptions)
       .pipe(
         catchError(this.errorHandler)
       );
   }
 
   delete(id){
-    return this.httpClient.delete<Agendamento>(this.apiServer + '/Agendamentos/admin/' + id, this.httpOptions)
+    return this.httpClient.delete<Agendamento>(this.apiServer + '/agendamentos/admin/' + id, this.httpOptions)
       .pipe(
         catchError(this.errorHandler)
       );

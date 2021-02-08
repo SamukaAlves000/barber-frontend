@@ -18,6 +18,10 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatListModule} from '@angular/material/list';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {PessoaModule} from '../pessoa/pessoa.module';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 
 
@@ -43,6 +47,11 @@ import {MatListModule} from '@angular/material/list';
     ReactiveFormsModule,
     MatRadioModule,
     MatListModule,
+    MatGridListModule,
+    PessoaModule,
+    MatCheckboxModule,
+    MatDatepickerModule
+
   ]
 })
 export class AgendamentoModule { }

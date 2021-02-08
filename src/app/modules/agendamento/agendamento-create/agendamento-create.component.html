@@ -7,17 +7,30 @@
 <mat-card>
   <form>
     <mat-card class="color-01" >
-      <mat-card-subtitle>Selecione um Funcionário</mat-card-subtitle>
+      <mat-card-subtitle>Funcionário</mat-card-subtitle>
       <mat-selection-list  multiple="false">
         <mat-list-option *ngFor="let funcionario of funcionarios" (click)="setFuncionario(funcionario)">
           {{funcionario.pessoa.nome}}
         </mat-list-option>
       </mat-selection-list>
     </mat-card>
+    <br>
+    <mat-card class="color-01" >
+      <mat-card-subtitle>Serviço</mat-card-subtitle>
+      <mat-selection-list  multiple="false">
+        <mat-list-option *ngFor="let servico of servicos" (click)="setServico(servico)">
+          {{servico.descricao}}
+        </mat-list-option>
+      </mat-selection-list>
+    </mat-card>
+    <br>
+    <mat-card class="color-01" >
+      <mat-card-subtitle>Cliente</mat-card-subtitle>
+      <app-pessoa-read [isMostrarColunaSelecao]="true" (pessoaSelecionada)="setPessoa($event)"></app-pessoa-read>
+    </mat-card>
+    <br>
   </form>
   <button mat-raised-button (click)="createAgendamento()" class="color-10">Salvar</button>
   <button mat-raised-button (click)="cancel()" class="color-01">Cancel</button>
 </mat-card>
-
-<h1>Funcionário</h1>
 

@@ -1,6 +1,5 @@
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource">
-
     <!-- Position Column -->
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef> ID </th>
@@ -27,7 +26,7 @@
 
 
     <!-- Action Column -->
-    <ng-container matColumnDef="action">
+    <ng-container matColumnDef="action" *ngIf="isMostrarAcoes">
       <th mat-header-cell *matHeaderCellDef >Ações</th>
       <td mat-cell *matCellDef="let element">
         <a routerLink="/usuarios/update/{{element.id}}" class="edit">
@@ -41,6 +40,17 @@
             delete
           </i>
         </a>
+      </td>
+    </ng-container>
+
+    <!-- Checkbox Column -->
+    <ng-container matColumnDef="select" *ngIf="isMostrarColunaSelecao">
+      <th mat-header-cell *matHeaderCellDef> Seleção </th>
+      <td mat-cell *matCellDef="let element">
+        <mat-checkbox (click)="selecionarPessoa(element)"
+                      (change)="$event ? selection.toggle(element) : null"
+                      [checked]="selection.isSelected(element)">
+        </mat-checkbox>
       </td>
     </ng-container>
 
