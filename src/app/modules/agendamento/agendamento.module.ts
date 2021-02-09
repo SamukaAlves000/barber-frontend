@@ -26,6 +26,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import {FuncionarioModule} from '../funcionario/funcionario.module';
 import {ServicoModule} from '../servico/servico.module';
+import {MatStepperModule} from '@angular/material/stepper';
 
 
 
@@ -57,7 +58,8 @@ import {ServicoModule} from '../servico/servico.module';
     MatDatepickerModule,
     MatNativeDateModule,
     FuncionarioModule,
-    ServicoModule
+    ServicoModule,
+    MatStepperModule
 
   ]
 })

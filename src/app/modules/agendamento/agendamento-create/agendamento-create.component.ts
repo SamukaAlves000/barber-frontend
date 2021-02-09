@@ -7,7 +7,7 @@ import {ServicoService} from '../../servico/servico.service';
 import {Pessoa} from '../../pessoa/pessoa';
 import {AgendamentoService} from '../agendamento.service';
 import {Router} from '@angular/router';
-import {FormControl} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-agendamento-create',
@@ -16,20 +16,16 @@ import {FormControl} from '@angular/forms';
 })
 export class AgendamentoCreateComponent implements OnInit {
 
+  isLinear = false;
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
+
   dateFormCtrl = new FormControl(new Date());
   current = new Date();
   minDate = new Date(this.current.getFullYear(), new Date().getMonth(), Number(this.current.toLocaleDateString().split('/')[0]));
   maxDate = new Date(this.current.getFullYear() , 11, 31);
 
-  agendamento: Agendamento = {
-    avaliacao: 0,
-    dataAgendamento: undefined,
-    horario: '',
-    status: '',
-    funcionario: undefined,
-    pessoa: undefined,
-    servico: undefined
-  };
+  agendamento: Agendamento = {};
 
   funcionarios: Funcionario[];
   servicos: Servico[] = [];
@@ -40,7 +36,8 @@ export class AgendamentoCreateComponent implements OnInit {
   constructor(private agendamentoService: AgendamentoService,
               private funcionarioService: FuncionarioService,
               private servicoService: ServicoService,
-              private router: Router) { }
+              private router: Router,
+              private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
 
@@ -54,6 +51,12 @@ export class AgendamentoCreateComponent implements OnInit {
       this.servicos = data;
     });
 
+    this.firstFormGroup = this.formBuilder.group({
+      firstCtrl: ['', Validators.required]
+    });
+    this.secondFormGroup = this.formBuilder.group({
+      secondCtrl: ['', Validators.required]
+    });
 
   }
 
