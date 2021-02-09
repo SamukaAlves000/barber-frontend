@@ -7,7 +7,13 @@
       Novo Serviço
     </button>
     <div>
-          <app-servico-read></app-servico-read>
+          <app-servico-read
+          [isMostrarColunaDescricao]="true"
+          [isMostrarColunaValor]="true"
+          [isMostrarColunaDuracao]="true"
+          [isMostrarColunaAction]="true"
+          >
+          </app-servico-read>
     </div>
     <br>
 </mat-card>

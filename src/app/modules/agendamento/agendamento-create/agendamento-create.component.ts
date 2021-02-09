@@ -34,7 +34,8 @@ export class AgendamentoCreateComponent implements OnInit {
   funcionarios: Funcionario[];
   servicos: Servico[] = [];
   pessoas: Pessoa[] = [];
-  horarios = ['9:00 ás 10:00', '10:00 ás 12:00', '11:00 ás 12:00', '9:00 ás 10:00', '10:00 ás 12:00', '11:00 ás 12:00'];
+  horarios = ['09:00 ás 10:00', '10:00 ás 12:00', '11:00 ás 12:00', '13:00 ás 14:00',
+    '14:00 ás 15:00', '15:00 ás 16:00', '16:00 ás 17:00', '17:00 ás 18:00'];
 
   constructor(private agendamentoService: AgendamentoService,
               private funcionarioService: FuncionarioService,

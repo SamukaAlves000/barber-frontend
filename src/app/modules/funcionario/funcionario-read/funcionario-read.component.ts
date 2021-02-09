@@ -29,7 +29,7 @@ export class FuncionarioReadComponent implements OnInit {
   constructor(private funcionarioService: FuncionarioService) { }
 
   ngOnInit(): void {
-    this.adicionarColuna();
+    this.adicionarColunas();
     this.funcionarioService.getAll().subscribe((data: Funcionario[]) => {
       console.log(data);
       this.funcionarios = data;
@@ -45,7 +45,7 @@ export class FuncionarioReadComponent implements OnInit {
     }
   }
 
-  adicionarColuna(): void {
+  adicionarColunas(): void {
     if (this.isMostrarColunaSelect) {
       this.displayedColumns.push('select');
     }

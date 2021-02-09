@@ -20,6 +20,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatIconModule} from '@angular/material/icon';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 
@@ -28,24 +29,25 @@ import {MatIconModule} from '@angular/material/icon';
   exports: [
     ServicoReadComponent
   ],
-  imports: [
-    CommonModule,
-    RouterModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
-    HttpClientModule,
-    MatCardModule,
-    MatFormFieldModule,
-    ReactiveFormsModule,
-    FormsModule,
-    MatInputModule,
-    MatSelectModule,
-    MatButtonModule,
-    MatDividerModule,
-    MatSnackBarModule,
-    MatIconModule
-  ],
+    imports: [
+        CommonModule,
+        RouterModule,
+        MatTableModule,
+        MatPaginatorModule,
+        MatSortModule,
+        HttpClientModule,
+        MatCardModule,
+        MatFormFieldModule,
+        ReactiveFormsModule,
+        FormsModule,
+        MatInputModule,
+        MatSelectModule,
+        MatButtonModule,
+        MatDividerModule,
+        MatSnackBarModule,
+        MatIconModule,
+        MatCheckboxModule
+    ],
   providers: [
     ServicoService
   ]

@@ -30,7 +30,7 @@ export class PessoaReadComponent implements OnInit {
   constructor(private pessoaService: PessoaService) { }
 
   ngOnInit(): void {
-    this.adicionarColuna();
+    this.adicionarColunas();
     this.pessoaService.getAll().subscribe((data: Pessoa[]) => {
       console.log(data);
       this.pessoas = data;
@@ -46,7 +46,7 @@ export class PessoaReadComponent implements OnInit {
     }
   }
 
-  adicionarColuna(): void {
+  adicionarColunas(): void {
     if (this.isMostrarColunaSelect) {
       this.displayedColumns.push('select');
     }
