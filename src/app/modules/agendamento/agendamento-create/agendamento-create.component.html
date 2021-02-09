@@ -6,31 +6,41 @@
 
 <mat-card>
   <form>
-    <mat-card class="color-01" >
-      <mat-card-subtitle>Funcionário</mat-card-subtitle>
-      <mat-selection-list  multiple="false">
-        <mat-list-option *ngFor="let funcionario of funcionarios" (click)="setFuncionario(funcionario)">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Choose a date</mat-label>
+      <input  matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" [formControl]="dateFormCtrl">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <br>
+    <mat-card class="teste">
+        <button mat-raised-button class="color-10" *ngFor="let obj of horarios" >{{obj}}</button>
+    </mat-card>
+    <br>
+    <mat-selection-list  multiple="false">
+      <mat-list-option *ngFor="let funcionario of funcionarios" (click)="setFuncionario(funcionario)">
           {{funcionario.pessoa.nome}}
-        </mat-list-option>
-      </mat-selection-list>
-    </mat-card>
+      </mat-list-option>
+    </mat-selection-list>
+
     <br>
-    <mat-card class="color-01" >
-      <mat-card-subtitle>Serviço</mat-card-subtitle>
-      <mat-selection-list  multiple="false">
-        <mat-list-option *ngFor="let servico of servicos" (click)="setServico(servico)">
+
+    <mat-selection-list  multiple="false">
+      <mat-list-option *ngFor="let servico of servicos" (click)="setServico(servico)">
           {{servico.descricao}}
-        </mat-list-option>
-      </mat-selection-list>
-    </mat-card>
+      </mat-list-option>
+    </mat-selection-list>
+
     <br>
-    <mat-card class="color-01" >
-      <mat-card-subtitle>Cliente</mat-card-subtitle>
-      <app-pessoa-read [isMostrarColunaSelecao]="true" (pessoaSelecionada)="setPessoa($event)"></app-pessoa-read>
-    </mat-card>
+
+    <app-pessoa-read [isMostrarColunaSelecao]="true" (pessoaSelecionada)="setPessoa($event)"></app-pessoa-read>
+
     <br>
+
   </form>
   <button mat-raised-button (click)="createAgendamento()" class="color-10">Salvar</button>
   <button mat-raised-button (click)="cancel()" class="color-01">Cancel</button>
+  <button mat-raised-button (click)="cancel2()" class="color-01">Teste</button>
 </mat-card>
+
 

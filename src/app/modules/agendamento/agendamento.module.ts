@@ -21,7 +21,9 @@ import {MatListModule} from '@angular/material/list';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {PessoaModule} from '../pessoa/pessoa.module';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {SelectionModel} from '@angular/cdk/collections';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
 
 
 
@@ -50,7 +52,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     MatGridListModule,
     PessoaModule,
     MatCheckboxModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatNativeDateModule
 
   ]
 })

@@ -43,11 +43,8 @@
         </a>
       </td>
     </ng-container>
-
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
-
   <mat-paginator [pageSizeOptions]="[7, 14, 21]"></mat-paginator>
 </div>
-
