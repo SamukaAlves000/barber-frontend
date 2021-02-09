@@ -7,7 +7,11 @@
     Novo Funcionário
   </button>
   <div>
-    <app-funcionario-read></app-funcionario-read>
+    <app-funcionario-read
+      [isMostrarColunaNone]="true"
+      [isMostrarColunaSalario]="true"
+      [isMostrarColunaAction]="true"
+    ></app-funcionario-read>
   </div>
   <br>
 </mat-card>

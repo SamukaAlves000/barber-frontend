@@ -17,6 +17,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 
@@ -25,22 +26,23 @@ import {MatRadioModule} from '@angular/material/radio';
   exports: [
     FuncionarioReadComponent
   ],
-  imports: [
-    CommonModule,
-    MatTableModule,
-    RouterModule,
-    MatPaginatorModule,
-    MatSortModule,
-    HttpClientModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    FormsModule,
-    MatIconModule,
-    MatInputModule,
-    MatButtonModule,
-    ReactiveFormsModule,
-    MatRadioModule
-  ]
+    imports: [
+        CommonModule,
+        MatTableModule,
+        RouterModule,
+        MatPaginatorModule,
+        MatSortModule,
+        HttpClientModule,
+        MatCardModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        FormsModule,
+        MatIconModule,
+        MatInputModule,
+        MatButtonModule,
+        ReactiveFormsModule,
+        MatRadioModule,
+        MatCheckboxModule
+    ]
 })
 export class FuncionarioModule { }

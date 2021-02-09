@@ -88,6 +88,8 @@ export class AgendamentoCreateComponent implements OnInit {
 
 
   cancel2(): void {
-
+      console.log(this.agendamento.pessoa.nome);
+      console.log(this.agendamento.funcionario.pessoa.nome);
+      console.log(this.agendamento.servico.descricao);
   }
 }

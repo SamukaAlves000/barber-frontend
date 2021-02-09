@@ -47,6 +47,10 @@ export class PessoaReadComponent implements OnInit {
   }
 
   adicionarColuna(): void {
+    if (this.isMostrarColunaSelect) {
+      this.displayedColumns.push('select');
+    }
+
     if (this.isMostrarColunaNone) {
       this.displayedColumns.push('nome');
     }
@@ -61,10 +65,6 @@ export class PessoaReadComponent implements OnInit {
 
     if (this.isMostrarColunaAction) {
       this.displayedColumns.push('action');
-    }
-
-    if (this.isMostrarColunaSelect) {
-      this.displayedColumns.push('select');
     }
   }
 }

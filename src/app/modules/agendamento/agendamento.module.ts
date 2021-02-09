@@ -24,6 +24,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {SelectionModel} from '@angular/cdk/collections';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
+import {FuncionarioModule} from '../funcionario/funcionario.module';
 
 
 
@@ -53,7 +54,8 @@ import {MatNativeDateModule} from '@angular/material/core';
     PessoaModule,
     MatCheckboxModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    FuncionarioModule
 
   ]
 })
