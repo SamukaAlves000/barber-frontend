@@ -7,7 +7,12 @@
     Novo Usuário
   </button>
   <div>
-    <app-pessoa-read></app-pessoa-read>
+    <app-pessoa-read
+      [isMostrarColunaNone]="true"
+      [isMostrarColunaEmail]="true"
+      [isMostrarColunaFone]="true"
+      [isMostrarColunaAction]="true"
+    ></app-pessoa-read>
   </div>
   <br>
 </mat-card>

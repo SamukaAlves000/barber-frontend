@@ -13,11 +13,15 @@ import {SelectionModel} from '@angular/cdk/collections';
 export class PessoaReadComponent implements OnInit {
 
   pessoas: Pessoa[] = [];
-  @Output() pessoaSelecionada = new EventEmitter<Pessoa>();
-  @Input() isMostrarColunaSelecao = false;
-  isMostrarAcoes = true;
 
-  displayedColumns: string[] = ['id', 'nome', 'fone', 'cidade', 'action'];
+  @Output() pessoaSelecionada = new EventEmitter<Pessoa>();
+  @Input() isMostrarColunaSelect = false;
+  @Input() isMostrarColunaAction = false;
+  @Input() isMostrarColunaNone = false;
+  @Input() isMostrarColunaEmail = false;
+  @Input() isMostrarColunaFone = false;
+
+  displayedColumns: string[] = [];
   dataSource = new MatTableDataSource([]);
   selection = new SelectionModel<Pessoa>(true, []);
 
@@ -26,9 +30,7 @@ export class PessoaReadComponent implements OnInit {
   constructor(private pessoaService: PessoaService) { }
 
   ngOnInit(): void {
-    if (this.isMostrarColunaSelecao){
-      this.adicionarColunaSelecao();
-    }
+    this.adicionarColuna();
     this.pessoaService.getAll().subscribe((data: Pessoa[]) => {
       console.log(data);
       this.pessoas = data;
@@ -44,9 +46,25 @@ export class PessoaReadComponent implements OnInit {
     }
   }
 
-  adicionarColunaSelecao(): void {
-    this.isMostrarAcoes = false;
-    this.displayedColumns.pop();
-    this.displayedColumns[this.displayedColumns.length - 1] = 'select';
+  adicionarColuna(): void {
+    if (this.isMostrarColunaNone) {
+      this.displayedColumns.push('nome');
+    }
+
+    if (this.isMostrarColunaEmail) {
+      this.displayedColumns.push('email');
+    }
+
+    if (this.isMostrarColunaFone) {
+      this.displayedColumns.push('fone');
+    }
+
+    if (this.isMostrarColunaAction) {
+      this.displayedColumns.push('action');
+    }
+
+    if (this.isMostrarColunaSelect) {
+      this.displayedColumns.push('select');
+    }
   }
 }

@@ -22,22 +22,20 @@
           {{funcionario.pessoa.nome}}
       </mat-list-option>
     </mat-selection-list>
-
     <br>
-
     <mat-selection-list  multiple="false">
       <mat-list-option *ngFor="let servico of servicos" (click)="setServico(servico)">
           {{servico.descricao}}
       </mat-list-option>
     </mat-selection-list>
-
     <br>
-
-    <app-pessoa-read [isMostrarColunaSelecao]="true" (pessoaSelecionada)="setPessoa($event)"></app-pessoa-read>
-
-    <br>
-
   </form>
+  <br>
+  <app-pessoa-read
+    [isMostrarColunaNone]="true"
+    [isMostrarColunaSelect]="true"
+    (pessoaSelecionada)="setPessoa($event)">
+  </app-pessoa-read>
   <button mat-raised-button (click)="createAgendamento()" class="color-10">Salvar</button>
   <button mat-raised-button (click)="cancel()" class="color-01">Cancel</button>
   <button mat-raised-button (click)="cancel2()" class="color-01">Teste</button>
