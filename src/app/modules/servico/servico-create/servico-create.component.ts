@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ErrorStateMatcher} from '@angular/material/core';
-import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ServicoService} from '../servico.service';
 import {Servico} from '../servico';
 import {Router} from '@angular/router';
@@ -21,6 +21,10 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class ServicoCreateComponent implements OnInit {
 
+  isLinear = false;
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
+
   servico: Servico = {
     descricao: '',
     duracao: null,
@@ -39,20 +43,17 @@ export class ServicoCreateComponent implements OnInit {
     { name: 20, value: 1 },
     { name: 30, value: 2 }
   ];
-  emailFormControl = new FormControl('', [
-    Validators.required,
-    Validators.email,
-  ]);
 
-  inputTextFormControl = new FormControl('', [
-    Validators.required,
-  ]);
 
-  matcher = new MyErrorStateMatcher();
-
-  constructor(private servicoService: ServicoService, private router: Router) { }
+  constructor(private servicoService: ServicoService, private router: Router, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    this.firstFormGroup = this.formBuilder.group({
+      firstCtrl: ['', Validators.required]
+    });
+    this.secondFormGroup = this.formBuilder.group({
+      secondCtrl: ['', Validators.required]
+    });
   }
 
   createServico(): void {
@@ -62,9 +63,12 @@ export class ServicoCreateComponent implements OnInit {
       }
     );
   }
+
   cancel(): void{
     this.router.navigate(['/servicos']);
   }
 
-
+  setFuncionariosSelecionados(funcionariosSelecionados: Funcionario[]): void{
+    this.servico.funcionarios = funcionariosSelecionados;
+  }
 }

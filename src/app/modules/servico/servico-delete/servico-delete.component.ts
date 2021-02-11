@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {Servico} from '../servico';
-import {FormControl, Validators} from '@angular/forms';
-import {MyErrorStateMatcher} from '../servico-create/servico-create.component';
 import {ServicoService} from '../servico.service';
 import {ActivatedRoute, Router} from '@angular/router';
 

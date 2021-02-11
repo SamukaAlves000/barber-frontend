@@ -3,7 +3,6 @@ import {MatTableDataSource} from '@angular/material/table';
 import {Funcionario} from '../funcionario';
 import {MatPaginator} from '@angular/material/paginator';
 import {FuncionarioService} from '../funcionario.service';
-import {Pessoa} from '../../pessoa/pessoa';
 import {SelectionModel} from '@angular/cdk/collections';
 
 @Component({
@@ -15,10 +14,14 @@ export class FuncionarioReadComponent implements OnInit {
 
   funcionarios: Funcionario[];
   @Output() funcionarioSelecionado = new EventEmitter<Funcionario>();
+  @Output() funcionariosSelecionados = new EventEmitter<Funcionario[]>();
   @Input() isMostrarColunaSelect = false;
   @Input() isMostrarColunaAction = false;
   @Input() isMostrarColunaNone = false;
   @Input() isMostrarColunaSalario = false;
+  @Input() isSelecaoMultipla = false;
+
+  selecionados: Funcionario[] = [];
 
   displayedColumns: string[] = [];
   dataSource = new MatTableDataSource([]);
@@ -39,9 +42,22 @@ export class FuncionarioReadComponent implements OnInit {
   }
 
   selecionarFuncionario(funcionario: Funcionario): void {
-    this.funcionarioSelecionado.emit(funcionario);
-    if (this.selection.selected.length = 2) {
-      this.selection.deselect(this.selection.selected[0]);
+
+    if (!this.isSelecaoMultipla) {
+      this.funcionarioSelecionado.emit(funcionario);
+      if (this.selection.selected.length = 2) {
+          this.selection.deselect(this.selection.selected[0]);
+      }
+    }else {
+      if (!this.selecionados.includes(funcionario)) {
+          this.selecionados.push(funcionario);
+      }else{
+          const index = this.selecionados.indexOf(funcionario, 0);
+          if (index > -1) {
+              this.selecionados.splice(index, 1);
+          }
+      }
+      this.funcionariosSelecionados.emit(this.selecionados);
     }
   }
 
@@ -62,5 +78,4 @@ export class FuncionarioReadComponent implements OnInit {
       this.displayedColumns.push('action');
     }
   }
-
 }

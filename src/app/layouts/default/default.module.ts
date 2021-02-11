@@ -9,7 +9,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatDividerModule} from '@angular/material/divider';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {MatCardModule} from '@angular/material/card';
-import {DashboardService} from '../../modules/dashboard.service';
+import {DashboardService} from '../../modules/dashboard/dashboard.service';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableModule} from '@angular/material/table';
 import {ServicoComponent} from '../../modules/servico/servico.component';
@@ -25,6 +25,7 @@ import {FuncionarioComponent} from '../../modules/funcionario/funcionario.compon
 import {FuncionarioModule} from '../../modules/funcionario/funcionario.module';
 import {AgendamentoComponent} from '../../modules/agendamento/agendamento.component';
 import {AgendamentoModule} from '../../modules/agendamento/agendamento.module';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 
 
@@ -55,7 +56,8 @@ import {AgendamentoModule} from '../../modules/agendamento/agendamento.module';
     MatCarouselModule,
     PessoaModule,
     FuncionarioModule,
-    AgendamentoModule
+    AgendamentoModule,
+    MatGridListModule
   ],
   providers: [
     DashboardService,

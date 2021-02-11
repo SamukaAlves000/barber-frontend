@@ -11,7 +11,10 @@ import {Servico} from '../servico/servico';
 })
 export class PessoaService {
 
-  private apiServer = 'http://localhost:8080';
+  // Produção
+  private apiServer = 'https://barbearia-backend.herokuapp.com';
+  // Desenvolvimento
+  // private apiServer = 'http://localhost:8080';
 
   httpOptions = {
     headers: new HttpHeaders({
