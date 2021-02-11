@@ -1,7 +1,7 @@
 <app-header (toggleSideBarForMe)="sideBarToggler($event)"></app-header>
 
 <mat-drawer-container>
-  <mat-drawer mode="side" [opened]="sideBarOpen">
+  <mat-drawer mode="side" [opened]="sideBarOpen" [class.mobile-teste]="isMobile">
     <app-sidebar (toggleSideBarForMe)="sideBarToggler($event)"></app-sidebar>
   </mat-drawer>
 

@@ -1,31 +1,38 @@
-<div style="padding: 10px">
-  <form>
-    <mat-form-field>
-      <mat-label>ID</mat-label>
-      <input type="number" matInput [(ngModel)]="funcionario.id" name="id" disabled>
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Nome</mat-label>
-      <input type="text" matInput placeholder="Ex. Maria dos Santos" [(ngModel)]="funcionario.pessoa.nome" name="nome">
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Email</mat-label>
-      <input type="email" matInput placeholder="Ex. name@hotmail.com" [(ngModel)]="funcionario.pessoa.email" name="email">
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>CPF</mat-label>
-      <input type="text" matInput placeholder="Ex. 000.000.000-00" [(ngModel)]="funcionario.pessoa.cpf" name="cpf">
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Telefone</mat-label>
-      <input type="text" matInput placeholder="Ex. (00) 00000-0000" [(ngModel)]="funcionario.pessoa.fone" name="fone">
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Sálario</mat-label>
-      <input type="text" matInput placeholder="Ex. 1200.00" [(ngModel)]="funcionario.salario" name="salario">
-    </mat-form-field>
-    <br>
-  </form>
-  <button mat-raised-button (click)="updateFuncionario()" class="color-10">Atualizar</button>
-  <button mat-raised-button (click)="cancel()" class="color-01">Cancel</button>
-</div>
+<mat-tab-group>
+  <mat-tab label="Informações Gerais"> Content 1 </mat-tab>
+  <mat-tab label="Outros"> Content 2 </mat-tab>
+  <mat-tab label="Funcionário">
+    <div style="padding: 10px">
+      <form>
+        <mat-form-field>
+          <mat-label>ID</mat-label>
+          <input type="number" matInput [(ngModel)]="funcionario.id" name="id" disabled>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Nome</mat-label>
+          <input type="text" matInput placeholder="Ex. Maria dos Santos" [(ngModel)]="funcionario.pessoa.nome" name="nome">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input type="email" matInput placeholder="Ex. name@hotmail.com" [(ngModel)]="funcionario.pessoa.email" name="email">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>CPF</mat-label>
+          <input type="text" matInput placeholder="Ex. 000.000.000-00" [(ngModel)]="funcionario.pessoa.cpf" name="cpf">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Telefone</mat-label>
+          <input type="text" matInput placeholder="Ex. (00) 00000-0000" [(ngModel)]="funcionario.pessoa.fone" name="fone">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Sálario</mat-label>
+          <input type="text" matInput placeholder="Ex. 1200.00" [(ngModel)]="funcionario.salario" name="salario">
+        </mat-form-field>
+        <br>
+      </form>
+      <button mat-raised-button (click)="updateFuncionario()" class="color-10">Atualizar</button>
+      <button mat-raised-button (click)="cancel()" class="color-01">Cancel</button>
+    </div>
+  </mat-tab>
+</mat-tab-group>
+

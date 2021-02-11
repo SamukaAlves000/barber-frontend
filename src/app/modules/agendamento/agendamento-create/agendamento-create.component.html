@@ -4,7 +4,7 @@
       <form [formGroup]="firstFormGroup">
         <ng-template matStepLabel>Início</ng-template>
         <div>
-          <button mat-raised-button color="primary" matStepperNext>Começar</button>
+          <button matStepperNext mat-fab color="primary"><mat-icon>add</mat-icon></button>
         </div>
       </form>
     </mat-step>
@@ -18,8 +18,8 @@
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
         <div>
-          <button mat-raised-button color="warn" matStepperPrevious>Anterior</button>
-          <button mat-raised-button color="primary" matStepperNext>Próximo</button>
+          <button matStepperPrevious mat-mini-fab color="primary"><mat-icon>skip_previous</mat-icon></button>
+          <button matStepperNext mat-mini-fab color="primary"><mat-icon>skip_next</mat-icon></button>
         </div>
       </form>
     </mat-step>
@@ -34,8 +34,8 @@
           >
           </app-servico-read>
         <div>
-          <button mat-raised-button color="warn" matStepperPrevious>Anterior</button>
-          <button mat-raised-button color="primary" matStepperNext>Próximo</button>
+          <button matStepperPrevious mat-mini-fab color="primary"><mat-icon>skip_previous</mat-icon></button>
+          <button matStepperNext mat-mini-fab color="primary"><mat-icon>skip_next</mat-icon></button>
         </div>
       </form>
     </mat-step>
@@ -49,8 +49,8 @@
           >
           </app-funcionario-read>
         <div>
-          <button mat-raised-button color="warn" matStepperPrevious>Anterior</button>
-          <button mat-raised-button color="primary" matStepperNext>Próximo</button>
+          <button matStepperPrevious mat-mini-fab color="primary"><mat-icon>skip_previous</mat-icon></button>
+          <button matStepperNext mat-mini-fab color="primary"><mat-icon>skip_next</mat-icon></button>
         </div>
       </form>
     </mat-step>
@@ -63,8 +63,8 @@
             (pessoaSelecionada)="setPessoa($event)">
           </app-pessoa-read>
         <div>
-          <button mat-raised-button color="warn" matStepperPrevious>Anterior</button>
-          <button mat-raised-button color="primary" matStepperNext>Próximo</button>
+          <button matStepperPrevious mat-mini-fab color="primary"><mat-icon>skip_previous</mat-icon></button>
+          <button matStepperNext mat-mini-fab color="primary"><mat-icon>skip_next</mat-icon></button>
         </div>
       </form>
     </mat-step>
@@ -80,8 +80,8 @@
           Horário selecionado: {{shoes.selectedOptions.selected[0]?.value}}
         </p>
         <div>
-          <button mat-raised-button color="warn" matStepperPrevious>Anterior</button>
-          <button mat-raised-button color="primary" matStepperNext>Próximo</button>
+          <button matStepperPrevious mat-mini-fab color="primary"><mat-icon>skip_previous</mat-icon></button>
+          <button matStepperNext mat-mini-fab color="primary"><mat-icon>skip_next</mat-icon></button>
         </div>
       </form>
     </mat-step>
@@ -99,8 +99,8 @@
         </mat-card-actions>
       </mat-card>
       <div>
-        <button mat-raised-button color="warn" matStepperPrevious>Anterior</button>
-        <button mat-raised-button color="primary" (click)="stepper.reset()">Início</button>
+        <button (click)="cancel()" mat-fab color="warn"><mat-icon>close</mat-icon></button>
+        <button (click)="createAgendamento()" mat-fab color="primary"><mat-icon>add</mat-icon></button>
       </div>
     </mat-step>
   </mat-vertical-stepper>

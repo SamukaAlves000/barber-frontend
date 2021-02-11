@@ -27,6 +27,7 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {FuncionarioModule} from '../funcionario/funcionario.module';
 import {ServicoModule} from '../servico/servico.module';
 import {MatStepperModule} from '@angular/material/stepper';
+import {MatTabsModule} from '@angular/material/tabs';
 
 
 
@@ -59,7 +60,8 @@ import {MatStepperModule} from '@angular/material/stepper';
     MatNativeDateModule,
     FuncionarioModule,
     ServicoModule,
-    MatStepperModule
+    MatStepperModule,
+    MatTabsModule
 
   ]
 })

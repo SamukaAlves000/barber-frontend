@@ -25,6 +25,7 @@ import {MatListModule} from '@angular/material/list';
 import {FuncionarioModule} from '../funcionario/funcionario.module';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatStepperModule} from '@angular/material/stepper';
+import {MatTabsModule} from '@angular/material/tabs';
 
 
 
@@ -54,7 +55,8 @@ import {MatStepperModule} from '@angular/material/stepper';
     MatListModule,
     FuncionarioModule,
     MatExpansionModule,
-    MatStepperModule
+    MatStepperModule,
+    MatTabsModule
   ],
   providers: [
     ServicoService

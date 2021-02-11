@@ -1,24 +1,31 @@
-<div style="padding: 10px">
-  <form>
-    <mat-form-field>
-      <mat-label>ID</mat-label>
-      <input type="number" matInput [(ngModel)]="servico.id" name="ID" disabled>
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Descrição</mat-label>
-      <input type="text" matInput placeholder="Ex. Corte Simples" [(ngModel)]="servico.descricao" name="descricao">
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Preço</mat-label>
-      <input type="text" matInput placeholder="Ex. 15.00" [(ngModel)]="servico.valor" name="valor">
-    </mat-form-field>
-    <mat-form-field appearance="legacy">
-      <mat-label >Duração/Minutos</mat-label>
-      <mat-select disableRipple [(ngModel)]="servico.duracao" name="duracao">
-        <mat-option *ngFor="let item of duracoes;" [value]="item.duracao">{{item.duracao}}</mat-option>
-      </mat-select>
-    </mat-form-field>
-  </form>
-  <button mat-raised-button (click)="updateServico()" class="color-10">Atualizar</button>
-  <button mat-raised-button (click)="cancel()" class="color-01">Cancel</button>
-</div>
+<mat-tab-group>
+  <mat-tab label="Informações Gerais"> Content 1 </mat-tab>
+  <mat-tab label="Funcionários"> Content 2 </mat-tab>
+  <mat-tab label="Serviço">
+    <div style="padding: 10px">
+      <form>
+        <mat-form-field>
+          <mat-label>ID</mat-label>
+          <input type="number" matInput [(ngModel)]="servico.id" name="ID" disabled>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Descrição</mat-label>
+          <input type="text" matInput placeholder="Ex. Corte Simples" [(ngModel)]="servico.descricao" name="descricao">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Preço</mat-label>
+          <input type="text" matInput placeholder="Ex. 15.00" [(ngModel)]="servico.valor" name="valor">
+        </mat-form-field>
+        <mat-form-field appearance="legacy">
+          <mat-label >Duração/Minutos</mat-label>
+          <mat-select disableRipple [(ngModel)]="servico.duracao" name="duracao">
+            <mat-option *ngFor="let item of duracoes;" [value]="item.duracao">{{item.duracao}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </form>
+      <button mat-raised-button (click)="updateServico()" class="color-10">Atualizar</button>
+      <button mat-raised-button (click)="cancel()" class="color-01">Cancel</button>
+    </div>
+  </mat-tab>
+</mat-tab-group>
+

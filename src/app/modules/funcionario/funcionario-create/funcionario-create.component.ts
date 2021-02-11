@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {FuncionarioService} from '../funcionario.service';
 import {Funcionario} from '../funcionario';
-import {Pessoa} from '../../pessoa/pessoa';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-funcionario-create',
@@ -10,6 +10,10 @@ import {Pessoa} from '../../pessoa/pessoa';
   styleUrls: ['./funcionario-create.component.scss']
 })
 export class FuncionarioCreateComponent implements OnInit {
+
+  isLinear = false;
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
 
   funcionario: Funcionario = {
     salario: undefined,
@@ -25,9 +29,17 @@ export class FuncionarioCreateComponent implements OnInit {
     }
   };
 
-  constructor(private router: Router, private funcionarioService: FuncionarioService) { }
+  constructor(private router: Router,
+              private funcionarioService: FuncionarioService,
+              private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    this.firstFormGroup = this.formBuilder.group({
+      firstCtrl: ['', Validators.required]
+    });
+    this.secondFormGroup = this.formBuilder.group({
+      secondCtrl: ['', Validators.required]
+    });
   }
 
   createFuncionario(): void {

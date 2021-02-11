@@ -18,6 +18,9 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatTabsModule} from '@angular/material/tabs';
+
 
 
 
@@ -44,7 +47,9 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatIconModule,
     ReactiveFormsModule,
     MatRadioModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatStepperModule,
+    MatTabsModule
   ]
 })
 export class PessoaModule { }
