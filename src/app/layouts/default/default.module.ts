@@ -26,6 +26,9 @@ import {FuncionarioModule} from '../../modules/funcionario/funcionario.module';
 import {AgendamentoComponent} from '../../modules/agendamento/agendamento.component';
 import {AgendamentoModule} from '../../modules/agendamento/agendamento.module';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatListModule} from '@angular/material/list';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 
 
@@ -57,7 +60,10 @@ import {MatGridListModule} from '@angular/material/grid-list';
     PessoaModule,
     FuncionarioModule,
     AgendamentoModule,
-    MatGridListModule
+    MatGridListModule,
+    MatListModule,
+    MatTabsModule,
+    MatToolbarModule
   ],
   providers: [
     DashboardService,

@@ -1,4 +1,12 @@
+.content {
+  padding: 16px;
+}
+
+.content > mat-card {
+  width: 200px;
+}
+
 mat-grid-tile {
-  background: lavender;
+  background-color: #212121;
 }
 
