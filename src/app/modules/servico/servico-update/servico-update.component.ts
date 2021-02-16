@@ -4,6 +4,7 @@ import {FormControl, Validators} from '@angular/forms';
 import {MyErrorStateMatcher} from '../servico-create/servico-create.component';
 import {ServicoService} from '../servico.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {ServicoFuncionario} from '../servico-funcionario';
 
 @Component({
   selector: 'app-servico-update',
@@ -61,5 +62,9 @@ export class ServicoUpdateComponent implements OnInit {
 
   cancel(): void{
     this.router.navigate(['/servicos']);
+  }
+
+  setFuncionariosSelecionados(funcionariosSelecionados: ServicoFuncionario[]): void{
+    this.servico.funcionarios = funcionariosSelecionados;
   }
 }

@@ -1,6 +1,4 @@
 <mat-tab-group>
-  <mat-tab label="Informações Gerais"> Content 1 </mat-tab>
-  <mat-tab label="Outros"> Content 2 </mat-tab>
   <mat-tab label="Funcionário">
     <div style="padding: 10px">
       <form>
@@ -33,6 +31,22 @@
       <button mat-raised-button (click)="updateFuncionario()" class="color-10">Atualizar</button>
       <button mat-raised-button (click)="cancel()" class="color-01">Cancel</button>
     </div>
+  </mat-tab>
+  <mat-tab label="Serviços"> Serviços </mat-tab>
+  <mat-tab label="Informações Gerais">
+
+    <mat-card class="color-01">
+      <div style="padding: 20px">
+        <h4>Nome: <h5>{{funcionario.pessoa.nome}}</h5></h4>
+        <h4>Email: <h5>{{funcionario.pessoa.email}}</h5></h4>
+        <h4>Fone: <h5>{{funcionario.pessoa.fone}}</h5></h4>
+        <h4>Salário: <h5>{{funcionario.salario}}</h5></h4>
+      </div>
+      <mat-card-actions>
+        <button mat-icon-button color="primary"><mat-icon>pending_actions</mat-icon></button>
+      </mat-card-actions>
+    </mat-card>
+
   </mat-tab>
 </mat-tab-group>
 

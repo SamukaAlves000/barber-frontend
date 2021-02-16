@@ -20,6 +20,7 @@ export class ServicoReadComponent implements OnInit {
   @Input() isMostrarColunaDescricao = false;
   @Input() isMostrarColunaValor = false;
   @Input() isMostrarColunaDuracao = false;
+  @Input() isSelecaoMultipla = false;
 
   displayedColumns: string[] = [];
   dataSource = new MatTableDataSource([]);

@@ -1,8 +1,26 @@
 <div style="padding: 10px">
-  <button (click)="navigateToAgendamentoCreate()" mat-mini-fab color="primary">
+  <button (click)="navigateToAgendamentoCreate()" mat-fab color="primary">
     <mat-icon>note_add</mat-icon>
   </button>
-  <app-agendamento-read></app-agendamento-read>
+  <mat-tab-group>
+    <mat-tab label="Aceitos/Confirmados">
+      <app-agendamento-read-aceito-confirmado></app-agendamento-read-aceito-confirmado>
+    </mat-tab>
+    <mat-tab label="Pendentes">
+      <app-agendamento-read-pendente></app-agendamento-read-pendente>
+    </mat-tab>
+    <mat-tab label="Finalizados">
+      <app-agendamento-read-finalizado></app-agendamento-read-finalizado>
+    </mat-tab>
+    <mat-tab label="Cancelados">
+      <app-agendamento-read-cancelado></app-agendamento-read-cancelado>
+    </mat-tab>
+    <mat-tab label="Recusados">
+      <app-agendamento-read-recusado></app-agendamento-read-recusado>
+    </mat-tab>
+  </mat-tab-group>
 </div>
+
+
 
 

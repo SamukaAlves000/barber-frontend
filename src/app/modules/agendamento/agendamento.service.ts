@@ -31,6 +31,13 @@ export class AgendamentoService {
       );
   }
 
+  getAllStatus(status): Observable<Agendamento[]> {
+    return this.httpClient.get<Agendamento[]>(this.apiServer + '/agendamentos/admin/status?status=' + status, this.httpOptions)
+      .pipe(
+        catchError(this.errorHandler)
+      );
+  }
+
   getById(id): Observable<Agendamento> {
     return this.httpClient.get<Agendamento>(this.apiServer + '/agendamentos/admin/' + id, this.httpOptions)
       .pipe(

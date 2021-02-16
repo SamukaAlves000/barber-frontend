@@ -28,13 +28,32 @@ import {FuncionarioModule} from '../funcionario/funcionario.module';
 import {ServicoModule} from '../servico/servico.module';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatTabsModule} from '@angular/material/tabs';
+import { AgendamentoReadPendenteComponent } from './agendamento-read/agendamento-read-pendente/agendamento-read-pendente.component';
+import { AgendamentoReadCanceladoComponent } from './agendamento-read/agendamento-read-cancelado/agendamento-read-cancelado.component';
+import { AgendamentoReadRecusadoComponent } from './agendamento-read/agendamento-read-recusado/agendamento-read-recusado.component';
+import { AgendamentoReadFinalizadoComponent } from './agendamento-read/agendamento-read-finalizado/agendamento-read-finalizado.component';
+import { AgendamentoReadAceitoConfirmadoComponent } from './agendamento-read/agendamento-read-aceito-confirmado/agendamento-read-aceito-confirmado.component';
 
 
 
 @NgModule({
-  declarations: [AgendamentoCreateComponent, AgendamentoUpdateComponent, AgendamentoDeleteComponent, AgendamentoReadComponent],
+  declarations: [
+    AgendamentoCreateComponent,
+    AgendamentoUpdateComponent,
+    AgendamentoDeleteComponent,
+    AgendamentoReadComponent,
+    AgendamentoReadPendenteComponent,
+    AgendamentoReadCanceladoComponent,
+    AgendamentoReadRecusadoComponent,
+    AgendamentoReadFinalizadoComponent,
+    AgendamentoReadAceitoConfirmadoComponent],
   exports: [
-    AgendamentoReadComponent
+    AgendamentoReadComponent,
+    AgendamentoReadAceitoConfirmadoComponent,
+    AgendamentoReadPendenteComponent,
+    AgendamentoReadFinalizadoComponent,
+    AgendamentoReadCanceladoComponent,
+    AgendamentoReadRecusadoComponent
   ],
   imports: [
     CommonModule,

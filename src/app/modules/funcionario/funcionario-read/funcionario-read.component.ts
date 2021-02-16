@@ -21,8 +21,8 @@ export class FuncionarioReadComponent implements OnInit {
   @Input() isMostrarColunaNone = false;
   @Input() isMostrarColunaSalario = false;
   @Input() isSelecaoMultipla = false;
-
-  selecionados: ServicoFuncionario[] = [];
+  @Input() isSelecaoAutomatica = false;
+  @Input() selecionados: ServicoFuncionario[] = [];
 
   displayedColumns: string[] = [];
   dataSource = new MatTableDataSource([]);
@@ -39,14 +39,16 @@ export class FuncionarioReadComponent implements OnInit {
       this.funcionarios = data;
       this.dataSource = new MatTableDataSource<Funcionario>(this.funcionarios); // Set dataSource  like this
       this.dataSource.paginator = this.paginator;
+      if (this.isSelecaoAutomatica) {
+        this.selecaoAutomatica();
+      }
     });
   }
 
   selecionarFuncionario(funcionario: Funcionario): void {
-
     if (!this.isSelecaoMultipla) {
       this.funcionarioSelecionado.emit(funcionario);
-      if (this.selection.selected.length = 2) {
+      if (this.selection.selected.length === 2) {
           this.selection.deselect(this.selection.selected[0]);
       }
     }else {
@@ -90,4 +92,12 @@ export class FuncionarioReadComponent implements OnInit {
     servicoFuncionario.funcionario = funcionario;
     return servicoFuncionario;
   }
+
+  selecaoAutomatica(): void {
+    this.selecionados.forEach(value => {
+      const res = this.funcionarios.filter(value1 => value1.id === value.funcionario.id)[0];
+      this.selection.select(res);
+    });
+  }
+
 }

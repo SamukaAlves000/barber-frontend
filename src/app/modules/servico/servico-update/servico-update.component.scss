@@ -11,3 +11,11 @@ form {
   flex-direction: column;
   margin-top: 20px;
 }
+
+.content {
+  padding: 16px;
+}
+
+.content > mat-card {
+  width: 200px;
+}

@@ -26,7 +26,8 @@ export class FuncionarioCreateComponent implements OnInit {
       uf: undefined,
       sexo: undefined,
       dataNasc: undefined
-    }
+    },
+    servicos: undefined
   };
 
   constructor(private router: Router,
