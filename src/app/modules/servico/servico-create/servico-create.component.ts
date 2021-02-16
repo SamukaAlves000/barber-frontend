@@ -5,6 +5,7 @@ import {ServicoService} from '../servico.service';
 import {Servico} from '../servico';
 import {Router} from '@angular/router';
 import {Funcionario} from '../../funcionario/funcionario';
+import {ServicoFuncionario} from '../servico-funcionario';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -27,8 +28,8 @@ export class ServicoCreateComponent implements OnInit {
 
   servico: Servico = {
     descricao: '',
-    duracao: null,
-    valor: null,
+    duracao: undefined,
+    valor: undefined,
     funcionarios: []
   };
 
@@ -68,7 +69,7 @@ export class ServicoCreateComponent implements OnInit {
     this.router.navigate(['/servicos']);
   }
 
-  setFuncionariosSelecionados(funcionariosSelecionados: Funcionario[]): void{
+  setFuncionariosSelecionados(funcionariosSelecionados: ServicoFuncionario[]): void{
     this.servico.funcionarios = funcionariosSelecionados;
   }
 }

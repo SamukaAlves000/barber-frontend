@@ -53,10 +53,10 @@
           <mat-card-title>Dados do Serviço</mat-card-title>
         </mat-card-header>
         <div style="padding: 20px">
-          <h4>Descrição: <h5>Cortes simples</h5></h4>
-          <h4>Valor: <h5>10,00 R$</h5></h4>
-          <h4>Duração: <h5>15 Minutos</h5></h4>
-          <h4>Quantidade de Funcionários: <h5>4</h5></h4>
+          <h4>Descrição: <h5>{{servico.descricao}}</h5></h4>
+          <h4>Valor: <h5>R$ {{servico.valor}}</h5></h4>
+          <h4>Duração: <h5>{{servico.duracao}} Minutos</h5></h4>
+          <h4>Quantidade de Funcionários: <h5>{{servico.funcionarios.length}}</h5></h4>
         </div>
         <mat-card-actions>
           <button mat-icon-button color="primary"><mat-icon>pending_actions</mat-icon></button>

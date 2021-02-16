@@ -72,8 +72,8 @@
       <form [formGroup]="secondFormGroup">
         <ng-template matStepLabel>Selecione um horário</ng-template>
         <mat-selection-list #shoes [multiple]="false">
-          <mat-list-option *ngFor="let shoe of horarios" [value]="shoe">
-            {{shoe}}
+          <mat-list-option *ngFor="let horario of horarios" [value]="horario" (click)="setHorario(horario)">
+            {{horario}}
           </mat-list-option>
         </mat-selection-list>
         <p>
@@ -89,8 +89,7 @@
       <ng-template matStepLabel>Fim</ng-template>
       <mat-card>
         <mat-card-header>
-          <mat-card-title>Dados do agendamento</mat-card-title>
-          <mat-card-subtitle>Cliente</mat-card-subtitle>
+          <mat-card-subtitle>Dados do agendamento</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
         </mat-card-content>

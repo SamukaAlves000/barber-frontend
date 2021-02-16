@@ -24,14 +24,15 @@ export class AgendamentoCreateComponent implements OnInit {
   current = new Date();
   minDate = new Date(this.current.getFullYear(), new Date().getMonth(), Number(this.current.toLocaleDateString().split('/')[0]));
   maxDate = new Date(this.current.getFullYear() , 11, 31);
+  horario = undefined;
 
   agendamento: Agendamento = {};
 
   funcionarios: Funcionario[];
   servicos: Servico[] = [];
   pessoas: Pessoa[] = [];
-  horarios = ['09:00 ás 10:00', '10:00 ás 12:00', '11:00 ás 12:00', '13:00 ás 14:00',
-    '14:00 ás 15:00', '15:00 ás 16:00', '16:00 ás 17:00', '17:00 ás 18:00'];
+  horarios = ['09:00', '10:00', '11:00', '12:00',
+    '14:00', '15:00', '16:00', '17:00'];
 
   constructor(private agendamentoService: AgendamentoService,
               private funcionarioService: FuncionarioService,
@@ -76,13 +77,14 @@ export class AgendamentoCreateComponent implements OnInit {
     this.agendamento.pessoa = pessoaSelecionada;
   }
 
-  setAgendamentoDataAgendamento(): void {
+  setAgendamentoDataAgendamentoAndHorario(): void {
     const data = this.dateFormCtrl.value.toLocaleDateString().split('/');
-    this.agendamento.dataAgendamento = data[2] + '/' + data[1] + '/' + data[0];
+    this.agendamento.dataAgendamento = data[2] + '-' + data[1] + '-' + data[0];
+    this.agendamento.horario = this.agendamento.dataAgendamento + 'T' + this.horario + ':00';
   }
 
   createAgendamento(): void {
-    this.setAgendamentoDataAgendamento();
+    this.setAgendamentoDataAgendamentoAndHorario();
     this.agendamentoService.create(this.agendamento).subscribe(res => {
         this.funcionarioService.showMessage('Agendamento CRIADO!');
         this.cancel();
@@ -95,5 +97,9 @@ export class AgendamentoCreateComponent implements OnInit {
       console.log(this.agendamento.pessoa.nome);
       console.log(this.agendamento.funcionario.pessoa.nome);
       console.log(this.agendamento.servico.descricao);
+  }
+
+  setHorario(horario: string) {
+    this.horario = horario;
   }
 }

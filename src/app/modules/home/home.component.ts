@@ -11,19 +11,22 @@ export class HomeComponent implements OnInit {
   // slides = [{image: 'https://gsr.dev/material2-carousel/assets/demo.png'}, {image: 'https://gsr.dev/material2-carousel/assets/demo.png'},
   //    {image: 'https://gsr.dev/material2-carousel/assets/demo.png'}];
 
-  slides = [{image: 'assets/images/corrosel/1.jpg'}, {image: 'assets/images/corrosel/2.jpg'},
-    {image: 'assets/images/corrosel/3.jpg'}, {image: 'assets/images/corrosel/4.jpg'}, {image: 'assets/images/corrosel/5.jpg'}];
+  slides = [{image: 'assets/images/carrosel/1.jpg'}, {image: 'assets/images/carrosel/2.jpg'},
+    {image: 'assets/images/carrosel/3.jpg'}];
+
+  profissionais = [{image: 'assets/images/profissionais/c1.png'}, {image: 'assets/images/profissionais/c2.jpg'},
+    {image: 'assets/images/profissionais/c3.jpg'}];
 
   produtos = [
-    {image: 'assets/images/corrosel/p1.jpg'},
-    {image: 'assets/images/corrosel/p2.jpg'},
-    {image: 'assets/images/corrosel/p3.jpg'},
-    {image: 'assets/images/corrosel/p4.jpg'},
-    {image: 'assets/images/corrosel/p5.jpg'},
-    {image: 'assets/images/corrosel/p6.jpg'},
-    {image: 'assets/images/corrosel/p7.jpg'},
-    {image: 'assets/images/corrosel/p8.jpg'},
-    {image: 'assets/images/corrosel/p9.jpg'}];
+    {image: 'assets/images/produtos/p1.jpg'},
+    {image: 'assets/images/produtos/p2.jpg'},
+    {image: 'assets/images/produtos/p3.jpg'},
+    {image: 'assets/images/produtos/p4.jpg'},
+    {image: 'assets/images/produtos/p5.jpg'},
+    {image: 'assets/images/produtos/p6.jpg'},
+    {image: 'assets/images/produtos/p7.jpg'},
+    {image: 'assets/images/produtos/p8.jpg'},
+    {image: 'assets/images/produtos/p9.jpg'}];
 
   ngOnInit(): void {
   }

@@ -27,7 +27,7 @@
 <!--</mat-toolbar>-->
 
 <!--<div class="content">-->
-<!--  <div fxLayout="row wrap" fxLayoutGap="5px grid">-->
+<!--  <div fxLayout="row wrap" fxLayoutGap="16px grid">-->
 <!--    <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let num of produtos">-->
 <!--      <mat-card class="mat-elevation-z4" >-->
 <!--        <img mat-card-image [src]="num.image">-->
@@ -48,38 +48,56 @@
 
 
 <mat-tab-group>
-  <mat-tab label="História">
-    <mat-grid-list cols="2">
-      <mat-grid-tile [colspan]="1" [rowspan]="1">
-        Conteúdo
-      </mat-grid-tile>
-      <mat-grid-tile [colspan]="1" [rowspan]="1">
-        Conteúdo
-      </mat-grid-tile>
-    </mat-grid-list>
-  </mat-tab>
   <mat-tab label="Profissionais">
     <mat-grid-list cols="3">
-      <mat-grid-tile [colspan]="1" [rowspan]="1">
-        Conteúdo
-      </mat-grid-tile>
-      <mat-grid-tile [colspan]="1" [rowspan]="1">
-        Conteúdo
-      </mat-grid-tile>
-      <mat-grid-tile [colspan]="1" [rowspan]="1">
-        Conteúdo
-      </mat-grid-tile>
+      <div class="content">
+        <div fxLayout="row wrap" fxLayoutGap="16px grid">
+          <div fxFlex="33%" *ngFor="let num of profissionais">
+            <mat-card class="mat-elevation-z4" >
+              <img mat-card-image [src]="num.image">
+              <button mat-raised-button style="width: 100%" class="color-10">
+                <mat-icon>visibility</mat-icon>
+              </button>
+            </mat-card>
+          </div>
+        </div>
+      </div>
     </mat-grid-list>
   </mat-tab>
   <mat-tab label="Serviços">
   </mat-tab>
-  <mat-tab label="Galeria">
-  </mat-tab>
   <mat-tab label="Produtos">
-  </mat-tab>
-  <mat-tab label="Localização">
+    <div class="content">
+      <div fxLayout="row wrap" fxLayoutGap="16px grid">
+        <div fxFlex="25%"  *ngFor="let num of produtos">
+          <mat-card class="mat-elevation-z4" >
+            <img mat-card-image [src]="num.image">
+            <mat-card-actions>
+              <button mat-button>R$ 25,00</button>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+      </div>
+    </div>
   </mat-tab>
 </mat-tab-group>
+
+<!--<mat-tab-group>-->
+<!--  <mat-tab label="Galeria">-->
+<!--  </mat-tab>-->
+<!--  <mat-tab label="Localização">-->
+<!--  </mat-tab>-->
+<!--  <mat-tab label="Outros">-->
+<!--    <mat-grid-list cols="2">-->
+<!--      <mat-grid-tile [colspan]="1" [rowspan]="1">-->
+<!--        Conteúdo-->
+<!--      </mat-grid-tile>-->
+<!--      <mat-grid-tile [colspan]="1" [rowspan]="1">-->
+<!--        Conteúdo-->
+<!--      </mat-grid-tile>-->
+<!--    </mat-grid-list>-->
+<!--  </mat-tab>-->
+<!--</mat-tab-group>-->
 
 
 
