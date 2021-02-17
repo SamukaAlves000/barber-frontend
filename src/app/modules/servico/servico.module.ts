@@ -4,7 +4,6 @@ import { ServicoCreateComponent } from './servico-create/servico-create.componen
 import { ServicoUpdateComponent } from './servico-update/servico-update.component';
 import { ServicoDeleteComponent } from './servico-delete/servico-delete.component';
 import { ServicoReadComponent } from './servico-read/servico-read.component';
-import { ServicoComponent } from './servico.component';
 import {RouterModule} from '@angular/router';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
@@ -12,7 +11,7 @@ import {MatSortModule} from '@angular/material/sort';
 import {ServicoService} from './servico.service';
 import {HttpClientModule} from '@angular/common/http';
 import {MatCardModule} from '@angular/material/card';
-import {MatFormField, MatFormFieldModule} from '@angular/material/form-field';
+import {MatFormFieldModule} from '@angular/material/form-field';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
@@ -26,6 +25,7 @@ import {FuncionarioModule} from '../funcionario/funcionario.module';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatTabsModule} from '@angular/material/tabs';
+import {CurrencyMaskModule} from 'ng2-currency-mask';
 
 
 
@@ -56,7 +56,8 @@ import {MatTabsModule} from '@angular/material/tabs';
     FuncionarioModule,
     MatExpansionModule,
     MatStepperModule,
-    MatTabsModule
+    MatTabsModule,
+    CurrencyMaskModule,
   ],
   providers: [
     ServicoService

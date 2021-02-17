@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Servico} from '../servico';
 import {FormControl, Validators} from '@angular/forms';
-import {MyErrorStateMatcher} from '../servico-create/servico-create.component';
 import {ServicoService} from '../servico.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ServicoFuncionario} from '../servico-funcionario';
@@ -31,16 +30,6 @@ export class ServicoUpdateComponent implements OnInit {
     { name: 20, value: 1 },
     { name: 30, value: 2 }
   ];
-  // emailFormControl = new FormControl('', [
-  //   Validators.required,
-  //   Validators.email,
-  // ]);
-
-  inputTextFormControl = new FormControl('', [
-    Validators.required,
-  ]);
-
-  matcher = new MyErrorStateMatcher();
 
   constructor(private servicoService: ServicoService, private router: Router, private route: ActivatedRoute) { }
 

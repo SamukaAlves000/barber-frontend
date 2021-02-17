@@ -1,19 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {ErrorStateMatcher} from '@angular/material/core';
-import {FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ServicoService} from '../servico.service';
-import {Servico} from '../servico';
 import {Router} from '@angular/router';
-import {Funcionario} from '../../funcionario/funcionario';
 import {ServicoFuncionario} from '../servico-funcionario';
-
-/** Error when invalid control is dirty, touched, or submitted. */
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-  }
-}
 
 @Component({
   selector: 'app-servico-create',
@@ -22,16 +11,9 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class ServicoCreateComponent implements OnInit {
 
-  isLinear = false;
-  firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
+  servicoForm: FormGroup;
 
-  servico: Servico = {
-    descricao: '',
-    duracao: undefined,
-    valor: undefined,
-    funcionarios: []
-  };
+  value = 100;
 
   duracoes = [
     {id: 1, duracao: 15},
@@ -46,19 +28,19 @@ export class ServicoCreateComponent implements OnInit {
   ];
 
 
-  constructor(private servicoService: ServicoService, private router: Router, private formBuilder: FormBuilder) { }
+  constructor(private servicoService: ServicoService, private router: Router, private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
-    this.firstFormGroup = this.formBuilder.group({
-      firstCtrl: ['', Validators.required]
-    });
-    this.secondFormGroup = this.formBuilder.group({
-      secondCtrl: ['', Validators.required]
+    this.servicoForm = this.formBuilder.group({
+      descricao: ['', Validators.required],
+      duracao: ['', Validators.required],
+      valor: ['', Validators.required],
+      funcionarios: [[]]
     });
   }
 
   createServico(): void {
-    this.servicoService.create(this.servico).subscribe(res => {
+    this.servicoService.create(this.servicoForm.value).subscribe(res => {
         this.servicoService.showMessage('Serviço CRIADO!');
         this.cancel();
       }
@@ -66,10 +48,10 @@ export class ServicoCreateComponent implements OnInit {
   }
 
   cancel(): void{
-    this.router.navigate(['/servicos']);
+   this.router.navigate(['/servicos']);
   }
 
   setFuncionariosSelecionados(funcionariosSelecionados: ServicoFuncionario[]): void{
-    this.servico.funcionarios = funcionariosSelecionados;
+    this.servicoForm.value.funcionarios = funcionariosSelecionados;
   }
 }
