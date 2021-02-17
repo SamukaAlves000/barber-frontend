@@ -13,8 +13,6 @@ export class ServicoCreateComponent implements OnInit {
 
   servicoForm: FormGroup;
 
-  value = 100;
-
   duracoes = [
     {id: 1, duracao: 15},
     {id: 2, duracao: 30},
@@ -26,7 +24,6 @@ export class ServicoCreateComponent implements OnInit {
     { name: 20, value: 1 },
     { name: 30, value: 2 }
   ];
-
 
   constructor(private servicoService: ServicoService, private router: Router, private formBuilder: FormBuilder) {}
 

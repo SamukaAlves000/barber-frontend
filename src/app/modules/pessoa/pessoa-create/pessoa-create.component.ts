@@ -11,9 +11,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 export class PessoaCreateComponent implements OnInit {
 
-  isLinear = false;
-  firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
+  pessoaForm: FormGroup;
 
   pessoa: Pessoa = {
     nome: undefined,
@@ -31,16 +29,21 @@ export class PessoaCreateComponent implements OnInit {
               private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-    this.firstFormGroup = this.formBuilder.group({
-      firstCtrl: ['', Validators.required]
-    });
-    this.secondFormGroup = this.formBuilder.group({
-      secondCtrl: ['', Validators.required]
+    this.pessoaForm = this.formBuilder.group({
+      nome: ['', Validators.required],
+      email: ['', Validators.email],
+      cpf: [''],
+      fone: [''],
+      cidade: [''],
+      uf: [''],
+      sexo: [''],
+      dataNasc: [ new Date()],
     });
   }
 
   createUsuario(): void {
-    this.pessoaService.create(this.pessoa).subscribe(res => {
+    this.setDataNascimento();
+    this.pessoaService.create(this.pessoaForm.value).subscribe(res => {
         this.pessoaService.showMessage('Usuário CRIADO!');
         this.cancel();
       }
@@ -48,5 +51,10 @@ export class PessoaCreateComponent implements OnInit {
   }
   cancel(): void{
     this.router.navigate(['/usuarios']);
+  }
+
+  setDataNascimento(): void {
+    const data = this.pessoaForm.value.dataNasc.toLocaleDateString().split('/');
+    this.pessoaForm.value.dataNasc = data[2] + '-' + data[1] + '-' + data[0];
   }
 }

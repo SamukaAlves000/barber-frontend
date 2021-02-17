@@ -1,35 +1,58 @@
 <div>
-  <mat-vertical-stepper [linear]="isLinear" #stepper>
-    <mat-step [stepControl]="firstFormGroup">
-      <form [formGroup]="firstFormGroup">
+  <mat-vertical-stepper linear #stepper>
+    <mat-step>
         <ng-template matStepLabel>Início</ng-template>
         <div>
           <button matStepperNext mat-fab color="primary"><mat-icon>add</mat-icon></button>
         </div>
-      </form>
     </mat-step>
-    <mat-step [stepControl]="secondFormGroup">
-      <form>
+    <mat-step [stepControl]="pessoaForm">
+      <form [formGroup]="pessoaForm">
         <ng-template matStepLabel>Preencher info. Usuário</ng-template>
         <mat-form-field>
           <mat-label>Nome</mat-label>
-          <input type="text" matInput placeholder="Ex. Maria dos Santos" [(ngModel)]="pessoa.nome" name="nome">
+          <input type="text" matInput placeholder="Ex. Maria dos Santos" formControlName="nome" >
+          <mat-error *ngIf="!pessoaForm.get('nome').valid">Campo obrigatório!</mat-error>
         </mat-form-field>
         <mat-form-field>
           <mat-label>Email</mat-label>
-          <input type="email" matInput placeholder="Ex. name@hotmail.com" [(ngModel)]="pessoa.email" name="email">
+          <input type="email" matInput placeholder="Ex. name@hotmail.com" formControlName="email" >
+          <mat-icon matSuffix>mail</mat-icon>
+          <mat-error *ngIf="!pessoaForm.get('email').valid">E-mail inválido!</mat-error>
         </mat-form-field>
         <mat-form-field>
           <mat-label>CPF</mat-label>
-          <input type="text" matInput placeholder="Ex. 000.000.000-00" [(ngModel)]="pessoa.cpf" name="cpf">
+          <input type="text" mask="000.000.000-00" matInput placeholder="Ex. 000.000.000-00" formControlName="cpf" maxlength="14">
+          <mat-error *ngIf="!pessoaForm.get('cpf').valid">CPF inválido!</mat-error>
         </mat-form-field>
         <mat-form-field>
           <mat-label>Telefone</mat-label>
-          <input type="text" matInput placeholder="Ex. (00) 00000-0000" [(ngModel)]="pessoa.fone" name="fone">
+          <input type="text" mask="(00) 00000-0000" matInput placeholder="Ex. (00) 00000-0000" formControlName="fone">
+          <mat-icon matSuffix>phone_enabled</mat-icon>
+          <mat-error *ngIf="!pessoaForm.get('fone').valid">Número inválido!</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Cidade</mat-label>
+          <input type="text" matInput placeholder="Ex. Campos Belos" formControlName="cidade" maxlength="30">
+          <mat-icon matSuffix>location_city</mat-icon>
+        </mat-form-field>
+        <section class="example-section">
+          <label>Sexo:</label>
+          <mat-radio-group formControlName="sexo">
+            <mat-radio-button class="example-margin" value="F">Feminino</mat-radio-button>
+            <mat-radio-button class="example-margin" value="M">Masculino</mat-radio-button>
+          </mat-radio-group>
+        </section>
+        <mat-form-field class="example-full-width" appearance="legacy">
+          <mat-label>Data de Nascimento</mat-label>
+          <input  matInput  [matDatepicker]="picker" formControlName="dataNasc">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-error *ngIf="!pessoaForm.get('dataNasc').valid">Data inválida!</mat-error>
+          <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
         <div>
           <button matStepperPrevious mat-mini-fab color="primary"><mat-icon>skip_previous</mat-icon></button>
-          <button matStepperNext mat-mini-fab color="primary"><mat-icon>skip_next</mat-icon></button>
+          <button matStepperNext mat-mini-fab color="primary" [disabled]="!pessoaForm.valid"><mat-icon>skip_next</mat-icon></button>
         </div>
       </form>
     </mat-step>
@@ -40,10 +63,13 @@
           <mat-card-title>Dados do Usuário</mat-card-title>
         </mat-card-header>
         <div style="padding: 20px">
-          <h4>Nome: <h5>{{pessoa.nome}}</h5></h4>
-          <h4>Email: <h5>{{pessoa.email}}</h5></h4>
-          <h4>Fone: <h5>{{pessoa.fone}}</h5></h4>
-          <h4>Cidade: <h5>{{pessoa.cidade}}</h5></h4>
+          <h4>Nome: <h5>{{pessoaForm.value.nome}}</h5></h4>
+          <h4>Email: <h5>{{pessoaForm.value.email}}</h5></h4>
+          <h4>Fone: <h5>{{pessoaForm.value.cpf | mask: '000.000.000-00'}}</h5></h4>
+          <h4>Fone: <h5>{{pessoaForm.value.fone | mask: '(00) 00000-0000'}}</h5></h4>
+          <h4>Cidade: <h5>{{pessoaForm.value.cidade}}</h5></h4>
+          <h4>Sexo: <h5>{{pessoaForm.value.sexo}}</h5></h4>
+          <h4>Data de Nascimento: <h5>{{pessoaForm.value.dataNasc.toLocaleDateString()}}</h5></h4>
         </div>
         <mat-card-actions>
           <button mat-icon-button color="primary"><mat-icon>pending_actions</mat-icon></button>

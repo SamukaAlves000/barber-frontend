@@ -1,149 +1,73 @@
-<!--<div>-->
-<!--  <mat-vertical-stepper [linear]="isLinear" #stepper>-->
-<!--    <mat-step [stepControl]="firstFormGroup">-->
-<!--      <form [formGroup]="firstFormGroup">-->
-<!--        <ng-template matStepLabel>Início</ng-template>-->
-<!--        <div>-->
-<!--          <button matStepperNext mat-fab color="primary"><mat-icon>add</mat-icon></button>-->
-<!--        </div>-->
-<!--      </form>-->
-<!--    </mat-step>-->
-<!--    <mat-step [stepControl]="secondFormGroup">-->
-<!--      <form>-->
-<!--        <ng-template matStepLabel>Preencher info. Serviço</ng-template>-->
-<!--          <mat-form-field>-->
-<!--            <mat-label>Descrição</mat-label>-->
-<!--            <input type="text" matInput placeholder="Ex. Corte Simples" [(ngModel)]="servico.descricao" name="descricao">-->
-<!--          </mat-form-field>-->
-<!--          <mat-form-field>-->
-<!--            <mat-label>Preço</mat-label>-->
-<!--            <input type="number" matInput placeholder="Ex. 15.00" [(ngModel)]="servico.valor" name="valor" >-->
-<!--          </mat-form-field>-->
-<!--          <mat-form-field appearance="legacy">-->
-<!--            <mat-label >Duração/Minutos</mat-label>-->
-<!--            <mat-select disableRipple [(ngModel)]="servico.duracao" name="duracao">-->
-<!--              <mat-option *ngFor="let item of duracoes;" [value]="item.duracao">{{item.duracao}}</mat-option>-->
-<!--            </mat-select>-->
-<!--          </mat-form-field>-->
-<!--        <div>-->
-<!--          <button matStepperPrevious mat-mini-fab color="primary"><mat-icon>skip_previous</mat-icon></button>-->
-<!--          <button matStepperNext mat-mini-fab color="primary"><mat-icon>skip_next</mat-icon></button>-->
-<!--        </div>-->
-<!--      </form>-->
-<!--    </mat-step>-->
-<!--    <mat-step [stepControl]="secondFormGroup">-->
-<!--      <form>-->
-<!--        <ng-template matStepLabel>Selecione os funcionários</ng-template>-->
-<!--        <app-funcionario-read [isMostrarColunaSelect]="true"-->
-<!--                                    [isMostrarColunaNone]="true"-->
-<!--                                    [isSelecaoMultipla]="true"-->
-<!--                                    (funcionariosSelecionados)="setFuncionariosSelecionados($event)">-->
-
-<!--        </app-funcionario-read>-->
-<!--        <div>-->
-<!--          <button matStepperPrevious mat-mini-fab color="primary"><mat-icon>skip_previous</mat-icon></button>-->
-<!--          <button matStepperNext mat-mini-fab color="primary"><mat-icon>skip_next</mat-icon></button>-->
-<!--        </div>-->
-<!--      </form>-->
-<!--    </mat-step>-->
-<!--    <mat-step>-->
-<!--      <ng-template matStepLabel>Fim</ng-template>-->
-<!--      <mat-card class="color-01">-->
-<!--        <mat-card-header>-->
-<!--          <mat-card-title>Dados do Serviço</mat-card-title>-->
-<!--        </mat-card-header>-->
-<!--        <div style="padding: 20px">-->
-<!--          <h4>Descrição: <h5>{{servico.descricao}}</h5></h4>-->
-<!--          <h4>Valor: <h5>R$ {{servico.valor}}</h5></h4>-->
-<!--          <h4>Duração: <h5>{{servico.duracao}} Minutos</h5></h4>-->
-<!--          <h4>Quantidade de Funcionários: <h5>{{servico.funcionarios.length}}</h5></h4>-->
-<!--        </div>-->
-<!--        <mat-card-actions>-->
-<!--          <button mat-icon-button color="primary"><mat-icon>pending_actions</mat-icon></button>-->
-<!--        </mat-card-actions>-->
-<!--      </mat-card>-->
-<!--      <div>-->
-<!--        <button (click)="cancel()" mat-fab color="warn"><mat-icon>close</mat-icon></button>-->
-<!--        <button (click)="createServico()" mat-fab color="primary"><mat-icon>add</mat-icon></button>-->
-<!--      </div>-->
-<!--    </mat-step>-->
-<!--  </mat-vertical-stepper>-->
-<!--</div>-->
-
-<mat-vertical-stepper linear #stepper>
-  <mat-step>
-    <ng-template matStepLabel>Início</ng-template>
-    <div>
-      <button matStepperNext mat-fab color="primary"><mat-icon>add</mat-icon></button>
-    </div>
-  </mat-step>
-  <mat-step [stepControl]="servicoForm">
-    <form [formGroup]="servicoForm">
-      <ng-template matStepLabel>Preencher info. Serviço</ng-template>
-      <mat-form-field>
-        <mat-label>Descrição</mat-label>
-        <input type="text" matInput placeholder="Ex. Corte Simples"  formControlName="descricao"  required maxlength="25">
-        <mat-error *ngIf="!servicoForm.get('descricao').valid">Campo obrigatório!</mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Preço</mat-label>
-        <input  currencyMask matInput placeholder="Ex. 15.00"  formControlName="valor" [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', align: 'left' }">
-        <mat-error *ngIf="!servicoForm.get('valor').valid">Campo obrigatório!</mat-error>
-      </mat-form-field>
-      <mat-form-field appearance="legacy">
-        <mat-label >Duração/Minutos</mat-label>
-        <mat-select disableRipple
-                    formControlName="duracao">
-          <mat-option *ngFor="let item of duracoes;" [value]="item.duracao">{{item.duracao}}</mat-option>
-        </mat-select>
-        <mat-error *ngIf="!servicoForm.get('duracao').valid">Campo obrigatório!</mat-error>
-      </mat-form-field>
+<div>
+  <mat-vertical-stepper linear #stepper>
+    <mat-step>
+      <ng-template matStepLabel>Início</ng-template>
       <div>
-        <button matStepperPrevious mat-mini-fab color="primary"><mat-icon>skip_previous</mat-icon></button>
-        <button matStepperNext mat-mini-fab color="primary" [disabled]="!servicoForm.valid"><mat-icon>skip_next</mat-icon></button>
+        <button matStepperNext mat-fab color="primary"><mat-icon>add</mat-icon></button>
       </div>
-    </form>
-  </mat-step>
-  <mat-step [stepControl]="servicoForm">
-    <form [formGroup]="servicoForm">
-        <ng-template matStepLabel>Selecione os funcionários</ng-template>
-        <app-funcionario-read [isMostrarColunaSelect]="true"
-                                    [isMostrarColunaNone]="true"
-                                    [isSelecaoMultipla]="true"
-                                    (funcionariosSelecionados)="setFuncionariosSelecionados($event)">
-
-        </app-funcionario-read>
-      <div>
-        <button matStepperPrevious mat-mini-fab color="primary"><mat-icon>skip_previous</mat-icon></button>
-        <button matStepperNext mat-mini-fab color="primary"><mat-icon>skip_next</mat-icon></button>
-      </div>
-    </form>
-  </mat-step>
-  <mat-step>
-    <ng-template matStepLabel>Fim</ng-template>
-      <mat-card class="color-01">
-        <mat-card-header>
-          <mat-card-title>Dados do Serviço</mat-card-title>
-        </mat-card-header>
-        <div style="padding: 20px">
-          <h4>Descrição: <h5>{{servicoForm.value.descricao}}</h5></h4>
-          <h4>Valor: <h5 >R$ {{servicoForm.value.valor}}</h5></h4>
-          <h4>Duração: <h5>{{servicoForm.value.duracao}} Minutos</h5></h4>
-          <h4>Quantidade de Funcionários: <h5>{{servicoForm.value.funcionarios.length}}</h5></h4>
+    </mat-step>
+    <mat-step [stepControl]="servicoForm">
+      <form [formGroup]="servicoForm">
+        <ng-template matStepLabel>Preencher info. Serviço</ng-template>
+        <mat-form-field>
+          <mat-label>Descrição</mat-label>
+          <input type="text" matInput placeholder="Ex. Corte Simples"  formControlName="descricao"  required maxlength="20">
+          <mat-error *ngIf="!servicoForm.get('descricao').valid">Campo obrigatório!</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Preço</mat-label>
+          <input  currencyMask matInput placeholder="Ex. 15.00"  formControlName="valor" [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', align: 'left' }">
+          <mat-error *ngIf="!servicoForm.get('valor').valid">Campo obrigatório!</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="legacy">
+          <mat-label >Duração/Minutos</mat-label>
+          <mat-select disableRipple
+                      formControlName="duracao">
+            <mat-option *ngFor="let item of duracoes;" [value]="item.duracao">{{item.duracao}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="!servicoForm.get('duracao').valid">Campo obrigatório!</mat-error>
+        </mat-form-field>
+        <div>
+          <button matStepperPrevious mat-mini-fab color="primary"><mat-icon>skip_previous</mat-icon></button>
+          <button matStepperNext mat-mini-fab color="primary" [disabled]="!servicoForm.valid"><mat-icon>skip_next</mat-icon></button>
         </div>
-        <mat-card-actions>
-          <button mat-icon-button color="primary"><mat-icon>pending_actions</mat-icon></button>
-        </mat-card-actions>
-      </mat-card>
-      <div>
-        <button (click)="cancel()" mat-fab color="warn"><mat-icon>close</mat-icon></button>
-        <button (click)="createServico()" mat-fab color="primary"><mat-icon>add</mat-icon></button>
-      </div>
-  </mat-step>
-</mat-vertical-stepper>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="servicoForm">
+      <form [formGroup]="servicoForm">
+          <ng-template matStepLabel>Selecione os funcionários</ng-template>
+          <app-funcionario-read [isMostrarColunaSelect]="true"
+                                      [isMostrarColunaNone]="true"
+                                      [isSelecaoMultipla]="true"
+                                      (funcionariosSelecionados)="setFuncionariosSelecionados($event)">
 
-
-
-
-
-
+          </app-funcionario-read>
+        <div>
+          <button matStepperPrevious mat-mini-fab color="primary"><mat-icon>skip_previous</mat-icon></button>
+          <button matStepperNext mat-mini-fab color="primary"><mat-icon>skip_next</mat-icon></button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Fim</ng-template>
+        <mat-card class="color-01">
+          <mat-card-header>
+            <mat-card-title>Dados do Serviço</mat-card-title>
+          </mat-card-header>
+          <div style="padding: 20px">
+            <h4>Descrição: <h5>{{servicoForm.value.descricao}}</h5></h4>
+            <h4>Valor: <h5 >{{servicoForm.value.valor | currency: 'BRL'}}</h5></h4>
+            <h4>Duração: <h5>{{servicoForm.value.duracao}} Minutos</h5></h4>
+            <h4>Quantidade de Funcionários: <h5>{{servicoForm.value.funcionarios.length}}</h5></h4>
+          </div>
+          <mat-card-actions>
+            <button mat-icon-button color="primary"><mat-icon>pending_actions</mat-icon></button>
+          </mat-card-actions>
+        </mat-card>
+        <div>
+          <button (click)="cancel()" mat-fab color="warn"><mat-icon>close</mat-icon></button>
+          <button (click)="createServico()" mat-fab color="primary"><mat-icon>add</mat-icon></button>
+        </div>
+    </mat-step>
+  </mat-vertical-stepper>
+</div>

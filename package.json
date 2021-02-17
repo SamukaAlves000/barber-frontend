@@ -27,6 +27,7 @@
     "highcharts": "^8.2.2",
     "highcharts-angular": "^2.9.0",
     "ng2-currency-mask": "^9.0.2",
+    "ngx-mask": "^11.1.4",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"

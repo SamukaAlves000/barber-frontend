@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgModule, LOCALE_ID } from '@angular/core';
+import {CommonModule, registerLocaleData} from '@angular/common';
 import { ServicoCreateComponent } from './servico-create/servico-create.component';
 import { ServicoUpdateComponent } from './servico-update/servico-update.component';
 import { ServicoDeleteComponent } from './servico-delete/servico-delete.component';
@@ -26,8 +26,9 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatTabsModule} from '@angular/material/tabs';
 import {CurrencyMaskModule} from 'ng2-currency-mask';
+import localePt from '@angular/common/locales/pt';
 
-
+registerLocaleData(localePt);
 
 @NgModule({
   declarations: [ServicoCreateComponent, ServicoUpdateComponent, ServicoDeleteComponent, ServicoReadComponent],
@@ -60,7 +61,11 @@ import {CurrencyMaskModule} from 'ng2-currency-mask';
     CurrencyMaskModule,
   ],
   providers: [
-    ServicoService
+    ServicoService,
+    {
+      provide: LOCALE_ID,
+      useValue: "pt-BR"
+    }
   ]
 })
 export class ServicoModule { }
