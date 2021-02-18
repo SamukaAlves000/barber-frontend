@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -7,7 +8,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
   // slides = [{image: 'https://gsr.dev/material2-carousel/assets/demo.png'}, {image: 'https://gsr.dev/material2-carousel/assets/demo.png'},
   //    {image: 'https://gsr.dev/material2-carousel/assets/demo.png'}];
 
@@ -28,7 +28,12 @@ export class HomeComponent implements OnInit {
     {image: 'assets/images/produtos/p8.jpg'},
     {image: 'assets/images/produtos/p9.jpg'}];
 
+  constructor(private router: Router) { }
   ngOnInit(): void {
+  }
+
+  navigateToRota(rota: string): void {
+    this.router.navigate([rota]);
   }
 
 }

@@ -1,28 +1,34 @@
 <mat-tab-group>
   <mat-tab label="Serviço">
     <div style="padding: 10px">
-      <form>
+      <form [formGroup]="servicoForm">
         <mat-form-field>
           <mat-label>ID</mat-label>
-          <input type="number" matInput [(ngModel)]="servico.id" name="ID" disabled>
+          <input type="number" matInput formControlName="id">
         </mat-form-field>
         <mat-form-field>
           <mat-label>Descrição</mat-label>
-          <input type="text" matInput placeholder="Ex. Corte Simples" [(ngModel)]="servico.descricao" name="descricao">
+          <input type="text" matInput placeholder="Ex. Corte Simples"  formControlName="descricao"  required maxlength="20">
+          <mat-icon matSuffix>edit</mat-icon>
+          <mat-error *ngIf="!servicoForm.get('descricao').valid">Campo obrigatório!</mat-error>
         </mat-form-field>
         <mat-form-field>
           <mat-label>Preço</mat-label>
-          <input type="text" matInput placeholder="Ex. 15.00" [(ngModel)]="servico.valor" name="valor">
+          <input  currencyMask matInput placeholder="Ex. 15.00"  formControlName="valor" [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', align: 'left' }">
+          <mat-icon matSuffix>edit</mat-icon>
+          <mat-error *ngIf="!servicoForm.get('valor').valid">Campo obrigatório!</mat-error>
         </mat-form-field>
         <mat-form-field appearance="legacy">
           <mat-label >Duração/Minutos</mat-label>
-          <mat-select disableRipple [(ngModel)]="servico.duracao" name="duracao">
+          <mat-select disableRipple
+                      formControlName="duracao">
             <mat-option *ngFor="let item of duracoes;" [value]="item.duracao">{{item.duracao}}</mat-option>
           </mat-select>
+          <mat-error *ngIf="!servicoForm.get('duracao').valid">Campo obrigatório!</mat-error>
         </mat-form-field>
       </form>
-      <button mat-raised-button (click)="updateServico()" class="color-10">Atualizar</button>
-      <button mat-raised-button (click)="cancel()" class="color-01">Cancel</button>
+      <button (click)="cancel()" mat-fab color="warn"><mat-icon>close</mat-icon></button>
+      <button (click)="updateServico()" mat-fab color="primary" [disabled]="!servicoForm.valid"><mat-icon>add</mat-icon></button>
     </div>
   </mat-tab>
   <mat-tab label="Funcionários">
@@ -31,7 +37,7 @@
                           [isSelecaoMultipla]="true"
                           (funcionariosSelecionados)="setFuncionariosSelecionados($event)"
                           [isSelecaoAutomatica]="true"
-                          [selecionados]="servico.funcionarios"
+                          [selecionados]="servicoForm.value.funcionarios"
     >
 
     </app-funcionario-read>
@@ -39,10 +45,10 @@
   <mat-tab label="Informações Gerais">
     <mat-card class="color-01">
       <div style="padding: 20px">
-        <h4>Descrição: <h5>{{servico.descricao}}</h5></h4>
-        <h4>Valor: <h5>R$ {{servico.valor}}</h5></h4>
-        <h4>Duração: <h5>{{servico.duracao}} Minutos</h5></h4>
-        <h4>Quantidade de Funcionários: <h5>{{servico.funcionarios.length}}</h5></h4>
+        <h4>Descrição: <h5>{{servicoForm.value.descricao}}</h5></h4>
+        <h4>Valor: <h5>R$ {{servicoForm.value.valor}}</h5></h4>
+        <h4>Duração: <h5>{{servicoForm.value.duracao}} Minutos</h5></h4>
+        <h4>Quantidade de Funcionários: <h5>{{servicoForm.value.funcionarios.length}}</h5></h4>
       </div>
       <mat-card-actions>
         <button mat-icon-button color="primary"><mat-icon>pending_actions</mat-icon></button>

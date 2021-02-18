@@ -12,11 +12,13 @@
         <mat-form-field>
           <mat-label>Descrição</mat-label>
           <input type="text" matInput placeholder="Ex. Corte Simples"  formControlName="descricao"  required maxlength="20">
+          <mat-icon matSuffix>edit</mat-icon>
           <mat-error *ngIf="!servicoForm.get('descricao').valid">Campo obrigatório!</mat-error>
         </mat-form-field>
         <mat-form-field>
           <mat-label>Preço</mat-label>
           <input  currencyMask matInput placeholder="Ex. 15.00"  formControlName="valor" [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', align: 'left' }">
+          <mat-icon matSuffix>edit</mat-icon>
           <mat-error *ngIf="!servicoForm.get('valor').valid">Campo obrigatório!</mat-error>
         </mat-form-field>
         <mat-form-field appearance="legacy">

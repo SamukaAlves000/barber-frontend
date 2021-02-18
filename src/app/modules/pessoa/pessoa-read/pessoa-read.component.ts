@@ -18,7 +18,6 @@ export class PessoaReadComponent implements OnInit {
   @Input() isMostrarColunaSelect = false;
   @Input() isMostrarColunaAction = false;
   @Input() isMostrarColunaNone = false;
-  @Input() isMostrarColunaEmail = false;
   @Input() isMostrarColunaFone = false;
 
   displayedColumns: string[] = [];
@@ -53,10 +52,6 @@ export class PessoaReadComponent implements OnInit {
 
     if (this.isMostrarColunaNone) {
       this.displayedColumns.push('nome');
-    }
-
-    if (this.isMostrarColunaEmail) {
-      this.displayedColumns.push('email');
     }
 
     if (this.isMostrarColunaFone) {

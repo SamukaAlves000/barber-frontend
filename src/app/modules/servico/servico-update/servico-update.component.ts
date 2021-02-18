@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {Servico} from '../servico';
-import {FormControl, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ServicoService} from '../servico.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ServicoFuncionario} from '../servico-funcionario';
+import {disableDebugTools} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-servico-update',
@@ -12,12 +13,7 @@ import {ServicoFuncionario} from '../servico-funcionario';
 })
 export class ServicoUpdateComponent implements OnInit {
 
-  servico: Servico = {
-    descricao: '',
-    duracao: null,
-    valor: null,
-    funcionarios: []
-  };
+  servicoForm: FormGroup;
 
   duracoes = [
     {id: 1, duracao: 15},
@@ -31,18 +27,28 @@ export class ServicoUpdateComponent implements OnInit {
     { name: 30, value: 2 }
   ];
 
-  constructor(private servicoService: ServicoService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private servicoService: ServicoService, private router: Router, private route: ActivatedRoute, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+
+    this.servicoForm = this.formBuilder.group({
+      id: [{value: '', disabled: true}],
+      descricao: ['', Validators.required],
+      duracao: ['', Validators.required],
+      valor: ['', Validators.required],
+      funcionarios: [[]]
+    });
+
     const id = this.route.snapshot.paramMap.get('idServico');
     this.servicoService.getById(id).subscribe(servico => {
-        this.servico = servico;
+      this.servicoForm.patchValue(servico);
       }
     );
   }
 
   updateServico(): void {
-    this.servicoService.update(this.servico).subscribe(() => {
+    this.servicoForm.value.id = this.servicoForm.controls.id.value;
+    this.servicoService.update(this.servicoForm.value).subscribe(() => {
         this.servicoService.showMessage('Serviço ATUALIZADO!');
         this.cancel();
       }
@@ -54,6 +60,6 @@ export class ServicoUpdateComponent implements OnInit {
   }
 
   setFuncionariosSelecionados(funcionariosSelecionados: ServicoFuncionario[]): void{
-    this.servico.funcionarios = funcionariosSelecionados;
+    this.servicoForm.value.funcionarios = funcionariosSelecionados;
   }
 }

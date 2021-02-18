@@ -3,31 +3,60 @@
   <mat-tab label="Outros"> Content 2 </mat-tab>
   <mat-tab label="Usuário">
     <div style="padding: 10px">
-      <form>
-        <mat-form-field>
-          <mat-label>ID</mat-label>
-          <input type="number" matInput [(ngModel)]="pessoa.id" name="id" disabled>
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>Nome</mat-label>
-          <input type="text" matInput placeholder="Ex. Maria dos Santos" [(ngModel)]="pessoa.nome" name="nome">
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>Email</mat-label>
-          <input type="email" matInput placeholder="Ex. name@hotmail.com" [(ngModel)]="pessoa.email" name="email">
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>CPF</mat-label>
-          <input type="text" matInput placeholder="Ex. 000.000.000-00" [(ngModel)]="pessoa.cpf" name="cpf">
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>Telefone</mat-label>
-          <input type="text" matInput placeholder="Ex. (00) 00000-0000" [(ngModel)]="pessoa.fone" name="fone">
-        </mat-form-field>
-        <br>
+      <form [formGroup]="pessoaForm">
+          <mat-form-field>
+            <mat-label>ID</mat-label>
+            <input type="number" matInput formControlName="id">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Nome</mat-label>
+            <input type="text" matInput placeholder="Ex. Maria dos Santos" formControlName="nome" >
+            <mat-icon matSuffix>edit</mat-icon>
+            <mat-error *ngIf="!pessoaForm.get('nome').valid">Campo obrigatório!</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input type="email" matInput placeholder="Ex. name@hotmail.com" formControlName="email" >
+            <mat-icon matSuffix>mail</mat-icon>
+            <mat-error *ngIf="!pessoaForm.get('email').valid">E-mail inválido!</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>CPF</mat-label>
+            <input type="text" mask="000.000.000-00" matInput placeholder="Ex. 000.000.000-00" formControlName="cpf" maxlength="14">
+            <mat-icon matSuffix>edit</mat-icon>
+            <mat-error *ngIf="!pessoaForm.get('cpf').valid">CPF inválido!</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Telefone</mat-label>
+            <input type="text" mask="(00) 00000-0000" matInput placeholder="Ex. (00) 00000-0000" formControlName="fone">
+            <mat-icon matSuffix>phone_enabled</mat-icon>
+            <mat-error *ngIf="!pessoaForm.get('fone').valid">Número inválido!</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Cidade</mat-label>
+            <input type="text" matInput placeholder="Ex. Campos Belos" formControlName="cidade" maxlength="30">
+            <mat-icon matSuffix>location_city</mat-icon>
+          </mat-form-field>
+          <section class="example-section">
+            <label>Sexo:</label>
+            <mat-radio-group formControlName="sexo">
+              <mat-radio-button class="example-margin" value="F">Feminino</mat-radio-button>
+              <mat-radio-button class="example-margin" value="M">Masculino</mat-radio-button>
+            </mat-radio-group>
+          </section>
+          <br>
+          <mat-form-field class="example-full-width" appearance="legacy">
+            <mat-label>Data de Nascimento</mat-label>
+            <input  matInput  [matDatepicker]="picker" [formControl]="dateFormCtrl">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-error *ngIf="!pessoaForm.get('dataNasc').valid">Data inválida!</mat-error>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        <div>
+          <button mat-raised-button (click)="updateUsuario()" class="color-10">Atualizar</button>
+          <button mat-raised-button (click)="cancel()" class="color-01">Cancel</button>
+        </div>
       </form>
-      <button mat-raised-button (click)="updateUsuario()" class="color-10">Atualizar</button>
-      <button mat-raised-button (click)="cancel()" class="color-01">Cancel</button>
     </div>
   </mat-tab>
 </mat-tab-group>

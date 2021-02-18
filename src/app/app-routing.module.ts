@@ -27,7 +27,7 @@ const routes: Routes = [
     component: DefaultComponent,
     children: [
       {
-        path: '',
+        path: 'dashboard',
         component: DashboardComponent
       },
       {
@@ -51,7 +51,7 @@ const routes: Routes = [
         component: ServicoUpdateComponent
       },
       {
-        path: 'home',
+        path: '',
         component: HomeComponent
       },
       {

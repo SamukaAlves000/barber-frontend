@@ -12,6 +12,7 @@
         <mat-form-field>
           <mat-label>Nome</mat-label>
           <input type="text" matInput placeholder="Ex. Maria dos Santos" formControlName="nome" >
+          <mat-icon matSuffix>edit</mat-icon>
           <mat-error *ngIf="!pessoaForm.get('nome').valid">Campo obrigatório!</mat-error>
         </mat-form-field>
         <mat-form-field>
@@ -23,6 +24,7 @@
         <mat-form-field>
           <mat-label>CPF</mat-label>
           <input type="text" mask="000.000.000-00" matInput placeholder="Ex. 000.000.000-00" formControlName="cpf" maxlength="14">
+          <mat-icon matSuffix>edit</mat-icon>
           <mat-error *ngIf="!pessoaForm.get('cpf').valid">CPF inválido!</mat-error>
         </mat-form-field>
         <mat-form-field>
@@ -69,7 +71,6 @@
           <h4>Fone: <h5>{{pessoaForm.value.fone | mask: '(00) 00000-0000'}}</h5></h4>
           <h4>Cidade: <h5>{{pessoaForm.value.cidade}}</h5></h4>
           <h4>Sexo: <h5>{{pessoaForm.value.sexo}}</h5></h4>
-          <h4>Data de Nascimento: <h5>{{pessoaForm.value.dataNasc.toLocaleDateString()}}</h5></h4>
         </div>
         <mat-card-actions>
           <button mat-icon-button color="primary"><mat-icon>pending_actions</mat-icon></button>

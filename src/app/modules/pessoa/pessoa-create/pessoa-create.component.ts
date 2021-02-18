@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {Pessoa} from '../pessoa';
 import {Router} from '@angular/router';
 import {PessoaService} from '../pessoa.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
@@ -12,17 +11,6 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 export class PessoaCreateComponent implements OnInit {
 
   pessoaForm: FormGroup;
-
-  pessoa: Pessoa = {
-    nome: undefined,
-    email: undefined,
-    cpf: undefined,
-    fone: undefined,
-    cidade: undefined,
-    uf: undefined,
-    sexo: undefined,
-    dataNasc: undefined
-  };
 
   constructor(private router: Router,
               private pessoaService: PessoaService,
@@ -37,7 +25,7 @@ export class PessoaCreateComponent implements OnInit {
       cidade: [''],
       uf: [''],
       sexo: [''],
-      dataNasc: [ new Date()],
+      dataNasc: [''],
     });
   }
 
@@ -54,7 +42,9 @@ export class PessoaCreateComponent implements OnInit {
   }
 
   setDataNascimento(): void {
-    const data = this.pessoaForm.value.dataNasc.toLocaleDateString().split('/');
-    this.pessoaForm.value.dataNasc = data[2] + '-' + data[1] + '-' + data[0];
+    if (this.pessoaForm.value.dataNasc.dirty) {
+      const data = this.pessoaForm.value.dataNasc.toLocaleDateString().split('/');
+      this.pessoaForm.value.dataNasc = data[2] + '-' + data[1] + '-' + data[0];
+    }
   }
 }
