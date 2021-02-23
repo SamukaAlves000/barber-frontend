@@ -1,31 +1,34 @@
 <div>
-  <mat-vertical-stepper [linear]="isLinear" #stepper>
-    <mat-step [stepControl]="firstFormGroup">
-      <form [formGroup]="firstFormGroup">
+  <mat-vertical-stepper linear #stepper>
+    <mat-step>
+      <form>
         <ng-template matStepLabel>Início</ng-template>
         <div>
           <button matStepperNext mat-fab color="primary"><mat-icon>add</mat-icon></button>
-          <button (click)="cancel2()">Click</button>
         </div>
       </form>
     </mat-step>
-    <mat-step [stepControl]="secondFormGroup">
-      <form [formGroup]="secondFormGroup">
+    <mat-step [stepControl]="agendamentoForm">
+      <form [formGroup]="agendamentoForm">
         <ng-template matStepLabel>Selecione a data de agendamento</ng-template>
           <mat-form-field class="example-full-width" appearance="fill" style="width: 50%">
             <mat-label>Selecione a data</mat-label>
-            <input  matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" [formControl]="dateFormCtrl">
+            <input  matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" [formControl]="dateFormCtrl" readonly>
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
         <div>
+          <mat-error *ngIf="horarios.length === 0"><span>Vagas indisponivéis para data selecionada!</span></mat-error>
+          <span *ngIf="horarios.length > 0"> <p style="color: green">Vagas disponivéis: {{horarios.length}}</p></span>
+        </div>
+        <div>
           <button matStepperPrevious mat-mini-fab color="primary"><mat-icon>skip_previous</mat-icon></button>
-          <button matStepperNext mat-mini-fab color="primary"><mat-icon>skip_next</mat-icon></button>
+          <button matStepperNext mat-mini-fab color="primary" [disabled]="horarios.length === 0"><mat-icon>skip_next</mat-icon></button>
         </div>
       </form>
     </mat-step>
-    <mat-step [stepControl]="secondFormGroup">
-      <form [formGroup]="secondFormGroup">
+    <mat-step [stepControl]="agendamentoForm">
+      <form [formGroup]="agendamentoForm">
         <ng-template matStepLabel>Selecione o serviço</ng-template>
           <app-servico-read
             [isMostrarColunaSelect]="true"
@@ -40,8 +43,8 @@
         </div>
       </form>
     </mat-step>
-    <mat-step [stepControl]="secondFormGroup">
-      <form [formGroup]="secondFormGroup">
+    <mat-step [stepControl]="agendamentoForm">
+      <form [formGroup]="agendamentoForm">
         <ng-template matStepLabel>Selecione um funcionário</ng-template>
           <app-funcionario-read
             [isMostrarColunaNone]="true"
@@ -55,8 +58,8 @@
         </div>
       </form>
     </mat-step>
-    <mat-step [stepControl]="secondFormGroup">
-      <form [formGroup]="secondFormGroup">
+    <mat-step [stepControl]="agendamentoForm">
+      <form [formGroup]="agendamentoForm">
         <ng-template matStepLabel>Selecione um cliente</ng-template>
           <app-pessoa-read
             [isMostrarColunaNone]="true"
@@ -69,8 +72,8 @@
         </div>
       </form>
     </mat-step>
-    <mat-step [stepControl]="secondFormGroup">
-      <form [formGroup]="secondFormGroup">
+    <mat-step [stepControl]="agendamentoForm">
+      <form [formGroup]="agendamentoForm">
         <ng-template matStepLabel>Selecione um horário</ng-template>
         <mat-selection-list #shoes [multiple]="false">
           <mat-list-option *ngFor="let horario of horarios" [value]="horario" (click)="setHorario(horario)">
