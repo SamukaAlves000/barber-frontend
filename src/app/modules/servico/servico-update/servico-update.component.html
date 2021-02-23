@@ -46,7 +46,7 @@
     <mat-card class="color-01">
       <div style="padding: 20px">
         <h4>Descrição: <h5>{{servicoForm.value.descricao}}</h5></h4>
-        <h4>Valor: <h5>R$ {{servicoForm.value.valor}}</h5></h4>
+        <h4>Valor: <h5 >{{servicoForm.value.valor | currency: 'BRL'}}</h5></h4>
         <h4>Duração: <h5>{{servicoForm.value.duracao}} Minutos</h5></h4>
         <h4>Quantidade de Funcionários: <h5>{{servicoForm.value.funcionarios.length}}</h5></h4>
       </div>

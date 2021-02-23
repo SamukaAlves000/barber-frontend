@@ -27,12 +27,12 @@ export class AgendamentoCreateComponent implements OnInit {
   horario = undefined;
 
   agendamento: Agendamento = {};
+  horariosAgendados: string[] = [];
 
   funcionarios: Funcionario[];
   servicos: Servico[] = [];
   pessoas: Pessoa[] = [];
-  horarios = ['09:00', '10:00', '11:00', '12:00',
-    '14:00', '15:00', '16:00', '17:00'];
+  horarios = ['09:00:00', '10:00:00', '11:00:00', '12:00:00', '14:00:00', '15:00:00', '16:00:00', '17:00:00'];
 
   constructor(private agendamentoService: AgendamentoService,
               private funcionarioService: FuncionarioService,
@@ -41,6 +41,9 @@ export class AgendamentoCreateComponent implements OnInit {
               private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+
+    this.buscarHorariosAgendados();
+    this.gerarHorario();
 
     this.funcionarioService.getAll().subscribe((data: Funcionario[]) => {
       console.log(data);
@@ -94,12 +97,24 @@ export class AgendamentoCreateComponent implements OnInit {
 
 
   cancel2(): void {
-      console.log(this.agendamento.pessoa.nome);
-      console.log(this.agendamento.funcionario.pessoa.nome);
-      console.log(this.agendamento.servico.descricao);
+      // this.buscarHorariosDisponiveis(null);
+    this.gerarHorario();
   }
 
   setHorario(horario: string) {
     this.horario = horario;
+  }
+
+  buscarHorariosAgendados(): void {
+    const datas = this.dateFormCtrl.value.toLocaleDateString().split('/');
+    this.agendamentoService.getAllHorarios(datas[2] + '-' + datas[1] + '-' + datas[0]).subscribe(data => {
+       this.horariosAgendados = data;
+    });
+  }
+
+  gerarHorario(): void {
+    this.horariosAgendados.forEach(value => console.log(value.split('T')[1]));
+    this.horariosAgendados = this.horariosAgendados.map(value => value.split('T')[1]);
+    this.horarios = this.horarios.filter(value => this.horariosAgendados.indexOf(value) < 0);
   }
 }

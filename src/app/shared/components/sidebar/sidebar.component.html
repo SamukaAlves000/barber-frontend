@@ -12,12 +12,15 @@
 
 <!--  <h2 matSubheader >Pages</h2>-->
 
-  <a mat-list-item routerLinkActive="list-item-active" routerLink="/" (click)="toggleSideBar()">Home</a>
-  <a mat-list-item routerLinkActive="list-item-active" routerLink="/dashboard" (click)="toggleSideBar()">Dashboard</a>
-  <a mat-list-item routerLinkActive="list-item-active" routerLink="/galeria">Galeria</a>
-  <mat-divider></mat-divider>
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/" (click)="toggleSideBar()">
+    <mat-icon>home</mat-icon>
+    Home
+  </a>
 
-  <h2 matSubheader >Tools</h2>
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/dashboard" (click)="toggleSideBar()">
+    <mat-icon>dashboard</mat-icon>
+    Dashboard
+  </a>
 
   <a mat-list-item routerLinkActive="list-item-active" routerLink="/agendamentos" (click)="toggleSideBar()">
     <mat-icon>view_agenda</mat-icon>

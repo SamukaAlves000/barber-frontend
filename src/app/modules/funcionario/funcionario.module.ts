@@ -20,6 +20,10 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatTabsModule} from '@angular/material/tabs';
+import {CurrencyMaskModule} from 'ng2-currency-mask';
+import { NgxMaskModule, IConfig } from 'ngx-mask';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
 
 
@@ -46,7 +50,10 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatRadioModule,
     MatCheckboxModule,
     MatStepperModule,
-    MatTabsModule
+    MatTabsModule,
+    MatDatepickerModule,
+    CurrencyMaskModule,
+    NgxMaskModule.forRoot(),
   ]
 })
 export class FuncionarioModule { }

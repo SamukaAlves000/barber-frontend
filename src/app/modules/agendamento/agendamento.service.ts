@@ -38,6 +38,13 @@ export class AgendamentoService {
       );
   }
 
+  getAllHorarios(datas): Observable<string[]> {
+    return this.httpClient.get<string[]>(this.apiServer + '/agendamentos/admin/agendados?data=' + datas, this.httpOptions)
+      .pipe(
+        catchError(this.errorHandler)
+      );
+  }
+
   getById(id): Observable<Agendamento> {
     return this.httpClient.get<Agendamento>(this.apiServer + '/agendamentos/admin/' + id, this.httpOptions)
       .pipe(

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {FuncionarioService} from '../funcionario.service';
-import {Funcionario} from '../funcionario';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
@@ -11,40 +10,33 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 export class FuncionarioCreateComponent implements OnInit {
 
-  isLinear = false;
-  firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
-
-  funcionario: Funcionario = {
-    salario: undefined,
-    pessoa: {
-      nome: undefined,
-      email: undefined,
-      cpf: undefined,
-      fone: undefined,
-      cidade: undefined,
-      uf: undefined,
-      sexo: undefined,
-      dataNasc: undefined
-    },
-    servicos: undefined
-  };
+  funcionarioForm: FormGroup;
 
   constructor(private router: Router,
               private funcionarioService: FuncionarioService,
               private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-    this.firstFormGroup = this.formBuilder.group({
-      firstCtrl: ['', Validators.required]
-    });
-    this.secondFormGroup = this.formBuilder.group({
-      secondCtrl: ['', Validators.required]
+
+    this.funcionarioForm = this.formBuilder.group({
+      salario: ['', Validators.required],
+      pessoa: this.formBuilder.group({
+        nome: ['', Validators.required],
+        email: ['', Validators.email],
+        cpf: [''],
+        fone: [''],
+        cidade: [''],
+        uf: [''],
+        sexo: [''],
+        dataNasc: ['']
+      }),
+      servicos: [[]]
     });
   }
 
   createFuncionario(): void {
-    this.funcionarioService.create(this.funcionario).subscribe(res => {
+    this.setDataNascimento();
+    this.funcionarioService.create(this.funcionarioForm.value).subscribe(res => {
         this.funcionarioService.showMessage('Funcionário CRIADO!');
         this.cancel();
       }
@@ -52,6 +44,13 @@ export class FuncionarioCreateComponent implements OnInit {
   }
   cancel(): void{
     this.router.navigate(['/funcionarios']);
+  }
+
+  setDataNascimento(): void {
+    if (this.funcionarioForm.value.pessoa.dataNasc.dirty) {
+      const data = this.funcionarioForm.value.pessoa.dataNasc.toLocaleDateString().split('/');
+      this.funcionarioForm.value.pessoa.dataNasc = data[2] + '-' + data[1] + '-' + data[0];
+    }
   }
 
 }

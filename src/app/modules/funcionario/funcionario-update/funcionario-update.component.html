@@ -1,35 +1,64 @@
 <mat-tab-group>
   <mat-tab label="Funcionário">
     <div style="padding: 10px">
-      <form>
+      <form [formGroup]="funcionarioForm">
         <mat-form-field>
           <mat-label>ID</mat-label>
-          <input type="number" matInput [(ngModel)]="funcionario.id" name="id" disabled>
+          <input type="number" matInput formControlName="id">
         </mat-form-field>
         <mat-form-field>
           <mat-label>Nome</mat-label>
-          <input type="text" matInput placeholder="Ex. Maria dos Santos" [(ngModel)]="funcionario.pessoa.nome" name="nome">
+          <input type="text" matInput placeholder="Ex. Maria dos Santos" [formControl]="funcionarioForm.get('pessoa.nome')" >
+          <mat-icon matSuffix>edit</mat-icon>
+          <mat-error *ngIf="!funcionarioForm.get('pessoa.nome').valid">Campo obrigatório!</mat-error>
         </mat-form-field>
         <mat-form-field>
           <mat-label>Email</mat-label>
-          <input type="email" matInput placeholder="Ex. name@hotmail.com" [(ngModel)]="funcionario.pessoa.email" name="email">
+          <input type="email" matInput placeholder="Ex. name@hotmail.com" [formControl]="funcionarioForm.get('pessoa.email')"  >
+          <mat-icon matSuffix>mail</mat-icon>
+          <mat-error *ngIf="!funcionarioForm.get('pessoa.email').valid">E-mail inválido!</mat-error>
         </mat-form-field>
         <mat-form-field>
           <mat-label>CPF</mat-label>
-          <input type="text" matInput placeholder="Ex. 000.000.000-00" [(ngModel)]="funcionario.pessoa.cpf" name="cpf">
+          <input type="text" mask="000.000.000-00" matInput placeholder="Ex. 000.000.000-00" [formControl]="funcionarioForm.get('pessoa.cpf')"  maxlength="14">
+          <mat-icon matSuffix>edit</mat-icon>
+          <mat-error *ngIf="!funcionarioForm.get('pessoa.cpf').valid">CPF inválido!</mat-error>
         </mat-form-field>
         <mat-form-field>
           <mat-label>Telefone</mat-label>
-          <input type="text" matInput placeholder="Ex. (00) 00000-0000" [(ngModel)]="funcionario.pessoa.fone" name="fone">
+          <input type="text" mask="(00) 00000-0000" matInput placeholder="Ex. (00) 00000-0000" [formControl]="funcionarioForm.get('pessoa.fone')" >
+          <mat-icon matSuffix>phone_enabled</mat-icon>
+          <mat-error *ngIf="!funcionarioForm.get('pessoa.fone').valid">Número inválido!</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Cidade</mat-label>
+          <input type="text" matInput placeholder="Ex. Campos Belos" [formControl]="funcionarioForm.get('pessoa.cidade')"  maxlength="30">
+          <mat-icon matSuffix>location_city</mat-icon>
+        </mat-form-field>
+        <section class="example-section">
+          <label>Sexo:</label>
+          <mat-radio-group [formControl]="funcionarioForm.get('pessoa.sexo')" >
+            <mat-radio-button class="example-margin" value="F">Feminino</mat-radio-button>
+            <mat-radio-button class="example-margin" value="M">Masculino</mat-radio-button>
+          </mat-radio-group>
+        </section>
+        <mat-form-field class="example-full-width" appearance="legacy">
+          <mat-label>Data de Nascimento</mat-label>
+          <input  matInput  [matDatepicker]="picker" [formControl]="dateFormCtrl">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-error *ngIf="!funcionarioForm.get('pessoa.dataNasc').valid">Data inválida!</mat-error>
+          <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
         <mat-form-field>
           <mat-label>Sálario</mat-label>
-          <input type="text" matInput placeholder="Ex. 1200.00" [(ngModel)]="funcionario.salario" name="salario">
+          <input matInput placeholder="Ex. 1200.00" formControlName="salario" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', align: 'left' }">
+          <mat-error *ngIf="!funcionarioForm.get('salario').valid">Campo obrigatório!</mat-error>
         </mat-form-field>
-        <br>
+        <div>
+          <button mat-raised-button (click)="updateFuncionario()" class="color-10" [disabled]="!funcionarioForm.valid">Atualizar</button>
+          <button mat-raised-button (click)="cancel()" class="color-01">Cancel</button>
+        </div>
       </form>
-      <button mat-raised-button (click)="updateFuncionario()" class="color-10">Atualizar</button>
-      <button mat-raised-button (click)="cancel()" class="color-01">Cancel</button>
     </div>
   </mat-tab>
   <mat-tab label="Serviços"> Serviços </mat-tab>
@@ -37,10 +66,13 @@
 
     <mat-card class="color-01">
       <div style="padding: 20px">
-        <h4>Nome: <h5>{{funcionario.pessoa.nome}}</h5></h4>
-        <h4>Email: <h5>{{funcionario.pessoa.email}}</h5></h4>
-        <h4>Fone: <h5>{{funcionario.pessoa.fone}}</h5></h4>
-        <h4>Salário: <h5>{{funcionario.salario}}</h5></h4>
+        <h4>Nome: <h5>{{funcionarioForm.value.pessoa.nome}}</h5></h4>
+        <h4>Email: <h5>{{funcionarioForm.value.pessoa.email}}</h5></h4>
+        <h4>Fone: <h5>{{funcionarioForm.value.pessoa.cpf | mask: '000.000.000-00'}}</h5></h4>
+        <h4>Fone: <h5>{{funcionarioForm.value.pessoa.fone | mask: '(00) 00000-0000'}}</h5></h4>
+        <h4>Cidade: <h5>{{funcionarioForm.value.pessoa.cidade}}</h5></h4>
+        <h4>Sexo: <h5>{{funcionarioForm.value.pessoa.sexo === 'F'?'Femenino':'Masculino'}}</h5></h4>
+        <h4>Salário: <h5>{{funcionarioForm.value.salario | currency: 'BRL'}}</h5></h4>
       </div>
       <mat-card-actions>
         <button mat-icon-button color="primary"><mat-icon>pending_actions</mat-icon></button>

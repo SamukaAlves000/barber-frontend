@@ -42,7 +42,7 @@
           <label>Sexo:</label>
           <mat-radio-group formControlName="sexo">
             <mat-radio-button class="example-margin" value="F">Feminino</mat-radio-button>
-            <mat-radio-button class="example-margin" value="M">Masculino</mat-radio-button>
+            <mat-radio-button class="example-margin" value="M" [checked]="true">Masculino</mat-radio-button>
           </mat-radio-group>
         </section>
         <mat-form-field class="example-full-width" appearance="legacy">
@@ -70,7 +70,7 @@
           <h4>Fone: <h5>{{pessoaForm.value.cpf | mask: '000.000.000-00'}}</h5></h4>
           <h4>Fone: <h5>{{pessoaForm.value.fone | mask: '(00) 00000-0000'}}</h5></h4>
           <h4>Cidade: <h5>{{pessoaForm.value.cidade}}</h5></h4>
-          <h4>Sexo: <h5>{{pessoaForm.value.sexo}}</h5></h4>
+          <h4>Sexo: <h5>{{pessoaForm.value.sexo === 'F'?'Femenino':'Masculino'}}</h5></h4>
         </div>
         <mat-card-actions>
           <button mat-icon-button color="primary"><mat-icon>pending_actions</mat-icon></button>
