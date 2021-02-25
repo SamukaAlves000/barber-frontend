@@ -10,7 +10,7 @@
     </mat-step>
     <mat-step [stepControl]="agendamentoForm">
       <form [formGroup]="agendamentoForm">
-        <ng-template matStepLabel>Selecione a data de agendamento</ng-template>
+        <ng-template matStepLabel>Selecione a data do agendamento</ng-template>
           <mat-form-field class="example-full-width" appearance="fill" style="width: 50%">
             <mat-label>Selecione a data</mat-label>
             <input  matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" [formControl]="dateFormCtrl" readonly>
@@ -39,7 +39,7 @@
           </app-servico-read>
         <div>
           <button matStepperPrevious mat-mini-fab color="primary"><mat-icon>skip_previous</mat-icon></button>
-          <button matStepperNext mat-mini-fab color="primary"><mat-icon>skip_next</mat-icon></button>
+          <button matStepperNext mat-mini-fab color="primary" [disabled]="this.agendamentoForm.value.servico === ''"><mat-icon>skip_next</mat-icon></button>
         </div>
       </form>
     </mat-step>
@@ -54,7 +54,7 @@
           </app-funcionario-read>
         <div>
           <button matStepperPrevious mat-mini-fab color="primary"><mat-icon>skip_previous</mat-icon></button>
-          <button matStepperNext mat-mini-fab color="primary"><mat-icon>skip_next</mat-icon></button>
+          <button matStepperNext mat-mini-fab color="primary" [disabled]="this.agendamentoForm.value.funcionario === ''"><mat-icon>skip_next</mat-icon></button>
         </div>
       </form>
     </mat-step>
@@ -68,7 +68,7 @@
           </app-pessoa-read>
         <div>
           <button matStepperPrevious mat-mini-fab color="primary"><mat-icon>skip_previous</mat-icon></button>
-          <button matStepperNext mat-mini-fab color="primary"><mat-icon>skip_next</mat-icon></button>
+          <button matStepperNext mat-mini-fab color="primary" [disabled]="this.agendamentoForm.value.pessoa === ''"><mat-icon>skip_next</mat-icon></button>
         </div>
       </form>
     </mat-step>
@@ -85,7 +85,7 @@
         </p>
         <div>
           <button matStepperPrevious mat-mini-fab color="primary"><mat-icon>skip_previous</mat-icon></button>
-          <button matStepperNext mat-mini-fab color="primary"><mat-icon>skip_next</mat-icon></button>
+          <button matStepperNext mat-mini-fab color="primary" [disabled]="shoes.selectedOptions.isEmpty()"><mat-icon>skip_next</mat-icon></button>
         </div>
       </form>
     </mat-step>
@@ -93,10 +93,15 @@
       <ng-template matStepLabel>Fim</ng-template>
       <mat-card>
         <mat-card-header>
-          <mat-card-subtitle>Dados do agendamento</mat-card-subtitle>
+          <mat-card-title>Dados do agendamento</mat-card-title>
         </mat-card-header>
-        <mat-card-content>
-        </mat-card-content>
+        <div style="padding: 20px" *ngIf="!shoes.selectedOptions.isEmpty()">
+          <h4>Data/horário:<h5>{{dateFormCtrl.value.toLocaleDateString() + ' ' +shoes.selectedOptions.selected[0]?.value}}</h5></h4>
+          <h4>Cliente: <h5>{{agendamentoForm.value.pessoa.nome}}</h5></h4>
+          <h4>Serviço: <h5>{{agendamentoForm.value.servico.descricao}}</h5></h4>
+          <h4>Cliente: <h5>{{agendamentoForm.value.funcionario.pessoa.nome}}</h5></h4>
+          <h4>Status: <h5>{{agendamentoForm.value.status}}</h5></h4>
+        </div>
         <mat-card-actions>
           <button mat-icon-button color="primary"><mat-icon>pending_actions</mat-icon></button>
         </mat-card-actions>

@@ -41,11 +41,11 @@ export class AgendamentoCreateComponent implements OnInit {
     this.agendamentoForm = this.formBuilder.group({
       dataAgendamento: [''],
       horario: [''],
-      status: [''],
+      status: ['ACEITO/CONFIRMADO'],
       avaliacao: [''],
-      funcionario: [{}],
-      servico: [{}],
-      pessoa: [{}]
+      funcionario: [''],
+      servico: [''],
+      pessoa: ['']
     });
 
     const  data = this.dateFormCtrl.value.toLocaleDateString().split('/');
@@ -87,12 +87,7 @@ export class AgendamentoCreateComponent implements OnInit {
     );
   }
 
-
-  cancel2(): void {
-     // alert('Data: ' + this.dateFormCtrl.value.toLocaleDateString());
-  }
-
-  setHorario(horario: string) {
+  setHorario(horario: string): void {
     this.horario = horario;
   }
 
