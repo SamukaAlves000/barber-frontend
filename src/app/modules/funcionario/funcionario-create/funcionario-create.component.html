@@ -9,49 +9,78 @@
       </form>
     </mat-step>
     <mat-step [stepControl]="funcionarioForm">
-      <button mat-mini-fab color="primary"><mat-icon>person_search</mat-icon></button>
+      <button mat-mini-fab color="primary" (click)="buscarUsuario()"><mat-icon>person_search</mat-icon></button>
       <form [formGroup]="funcionarioForm">
         <ng-template matStepLabel>Preencher info. Funcionário</ng-template>
+<!--        <span *ngIf="isSelecionouPessoa"> <p style="color: blue">Alguns campos do formulário estão desabilitados!</p></span>-->
         <mat-form-field>
           <mat-label>Nome</mat-label>
-          <input type="text" matInput placeholder="Ex. Maria dos Santos" [formControl]="funcionarioForm.get('pessoa.nome')" >
+          <input type="text" matInput placeholder="Ex. Maria dos Santos"
+                 [formControl]="funcionarioForm.get('pessoa.nome')"
+                 [value]="isSelecionouPessoa?pessoa.nome:funcionarioForm.value.pessoa.nome"
+                 [required]="!isSelecionouPessoa"
+                 [readonly]="isSelecionouPessoa"
+          >
           <mat-icon matSuffix>edit</mat-icon>
           <mat-error *ngIf="!funcionarioForm.get('pessoa.nome').valid">Campo obrigatório!</mat-error>
         </mat-form-field>
         <mat-form-field>
           <mat-label>Email</mat-label>
-          <input type="email" matInput placeholder="Ex. name@hotmail.com" [formControl]="funcionarioForm.get('pessoa.email')"  >
+          <input type="email" matInput placeholder="Ex. name@hotmail.com"
+                 [formControl]="funcionarioForm.get('pessoa.email')"
+                 [value]="isSelecionouPessoa?pessoa.email:funcionarioForm.value.pessoa.email"
+                 [readonly]="isSelecionouPessoa"
+          >
           <mat-icon matSuffix>mail</mat-icon>
           <mat-error *ngIf="!funcionarioForm.get('pessoa.email').valid">E-mail inválido!</mat-error>
         </mat-form-field>
         <mat-form-field>
           <mat-label>CPF</mat-label>
-          <input type="text" mask="000.000.000-00" matInput placeholder="Ex. 000.000.000-00" [formControl]="funcionarioForm.get('pessoa.cpf')"  maxlength="14">
+          <input type="text" mask="000.000.000-00" matInput placeholder="Ex. 000.000.000-00"
+                 [formControl]="funcionarioForm.get('pessoa.cpf')"
+                 maxlength="14" [value]="isSelecionouPessoa?(pessoa.cpf | mask: '000.000.000-00'):funcionarioForm.value.pessoa.cpf"
+                 [readonly]="isSelecionouPessoa"
+          >
           <mat-icon matSuffix>edit</mat-icon>
           <mat-error *ngIf="!funcionarioForm.get('pessoa.cpf').valid">CPF inválido!</mat-error>
         </mat-form-field>
         <mat-form-field>
           <mat-label>Telefone</mat-label>
-          <input type="text" mask="(00) 00000-0000" matInput placeholder="Ex. (00) 00000-0000" [formControl]="funcionarioForm.get('pessoa.fone')" >
+          <input type="text" mask="(00) 00000-0000" matInput placeholder="Ex. (00) 00000-0000"
+                 [formControl]="funcionarioForm.get('pessoa.fone')"
+                 [value]="isSelecionouPessoa?(pessoa.fone | mask: '(00) 00000-0000'):funcionarioForm.value.pessoa.fone"
+                 [readonly]="isSelecionouPessoa"
+          >
           <mat-icon matSuffix>phone_enabled</mat-icon>
           <mat-error *ngIf="!funcionarioForm.get('pessoa.fone').valid">Número inválido!</mat-error>
         </mat-form-field>
         <mat-form-field>
           <mat-label>Cidade</mat-label>
-          <input type="text" matInput placeholder="Ex. Campos Belos" [formControl]="funcionarioForm.get('pessoa.cidade')"  maxlength="30">
+          <input type="text" matInput placeholder="Ex. Campos Belos"
+                 [formControl]="funcionarioForm.get('pessoa.cidade')"
+                 maxlength="30"
+                 [value]="isSelecionouPessoa?pessoa.cidade:funcionarioForm.value.pessoa.cidade"
+                 [readonly]="isSelecionouPessoa"
+          >
           <mat-icon matSuffix>location_city</mat-icon>
         </mat-form-field>
         <section class="example-section">
           <label>Sexo:</label>
-          <mat-radio-group [formControl]="funcionarioForm.get('pessoa.sexo')" >
+          <mat-radio-group [formControl]="funcionarioForm.get('pessoa.sexo')"
+                           [value]="isSelecionouPessoa?pessoa.sexo:funcionarioForm.value.pessoa.sexo"
+                           [disabled]="isSelecionouPessoa"
+          >
             <mat-radio-button class="example-margin" value="F">Feminino</mat-radio-button>
             <mat-radio-button class="example-margin" value="M" [checked]="true">Masculino</mat-radio-button>
           </mat-radio-group>
         </section>
         <mat-form-field class="example-full-width" appearance="legacy">
           <mat-label>Data de Nascimento</mat-label>
-          <input  matInput  [matDatepicker]="picker" [formControl]="funcionarioForm.get('pessoa.dataNasc')" >
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <input  matInput  [matDatepicker]="picker" [formControl]="funcionarioForm.get('pessoa.dataNasc')"
+                  [value]="isSelecionouPessoa?pessoa.dataNasc:funcionarioForm.value.pessoa.dataNasc"
+                  [readonly]="isSelecionouPessoa"
+          >
+          <mat-datepicker-toggle matSuffix [for]="picker" [disabled]="isSelecionouPessoa"></mat-datepicker-toggle>
           <mat-error *ngIf="!funcionarioForm.get('pessoa.dataNasc').valid">Data inválida!</mat-error>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
@@ -73,12 +102,12 @@
           <mat-card-title>Dados do Funcionário</mat-card-title>
         </mat-card-header>
         <div style="padding: 20px">
-          <h4>Nome: <h5>{{funcionarioForm.value.pessoa.nome}}</h5></h4>
-          <h4>Email: <h5>{{funcionarioForm.value.pessoa.email}}</h5></h4>
-          <h4>Fone: <h5>{{funcionarioForm.value.pessoa.cpf | mask: '000.000.000-00'}}</h5></h4>
-          <h4>Fone: <h5>{{funcionarioForm.value.pessoa.fone | mask: '(00) 00000-0000'}}</h5></h4>
-          <h4>Cidade: <h5>{{funcionarioForm.value.pessoa.cidade}}</h5></h4>
-          <h4>Sexo: <h5>{{funcionarioForm.value.pessoa.sexo === 'F'?'Femenino':'Masculino'}}</h5></h4>
+          <h4>Nome: <h5>{{isSelecionouPessoa? pessoa.nome : funcionarioForm.value.pessoa.nome}}</h5></h4>
+          <h4>Email: <h5>{{isSelecionouPessoa? pessoa.email : funcionarioForm.value.pessoa.email}}</h5></h4>
+          <h4>Fone: <h5>{{isSelecionouPessoa? (pessoa.cpf | mask: '000.000.000-00') : funcionarioForm.value.pessoa.cpf | mask: '000.000.000-00'}}</h5></h4>
+          <h4>Fone: <h5>{{isSelecionouPessoa? (pessoa.fone | mask: '(00) 00000-0000') : funcionarioForm.value.pessoa.fone | mask: '(00) 00000-0000'}}</h5></h4>
+          <h4>Cidade: <h5>{{isSelecionouPessoa? pessoa.cidade : funcionarioForm.value.pessoa.cidade}}</h5></h4>
+          <h4>Sexo: <h5>{{isSelecionouPessoa? (pessoa.sexo === 'F'?'Femenino':'Masculino') : funcionarioForm.value.pessoa.sexo === 'F'?'Femenino':'Masculino'}}</h5></h4>
           <h4>Salário: <h5>{{funcionarioForm.value.salario | currency: 'BRL'}}</h5></h4>
         </div>
         <mat-card-actions>

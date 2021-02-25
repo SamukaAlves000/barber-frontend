@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {FuncionarioService} from '../funcionario.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {MatDialog} from '@angular/material/dialog';
+import {PessoaReadComponent} from '../../pessoa/pessoa-read/pessoa-read.component';
+import {DialogPessoaReadComponent} from './dialog-pessoa-read/dialog-pessoa-read.component';
+import {Pessoa} from '../../pessoa/pessoa';
 
 @Component({
   selector: 'app-funcionario-create',
@@ -11,17 +15,18 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 export class FuncionarioCreateComponent implements OnInit {
 
   funcionarioForm: FormGroup;
-
+  isSelecionouPessoa = false;
+  pessoa: Pessoa;
   constructor(private router: Router,
               private funcionarioService: FuncionarioService,
-              private formBuilder: FormBuilder) { }
+              private formBuilder: FormBuilder, private dialog: MatDialog) { }
 
   ngOnInit(): void {
 
     this.funcionarioForm = this.formBuilder.group({
       salario: ['', Validators.required],
       pessoa: this.formBuilder.group({
-        nome: ['', Validators.required],
+        nome: [''],
         email: ['', Validators.email],
         cpf: [''],
         fone: [''],
@@ -35,7 +40,11 @@ export class FuncionarioCreateComponent implements OnInit {
   }
 
   createFuncionario(): void {
-    this.setDataNascimento();
+    if (this.isSelecionouPessoa){
+      this.funcionarioForm.value.pessoa = this.pessoa;
+    }else{
+      this.setDataNascimento();
+    }
     this.funcionarioService.create(this.funcionarioForm.value).subscribe(res => {
         this.funcionarioService.showMessage('Funcionário CRIADO!');
         this.cancel();
@@ -53,4 +62,16 @@ export class FuncionarioCreateComponent implements OnInit {
     }
   }
 
+  buscarUsuario(): void {
+    const dialogRef = this.dialog.open(DialogPessoaReadComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      this.pessoa = result;
+      this.funcionarioForm.value.pessoa = this.pessoa;
+      this.isSelecionouPessoa = true;
+    });
+  }
+
+  teste() {
+    console.log(this.funcionarioForm.value);
+  }
 }

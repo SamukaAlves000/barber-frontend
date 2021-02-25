@@ -23,12 +23,15 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {CurrencyMaskModule} from 'ng2-currency-mask';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import { DialogPessoaReadComponent } from './funcionario-create/dialog-pessoa-read/dialog-pessoa-read.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import {PessoaModule} from '../pessoa/pessoa.module';
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
 
 
 @NgModule({
-  declarations: [FuncionarioCreateComponent, FuncionarioUpdateComponent, FuncionarioReadComponent, FuncionarioDeleteComponent],
+  declarations: [FuncionarioCreateComponent, FuncionarioUpdateComponent, FuncionarioReadComponent, FuncionarioDeleteComponent, DialogPessoaReadComponent],
   exports: [
     FuncionarioReadComponent
   ],
@@ -54,6 +57,8 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
     MatDatepickerModule,
     CurrencyMaskModule,
     NgxMaskModule.forRoot(),
+    MatDialogModule,
+    PessoaModule,
   ]
 })
 export class FuncionarioModule { }

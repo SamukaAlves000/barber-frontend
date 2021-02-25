@@ -1,0 +1,12 @@
+<h2 mat-dialog-title>Selecione uma pessoa</h2>
+<mat-dialog-content class="mat-typography">
+  <app-pessoa-read
+    [isMostrarColunaSelect]="true"
+    [isMostrarColunaNone]="true"
+    (pessoaSelecionada)="setPessoa($event)"
+  ></app-pessoa-read>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="pessoa" cdkFocusInitial>Aplicar</button>
+</mat-dialog-actions>
