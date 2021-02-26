@@ -45,7 +45,8 @@ export class FuncionarioReadComponent implements OnInit {
     });
   }
 
-  selecionarFuncionario(funcionario: Funcionario): void {    if (!this.isSelecaoMultipla) {
+  selecionarFuncionario(funcionario: Funcionario): void {
+    if (!this.isSelecaoMultipla) {
       this.funcionarioSelecionado.emit(funcionario);
       if (this.selection.selected.length === 1) {
           this.selection.deselect(this.selection.selected[0]);

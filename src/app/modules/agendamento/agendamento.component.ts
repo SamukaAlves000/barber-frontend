@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Router} from '@angular/router';
 
 @Component({
@@ -8,6 +8,8 @@ import {Router} from '@angular/router';
 })
 export class AgendamentoComponent implements OnInit {
 
+  index: number;
+  atualizaStatusEleito: string;
   constructor(private router: Router) { }
 
   ngOnInit(): void {
@@ -16,4 +18,15 @@ export class AgendamentoComponent implements OnInit {
   navigateToAgendamentoCreate(): void {
     this.router.navigate(['agendamentos/create']);
   }
+
+  setIndex($event: number): void {
+    this.index = $event;
+  }
+
+  atualizaAgendamentos(status: string): void {
+    console.log(status);
+    console.log(status);
+    this.atualizaStatusEleito = status;
+  }
+
 }

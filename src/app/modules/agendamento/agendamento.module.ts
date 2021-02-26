@@ -33,6 +33,10 @@ import { AgendamentoReadCanceladoComponent } from './agendamento-read/agendament
 import { AgendamentoReadRecusadoComponent } from './agendamento-read/agendamento-read-recusado/agendamento-read-recusado.component';
 import { AgendamentoReadFinalizadoComponent } from './agendamento-read/agendamento-read-finalizado/agendamento-read-finalizado.component';
 import { AgendamentoReadAceitoConfirmadoComponent } from './agendamento-read/agendamento-read-aceito-confirmado/agendamento-read-aceito-confirmado.component';
+import { AgendamentoReadDialogComponent } from './agendamento-read/agendamento-read-dialog/agendamento-read-dialog.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import {CurrencyMaskModule} from 'ng2-currency-mask';
+import {NgxMaskModule} from 'ngx-mask';
 
 
 
@@ -46,7 +50,8 @@ import { AgendamentoReadAceitoConfirmadoComponent } from './agendamento-read/age
     AgendamentoReadCanceladoComponent,
     AgendamentoReadRecusadoComponent,
     AgendamentoReadFinalizadoComponent,
-    AgendamentoReadAceitoConfirmadoComponent],
+    AgendamentoReadAceitoConfirmadoComponent,
+    AgendamentoReadDialogComponent],
   exports: [
     AgendamentoReadComponent,
     AgendamentoReadAceitoConfirmadoComponent,
@@ -80,7 +85,10 @@ import { AgendamentoReadAceitoConfirmadoComponent } from './agendamento-read/age
     FuncionarioModule,
     ServicoModule,
     MatStepperModule,
-    MatTabsModule
+    MatTabsModule,
+    MatDialogModule,
+    CurrencyMaskModule,
+    NgxMaskModule
 
   ]
 })

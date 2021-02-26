@@ -8,17 +8,11 @@ import { Component, OnInit } from '@angular/core';
 export class DefaultComponent implements OnInit {
 
   sideBarOpen = false;
-   isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+  isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
   constructor() { }
 
   ngOnInit(): void {
-    if (this.isMobile) {
-      console.log('MOBILE');
-    }
-    else {
-      console.log('DESKTOP');
-    }
   }
 
   sideBarToggler($event: any): void {

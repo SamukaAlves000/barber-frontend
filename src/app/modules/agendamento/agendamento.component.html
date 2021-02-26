@@ -2,9 +2,10 @@
   <button (click)="navigateToAgendamentoCreate()" mat-fab color="primary">
     <mat-icon>note_add</mat-icon>
   </button>
-  <mat-tab-group>
+  <h1>Selecionado: {{index}}</h1>
+  <mat-tab-group (selectedIndexChange)="setIndex($event)">
     <mat-tab label="Aceitos/Confirmados">
-      <app-agendamento-read-aceito-confirmado></app-agendamento-read-aceito-confirmado>
+      <app-agendamento-read-aceito-confirmado (atualizaStatus)="atualizaAgendamentos($event)"></app-agendamento-read-aceito-confirmado>
     </mat-tab>
     <mat-tab label="Pendentes">
       <app-agendamento-read-pendente></app-agendamento-read-pendente>

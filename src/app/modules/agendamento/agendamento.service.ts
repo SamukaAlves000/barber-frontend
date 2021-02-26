@@ -92,7 +92,7 @@ export class AgendamentoService {
         duration: 3000,
         horizontalPosition: 'right',
         verticalPosition: 'bottom',
-        panelClass: isError ? ['msg-error'] : ['msg-sucess']
+        panelClass: ['mat-toolbar', 'mat-primary']
       }
     );
   }
