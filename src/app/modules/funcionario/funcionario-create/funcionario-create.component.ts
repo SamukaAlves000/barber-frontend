@@ -65,9 +65,11 @@ export class FuncionarioCreateComponent implements OnInit {
   buscarUsuario(): void {
     const dialogRef = this.dialog.open(DialogPessoaReadComponent);
     dialogRef.afterClosed().subscribe(result => {
-      this.pessoa = result;
-      this.funcionarioForm.value.pessoa = this.pessoa;
-      this.isSelecionouPessoa = true;
+      if (result !== ''){
+        this.pessoa = result;
+        this.funcionarioForm.value.pessoa = this.pessoa;
+        this.isSelecionouPessoa = true;
+      }
     });
   }
 
