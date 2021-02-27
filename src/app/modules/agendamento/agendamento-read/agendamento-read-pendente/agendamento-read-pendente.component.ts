@@ -33,16 +33,21 @@ export class AgendamentoReadPendenteComponent implements OnInit {
       this.agendamento = agendamento;
       const dialogRef = this.dialog.open(AgendamentoReadDialogComponent, {
         width: this.isMobile ? '100%' : '50%',
-        data: {agendamento: this.agendamento}
+        data: {agendamento: this.agendamento, buttonsLabels: ['Recusar', 'Aceitar']}
       });
 
       dialogRef.afterClosed().subscribe(result => {
-          if (result){
-            this.agendamento.status = 'ACEITO/CONFIRMADO';
+          if (result !== ''){
+            if (result){
+              this.agendamento.status = 'ACEITO/CONFIRMADO';
+            }
+            else {
+              this.agendamento.status = 'RECUSADO';
+            }
             this.agendamentoService.update(this.agendamento).subscribe(value => {
-              this.agendamentoService.showMessage('Agendamento confirmado com sucesso!');
+              this.agendamentoService.showMessage('Agendamento ' + this.agendamento.status + ' com sucesso!');
               this.carregarListaDeAgendamentos();
-              this.atualizaStatusEleito.emit('ACEITO/CONFIRMADO');
+              this.atualizaStatusEleito.emit(this.agendamento.status);
             });
           }
         }

@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import {Agendamento} from '../../agendamento';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
@@ -15,17 +15,26 @@ export class AgendamentoReadRecusadoComponent implements OnInit {
   agendamentos: Agendamento[];
   displayedColumns: string[] = ['id', 'cliente', 'servico', 'funcionario', 'action'];
   dataSource = new MatTableDataSource([]);
-
+  @Input() atualizaStatus;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   constructor(private agendamentoService: AgendamentoService) { }
 
   ngOnInit(): void {
+    this.carregarListaDeAgendamentos();
+  }
+
+  carregarListaDeAgendamentos(): void {
     this.agendamentoService.getAllStatus('RECUSADO').subscribe((data: Agendamento[]) => {
-      console.log(data);
       this.agendamentos = data;
-      this.dataSource = new MatTableDataSource<Funcionario>(this.agendamentos); // Set dataSource  like this
+      this.dataSource = new MatTableDataSource<Funcionario>(this.agendamentos);
       this.dataSource.paginator = this.paginator;
     });
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.atualizaStatus.currentValue === 'RECUSADO') {
+      this.carregarListaDeAgendamentos();
+    }
   }
 
 }

@@ -1,11 +1,16 @@
-
-  <button class="close-button" mat-button mat-dialog-close>X</button>
-  <h3 mat-dialog-title>Informações Gerais</h3>
-  <mat-dialog-content>
+<!--  <button  mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">-->
+<!--    <mat-icon style="float: left">info</mat-icon>-->
+<!--  </button>-->
+<!--  <span>Informações Gerais</span>-->
+<button  mat-icon-button class="close-button2">
+  <mat-icon>info</mat-icon>
+  Dados Gerais
+</button>
+<mat-dialog-content style="padding-left: 25px;">
   <form>
     <mat-form-field appearance="fill">
       <mat-label>ID</mat-label>
-      <input matInput readonly [(ngModel)]="agendamento.id" name="ID">
+      <input cdkFocusInitial matInput readonly [(ngModel)]="agendamento.id" name="ID">
     </mat-form-field>
     <mat-form-field appearance="legacy">
       <mat-label>Nome do Cliente</mat-label>
@@ -41,8 +46,9 @@
     </mat-form-field>
 
     <mat-dialog-actions align="end">
-      <button mat-raised-button mat-dialog-close color="warn">Cancel</button>
-      <button mat-raised-button style="background-color: #4CAF50; color: #ffffff"  [mat-dialog-close]="true" cdkFocusInitial>Finalizar</button>
+      <button mat-raised-button color="basic" style="width: 100px" mat-dialog-close>Sair</button>
+      <button mat-raised-button color="warn" [mat-dialog-close]="false">{{data.buttonsLabels[0]}}</button>
+      <button mat-raised-button style="background-color: #4CAF50; color: #ffffff"  [mat-dialog-close]="true" cdkFocusInitial>{{data.buttonsLabels[1]}}</button>
     </mat-dialog-actions>
   </form>
 </mat-dialog-content>
