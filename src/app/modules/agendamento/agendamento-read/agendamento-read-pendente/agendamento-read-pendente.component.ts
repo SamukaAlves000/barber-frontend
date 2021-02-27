@@ -1,9 +1,12 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
 import {Agendamento} from '../../agendamento';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
 import {AgendamentoService} from '../../agendamento.service';
 import {Funcionario} from '../../../funcionario/funcionario';
+import {MatDialog} from '@angular/material/dialog';
+import {Router} from '@angular/router';
+import {AgendamentoReadDialogComponent} from '../agendamento-read-dialog/agendamento-read-dialog.component';
 
 @Component({
   selector: 'app-agendamento-read-pendente',
@@ -12,18 +15,45 @@ import {Funcionario} from '../../../funcionario/funcionario';
 })
 export class AgendamentoReadPendenteComponent implements OnInit {
 
+  isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
   agendamentos: Agendamento[];
+  agendamento: Agendamento;
   displayedColumns: string[] = ['id', 'cliente', 'servico', 'funcionario', 'action'];
   dataSource = new MatTableDataSource([]);
-
+  @Output() atualizaStatusEleito = new EventEmitter<string>();
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-  constructor(private agendamentoService: AgendamentoService) { }
+  constructor(private agendamentoService: AgendamentoService, private dialog: MatDialog, private router: Router) { }
 
   ngOnInit(): void {
+    this.carregarListaDeAgendamentos();
+  }
+
+  openDialog(id: number): void {
+    this.agendamentoService.getById(id).subscribe(agendamento => {
+      this.agendamento = agendamento;
+      const dialogRef = this.dialog.open(AgendamentoReadDialogComponent, {
+        width: this.isMobile ? '100%' : '50%',
+        data: {agendamento: this.agendamento}
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+          if (result){
+            this.agendamento.status = 'ACEITO/CONFIRMADO';
+            this.agendamentoService.update(this.agendamento).subscribe(value => {
+              this.agendamentoService.showMessage('Agendamento confirmado com sucesso!');
+              this.carregarListaDeAgendamentos();
+              this.atualizaStatusEleito.emit('ACEITO/CONFIRMADO');
+            });
+          }
+        }
+      );
+    });
+  }
+
+  carregarListaDeAgendamentos(): void {
     this.agendamentoService.getAllStatus('PENDENTE').subscribe((data: Agendamento[]) => {
-      console.log(data);
       this.agendamentos = data;
-      this.dataSource = new MatTableDataSource<Funcionario>(this.agendamentos); // Set dataSource  like this
+      this.dataSource = new MatTableDataSource<Funcionario>(this.agendamentos);
       this.dataSource.paginator = this.paginator;
     });
   }

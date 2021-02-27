@@ -37,6 +37,7 @@ import { AgendamentoReadDialogComponent } from './agendamento-read/agendamento-r
 import {MatDialogModule} from '@angular/material/dialog';
 import {CurrencyMaskModule} from 'ng2-currency-mask';
 import {NgxMaskModule} from 'ngx-mask';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 
 
@@ -88,7 +89,8 @@ import {NgxMaskModule} from 'ngx-mask';
     MatTabsModule,
     MatDialogModule,
     CurrencyMaskModule,
-    NgxMaskModule
+    NgxMaskModule,
+    MatToolbarModule
 
   ]
 })

@@ -2,16 +2,16 @@
   <button (click)="navigateToAgendamentoCreate()" mat-fab color="primary">
     <mat-icon>note_add</mat-icon>
   </button>
-  <h1>Selecionado: {{index}}</h1>
-  <mat-tab-group (selectedIndexChange)="setIndex($event)">
+  <mat-tab-group>
     <mat-tab label="Aceitos/Confirmados">
-      <app-agendamento-read-aceito-confirmado (atualizaStatus)="atualizaAgendamentos($event)"></app-agendamento-read-aceito-confirmado>
+      <app-agendamento-read-aceito-confirmado
+        (atualizaStatusEleito)="atualizaAgendamentos($event)" [atualizaStatus]="atualizaStatusEleito"></app-agendamento-read-aceito-confirmado>
     </mat-tab>
     <mat-tab label="Pendentes">
-      <app-agendamento-read-pendente></app-agendamento-read-pendente>
+      <app-agendamento-read-pendente (atualizaStatusEleito)="atualizaAgendamentos($event)"></app-agendamento-read-pendente>
     </mat-tab>
     <mat-tab label="Finalizados">
-      <app-agendamento-read-finalizado></app-agendamento-read-finalizado>
+      <app-agendamento-read-finalizado [atualizaStatus]="atualizaStatusEleito"></app-agendamento-read-finalizado>
     </mat-tab>
     <mat-tab label="Cancelados">
       <app-agendamento-read-cancelado></app-agendamento-read-cancelado>

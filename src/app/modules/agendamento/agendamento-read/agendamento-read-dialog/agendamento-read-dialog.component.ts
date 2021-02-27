@@ -13,6 +13,7 @@ export class AgendamentoReadDialogComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<AgendamentoReadDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
+    this.dialogRef.disableClose = true;
   }
 
   ngOnInit(): void {

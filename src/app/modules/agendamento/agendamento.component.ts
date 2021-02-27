@@ -8,7 +8,6 @@ import {Router} from '@angular/router';
 })
 export class AgendamentoComponent implements OnInit {
 
-  index: number;
   atualizaStatusEleito: string;
   constructor(private router: Router) { }
 
@@ -19,14 +18,7 @@ export class AgendamentoComponent implements OnInit {
     this.router.navigate(['agendamentos/create']);
   }
 
-  setIndex($event: number): void {
-    this.index = $event;
-  }
-
   atualizaAgendamentos(status: string): void {
-    console.log(status);
-    console.log(status);
     this.atualizaStatusEleito = status;
   }
-
 }

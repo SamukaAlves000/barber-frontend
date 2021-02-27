@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild} from '@angular/core';
 import {Agendamento} from '../../agendamento';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
@@ -14,14 +14,15 @@ import {Router} from '@angular/router';
   templateUrl: './agendamento-read-aceito-confirmado.component.html',
   styleUrls: ['./agendamento-read-aceito-confirmado.component.scss']
 })
-export class AgendamentoReadAceitoConfirmadoComponent implements OnInit {
+export class AgendamentoReadAceitoConfirmadoComponent implements OnInit, OnChanges {
 
   isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
   agendamentos: Agendamento[];
   agendamento: Agendamento;
   displayedColumns: string[] = ['id', 'cliente', 'servico', 'funcionario', 'action'];
   dataSource = new MatTableDataSource([]);
-  @Output() atualizaStatus = new EventEmitter<string>();
+  @Input() atualizaStatus;
+  @Output() atualizaStatusEleito = new EventEmitter<string>();
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   constructor(private agendamentoService: AgendamentoService, private dialog: MatDialog, private router: Router) { }
 
@@ -43,7 +44,7 @@ export class AgendamentoReadAceitoConfirmadoComponent implements OnInit {
           this.agendamentoService.update(this.agendamento).subscribe(value => {
             this.agendamentoService.showMessage('Agendamento finalizado com sucesso!');
             this.carregarListaDeAgendamentos();
-            this.atualizaStatus.emit('FINALIZADO');
+            this.atualizaStatusEleito.emit('FINALIZADO');
           });
         }
       }
@@ -57,5 +58,11 @@ export class AgendamentoReadAceitoConfirmadoComponent implements OnInit {
       this.dataSource = new MatTableDataSource<Funcionario>(this.agendamentos);
       this.dataSource.paginator = this.paginator;
     });
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.atualizaStatus.currentValue === 'ACEITO/CONFIRMADO') {
+      this.carregarListaDeAgendamentos();
+    }
   }
 }
