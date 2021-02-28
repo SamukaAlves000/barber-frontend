@@ -28,6 +28,45 @@ export class HomeComponent implements OnInit {
     {image: 'assets/images/produtos/p8.jpg'},
     {image: 'assets/images/produtos/p9.jpg'}];
 
+   cards = [
+       {
+         icon: 'home',
+         title: 'Inicío',
+         router: '/',
+         color: '#3F51B5'
+       },
+       {
+         icon: 'dashboard',
+         title: 'Dashboard',
+         router: '/dashboard',
+         color: '#4CAF50'
+       },
+       {
+         icon: 'view_agenda',
+         title: 'Agenda',
+         router: '/agendamentos',
+         color: '#9C27B0'
+       },
+       {
+         icon: 'engineering',
+         title: 'Funcionário',
+         router: '/funcionarios',
+         color: '#F44336'
+       },
+       {
+         icon: 'person',
+         title: 'Usuário',
+         router: '/usuarios',
+         color: '#009688'
+       },
+       {
+         icon: 'miscellaneous_services',
+         title: 'Serviços',
+         router: '/servicos',
+         color: ''
+       }
+     ];
+
   constructor(private router: Router) { }
   ngOnInit(): void {
   }

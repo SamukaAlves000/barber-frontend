@@ -28,19 +28,16 @@
 
 <!--<div class="content">-->
 <!--  <div fxLayout="row wrap" fxLayoutGap="16px grid">-->
-<!--    <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let num of produtos">-->
-<!--      <mat-card class="mat-elevation-z4" >-->
-<!--        <img mat-card-image [src]="num.image">-->
+<!--    <div fxFlex="33%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let num of [1, 2, 3, 4, 5, 6]">-->
+<!--      <mat-card class="teste2" routerLinkActive="list-item-active" routerLink="/usuarios">-->
 <!--        <mat-card-content>-->
-<!--          <h1>R$25,00</h1>-->
-<!--          <p>-->
-<!--            Descrição sobre o produto.-->
-<!--          </p>-->
+<!--          <button mat-fab style="background-color: green">-->
+<!--            <mat-card-actions>-->
+<!--              <mat-icon>person</mat-icon>-->
+<!--              <h4><b>Usuários</b></h4>-->
+<!--            </mat-card-actions>-->
+<!--          </button>-->
 <!--        </mat-card-content>-->
-<!--        <mat-card-actions>-->
-<!--          <button mat-button>LIKE</button>-->
-<!--          <button mat-button>SHARE</button>-->
-<!--        </mat-card-actions>-->
 <!--      </mat-card>-->
 <!--    </div>-->
 <!--  </div>-->
@@ -101,71 +98,22 @@
         </div>
         <br>
         <br>
-        <mat-card class="teste2" routerLinkActive="list-item-active" routerLink="/">
-          <mat-card-content>
-            <button mat-fab color="primary" >
-              <mat-card-actions>
-              <mat-icon>home</mat-icon>
-              <h4><b>Início</b></h4>
-              </mat-card-actions>
-            </button>
-          </mat-card-content>
-        </mat-card>
-        <br>
-        <mat-card class="teste2" routerLinkActive="list-item-active" routerLink="/dashboard">
-          <mat-card-content>
-            <button mat-fab style="background-color: rgb(144, 237, 125)" >
-                <mat-card-actions>
-                  <mat-icon>dashboard</mat-icon>
-                  <h4><b>Dashboard</b></h4>
-                </mat-card-actions>
-            </button>
-          </mat-card-content>
-        </mat-card>
-        <br>
-        <mat-card class="teste2" routerLinkActive="list-item-active" routerLink="/agendamentos">
-          <mat-card-content>
-            <button mat-fab color="warn">
-              <mat-card-actions>
-                <mat-icon>view_agenda</mat-icon>
-                <h4><b>Agenda</b></h4>
-              </mat-card-actions>
-            </button>
-          </mat-card-content>
-        </mat-card>
-        <br>
-        <mat-card class="teste2" routerLinkActive="list-item-active" routerLink="/funcionarios">
-          <mat-card-content>
-            <button mat-fab style="background-color: rgba(247, 163, 92, 0.75)">
-              <mat-card-actions>
-                <mat-icon>engineering</mat-icon>
-                <h4><b>Funcionário</b></h4>
-              </mat-card-actions>
-            </button>
-          </mat-card-content>
-        </mat-card>
-        <br>
-        <mat-card class="teste2" routerLinkActive="list-item-active" routerLink="/usuarios">
-          <mat-card-content>
-            <button mat-fab style="background-color: green">
-              <mat-card-actions>
-                <mat-icon>person</mat-icon>
-                <h4><b>Usuários</b></h4>
-              </mat-card-actions>
-            </button>
-          </mat-card-content>
-        </mat-card>
-        <br>
-        <mat-card class="teste2" routerLinkActive="list-item-active" routerLink="/servicos">
-          <mat-card-content>
-            <button mat-fab style="background-color: blueviolet" >
-              <mat-card-actions>
-                <mat-icon>miscellaneous_services</mat-icon>
-                <h4><b>Serviços</b></h4>
-              </mat-card-actions>
-            </button>
-          </mat-card-content>
-        </mat-card>
+        <div class="content">
+          <div fxLayout="row wrap" fxLayoutGap="16px grid">
+            <div fxFlex="33%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let card of cards">
+              <mat-card class="teste2" routerLinkActive="list-item-active" [routerLink]="card.router">
+                <mat-card-content>
+                  <button mat-fab [ngStyle]="{'backgroundColor': card.color}">
+                    <mat-card-actions>
+                      <mat-icon>{{card.icon}}</mat-icon>
+                      <h4><b>{{card.title}}</b></h4>
+                    </mat-card-actions>
+                  </button>
+                </mat-card-content>
+              </mat-card>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
