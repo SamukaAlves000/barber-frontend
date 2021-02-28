@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild} from '@angular/core';
+import {AfterContentInit, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild} from '@angular/core';
 import {Agendamento} from '../../agendamento';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
@@ -19,7 +19,7 @@ export class AgendamentoReadAceitoConfirmadoComponent implements OnInit, OnChang
   isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
   agendamentos: Agendamento[];
   agendamento: Agendamento;
-  displayedColumns: string[] = ['id', 'cliente', 'servico', 'funcionario', 'action'];
+  displayedColumns: string[] = ['id', 'cliente', 'data', 'action'];
   dataSource = new MatTableDataSource([]);
   @Input() atualizaStatus;
   @Output() atualizaStatusEleito = new EventEmitter<string>();
@@ -35,7 +35,7 @@ export class AgendamentoReadAceitoConfirmadoComponent implements OnInit, OnChang
       this.agendamento = agendamento;
       const dialogRef = this.dialog.open(AgendamentoReadDialogComponent, {
         width: this.isMobile ? '100%' : '50%',
-        data: {agendamento: this.agendamento, buttonsLabels: ['Cancelar', 'Finalizar']}
+        data: {agendamento: this.agendamento, buttonsLabels: ['Cancelar', 'Finalizar'], flagButton: true}
       });
 
       dialogRef.afterClosed().subscribe(result => {
@@ -68,6 +68,7 @@ export class AgendamentoReadAceitoConfirmadoComponent implements OnInit, OnChang
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.atualizaStatus.currentValue === 'ACEITO/CONFIRMADO') {
       this.carregarListaDeAgendamentos();
+      this.atualizaStatusEleito.emit(undefined);
     }
   }
 }

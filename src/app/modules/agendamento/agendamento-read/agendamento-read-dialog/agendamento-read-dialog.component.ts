@@ -9,6 +9,7 @@ import {Agendamento} from '../../agendamento';
 })
 export class AgendamentoReadDialogComponent implements OnInit {
 
+  dataHorario: string;
   agendamento: Agendamento;
   constructor(
     public dialogRef: MatDialogRef<AgendamentoReadDialogComponent>,
@@ -18,5 +19,13 @@ export class AgendamentoReadDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.agendamento = this.data.agendamento;
+    this.formatarDataHorario();
+  }
+
+  formatarDataHorario(): void {
+    const res = this.agendamento.horario.split('T');
+    const data = res[0].split('-');
+    const horario = res[1];
+    this.dataHorario = data[2] + '/' + data[1 ] + '/' + data[0] + ' ' + horario;
   }
 }

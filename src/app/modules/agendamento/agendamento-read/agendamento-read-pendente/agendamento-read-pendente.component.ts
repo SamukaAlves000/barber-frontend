@@ -33,7 +33,7 @@ export class AgendamentoReadPendenteComponent implements OnInit {
       this.agendamento = agendamento;
       const dialogRef = this.dialog.open(AgendamentoReadDialogComponent, {
         width: this.isMobile ? '100%' : '50%',
-        data: {agendamento: this.agendamento, buttonsLabels: ['Recusar', 'Aceitar']}
+        data: {agendamento: this.agendamento, buttonsLabels: ['Recusar', 'Aceitar'], flagButton: true}
       });
 
       dialogRef.afterClosed().subscribe(result => {

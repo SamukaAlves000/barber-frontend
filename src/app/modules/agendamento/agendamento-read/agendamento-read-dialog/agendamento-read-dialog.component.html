@@ -4,7 +4,7 @@
 <!--  <span>Informações Gerais</span>-->
 <button  mat-icon-button class="close-button2">
   <mat-icon>info</mat-icon>
-  Dados Gerais
+  Informações Gerais
 </button>
 <mat-dialog-content style="padding-left: 25px;">
   <form>
@@ -37,18 +37,13 @@
       <input matInput readonly [(ngModel)]="agendamento.status" name="status">
     </mat-form-field>
     <mat-form-field appearance="fill">
-      <mat-label>Data</mat-label>
-      <input matInput readonly [(ngModel)]="agendamento.dataAgendamento" name="dataAgendamento">
+      <mat-label>Data/Horário</mat-label>
+      <input matInput readonly [(ngModel)]="dataHorario" name="dataAgendamento">
     </mat-form-field>
-    <mat-form-field appearance="fill">
-      <mat-label>Horário</mat-label>
-      <input matInput readonly [(ngModel)]="agendamento.horario" name="horario">
-    </mat-form-field>
-
     <mat-dialog-actions align="end">
       <button mat-raised-button color="basic" style="width: 100px" mat-dialog-close>Sair</button>
-      <button mat-raised-button color="warn" [mat-dialog-close]="false">{{data.buttonsLabels[0]}}</button>
-      <button mat-raised-button style="background-color: #4CAF50; color: #ffffff"  [mat-dialog-close]="true" cdkFocusInitial>{{data.buttonsLabels[1]}}</button>
+      <button mat-raised-button color="warn" [mat-dialog-close]="false" *ngIf="data.flagButton">{{data.buttonsLabels[0]}}</button>
+      <button mat-raised-button style="background-color: #4CAF50; color: #ffffff"  [mat-dialog-close]="true" *ngIf="data.flagButton">{{data.buttonsLabels[1]}}</button>
     </mat-dialog-actions>
   </form>
 </mat-dialog-content>
