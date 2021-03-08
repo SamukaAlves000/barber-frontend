@@ -11,10 +11,10 @@ import {Agendamento} from './agendamento';
 export class AgendamentoService {
 
   // Produção
-  // private apiServer = 'https://barbearia-backend.herokuapp.com';
+  private apiServer = 'https://barbearia-backend.herokuapp.com';
   // Desenvolvimento
-  private apiServer = 'http://localhost:8080';
-
+  // private apiServer = 'http://localhost:8080';
+  //
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
