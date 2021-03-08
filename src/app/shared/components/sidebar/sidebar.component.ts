@@ -7,6 +7,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
+  isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
   @Output() toggleSideBarForMe: EventEmitter<any> = new EventEmitter<any>()
   constructor() { }
 
@@ -14,12 +15,13 @@ export class SidebarComponent implements OnInit {
   }
 
   toggleSideBar(): void {
-    this.toggleSideBarForMe.emit();
-    setTimeout(() => {
-      window.dispatchEvent(
-        new Event('resize')
-      );
-    }, 300);
+    if (this.isMobile) {
+      this.toggleSideBarForMe.emit();
+      setTimeout(() => {
+        window.dispatchEvent(
+          new Event('resize')
+        );
+      }, 300);
+    }
   }
-
 }
