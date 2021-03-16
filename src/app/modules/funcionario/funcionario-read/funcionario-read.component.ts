@@ -5,6 +5,9 @@ import {MatPaginator} from '@angular/material/paginator';
 import {FuncionarioService} from '../funcionario.service';
 import {SelectionModel} from '@angular/cdk/collections';
 import {ServicoFuncionario} from '../../servico/servico-funcionario';
+import {ActivatedRoute} from '@angular/router';
+import {ServicoService} from '../../servico/servico.service';
+import {Servico} from '../../servico/servico';
 
 @Component({
   selector: 'app-funcionario-read',
@@ -21,8 +24,7 @@ export class FuncionarioReadComponent implements OnInit {
   @Input() isMostrarColunaNone = false;
   @Input() isMostrarColunaSalario = false;
   @Input() isSelecaoMultipla = false;
-  @Input() isSelecaoAutomatica = false;
-  @Input() selecionados: ServicoFuncionario[] = [];
+  servico: Servico = {};
 
   displayedColumns: string[] = [];
   dataSource = new MatTableDataSource([]);
@@ -30,17 +32,23 @@ export class FuncionarioReadComponent implements OnInit {
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-  constructor(private funcionarioService: FuncionarioService) { }
+  constructor(private funcionarioService: FuncionarioService, private servicoService: ServicoService , private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.adicionarColunas();
     this.funcionarioService.getAll().subscribe((data: Funcionario[]) => {
       console.log(data);
       this.funcionarios = data;
-      this.dataSource = new MatTableDataSource<Funcionario>(this.funcionarios); // Set dataSource  like this
+      this.dataSource = new MatTableDataSource<Funcionario>(this.funcionarios);
       this.dataSource.paginator = this.paginator;
-      if (this.isSelecaoAutomatica) {
-        this.selecaoAutomatica();
+
+      const id = this.route.snapshot.paramMap.get('idServico');
+      if (id !== null) {
+        this.servicoService.getById(id).subscribe(servico => {
+            this.servico = servico;
+            this.selecaoAutomatica();
+          }
+        );
       }
     });
   }
@@ -52,20 +60,19 @@ export class FuncionarioReadComponent implements OnInit {
           this.selection.deselect(this.selection.selected[0]);
       }
     }else {
+      this.selection.changed.asObservable().subscribe(value => {
 
-      let index = -1;
-      for (let i = 0; i < this.selecionados.length; i++) {
-        if (this.selecionados[i].funcionario.id === funcionario.id) {
-          index = i;
-        }
-      }
+        const atual: ServicoFuncionario[] = [];
 
-      if (index === -1) {
-          this.selecionados.push(this.novoFuncionario(funcionario));
-      }else{
-          this.selecionados.splice(index, 1);
-      }
-      this.funcionariosSelecionados.emit(this.selecionados);
+        this.selection.selected.forEach(value1 => {
+          const novo: ServicoFuncionario = {};
+          novo.funcionario = value1;
+          atual.push(novo);
+        });
+
+        this.funcionariosSelecionados.emit(atual);
+
+      });
     }
   }
 
@@ -94,7 +101,7 @@ export class FuncionarioReadComponent implements OnInit {
   }
 
   selecaoAutomatica(): void {
-    this.selecionados.forEach(value => {
+    this.servico.funcionarios.forEach(value => {
       const res = this.funcionarios.filter(value1 => value1.id === value.funcionario.id)[0];
       this.selection.select(res);
     });
